@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  nav
+    .nav-wrapper
+      a#logo.brand-logo(href='#') Nihility
+  #login_form.row
+    form.col.s12
+      .row
+        .input-field.col.s6
+          input#user_name.validate(type='text')
+          label(for='first_name') User Name
+      .row
+        .input-field.col.s6
+          input#password.validate(type='password')
+          label(for='password') Password
+      
+      button.btn.waves-effect.waves-light(type='submit', name='login')
+        | Submit
+        i.material-icons.right send

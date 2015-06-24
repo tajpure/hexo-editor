@@ -1,8 +1,22 @@
 body {
-  padding: 50px;
+  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+#logo {
+  margin-left: 20px;
+}
+
+#login_form {
+  margin-top: 8%;
+  width: 60%;
+  margin-left: 34%;
+}
+
+#login_form .btn {
+  margin-left: 16%;
 }

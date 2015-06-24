@@ -1,5 +1,13 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  nav
+    .nav-wrapper
+      a#logo.brand-logo(href='#') Nihility
+      ul#nav-mobile.right.hide-on-med-and-down
+        li
+          a(href='sass.html') Sass
+        li
+          a(href='badges.html') Components
+        li
+          a(href='collapsible.html') JavaScript
