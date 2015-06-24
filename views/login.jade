@@ -4,6 +4,13 @@ block content
   nav
     .nav-wrapper
       a#logo.brand-logo(href='#') Nihility
+      ul#slide-out.side-nav
+        li
+          a(href='#!') First Sidebar Link
+        li
+          a(href='#!') Second Sidebar Link
+      a.button-collapse(href='#', data-activates='slide-out')
+        i.mdi-navigation-menu
   #login_form.row
     form.col.s12
       .row
@@ -15,6 +22,6 @@ block content
           input#password.validate(type='password')
           label(for='password') Password
       
-      button.btn.waves-effect.waves-light(type='submit', name='login')
+      button.btn.waves-effect.waves-light(type='submit')
         | Submit
         i.material-icons.right send
