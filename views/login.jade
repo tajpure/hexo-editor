@@ -12,16 +12,15 @@ block content
       a.button-collapse(href='#', data-activates='slide-out')
         i.mdi-navigation-menu
   #login_form.row
-    form.col.s12
+    form.col.s12(action='login')
       .row
         .input-field.col.s6
-          input#user_name.validate(type='text')
+          input#user_name.validate(type='text', name="username")
           label(for='first_name') User Name
       .row
         .input-field.col.s6
-          input#password.validate(type='password')
+          input#password.validate(type='password', name="password")
           label(for='password') Password
-      
       button.btn.waves-effect.waves-light(type='submit')
-        | Submit
+        | LOGIN
         i.material-icons.right send
