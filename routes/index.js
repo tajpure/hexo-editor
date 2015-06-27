@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var admin = require('../model/admin');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -11,12 +12,15 @@ router.get('/', function(req, res, next) {
   }
 });
 
-router.get('/login', function(req, res, next) {
+router.post('/login', function(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
-  console.log(username);
-  req.session.username = username;
-  res.redirect('/');
+  if (admin.check(username, password)) {
+    req.session.username = username;
+    res.redirect('/');
+  } else {
+    res.redirect('/');
+  }
 });
 
 router.get('/logout', function(req, res, next) {

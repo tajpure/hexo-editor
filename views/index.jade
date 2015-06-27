@@ -2,13 +2,27 @@ extends layout
 
 block content
   nav
-    .nav-wrapper
-      a#logo.brand-logo(href='#') Nihility
+    .nav-wrapper.white.z-depth-1
+      a#logo.grey-text.text-darken-3.brand-logo(href='#') Nihility
       ul#nav-mobile.right.hide-on-med-and-down
         li
-          a(href='sass.html') Sass
+          a.grey-text.text-darken-3(href='sass.html') Sass
         li
-          a(href='badges.html') Components
+          a.grey-text.text-darken-3(href='badges.html') Components
         li
-          a(href='logout') logout
-  | hello
+          a.grey-text.text-darken-3(href='logout') logout
+  nav
+    ul.right.hide-on-med-and-down
+      li
+        a(href='#!') First Sidebar Link
+      li
+        a(href='#!') Second Sidebar Link
+    ul#slide-out.side-nav
+      li
+        a(href='#!') First Sidebar Link
+      li
+        a(href='#!') Second Sidebar Link
+      a.button-collapse(href='#', data-activates='slide-out')
+        i.mdi-navigation-menu
+  script.
+    $('.button-collapse').sideNav();

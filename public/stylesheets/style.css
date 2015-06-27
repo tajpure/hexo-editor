@@ -1,10 +1,7 @@
 body {
   padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
+  background-color: #eceff1;
 }
 
 #logo {
@@ -12,11 +9,18 @@ a {
 }
 
 #login_form {
+  position: relative;
+  top: 16%;
+  margin: 0 auto;
   margin-top: 8%;
-  width: 60%;
-  margin-left: 34%;
+  padding: 20px;
+  width: 480px;
+  background: rgb(255,255,255);
+  color: #333;
+  text-align: center;
+  box-shadow: 0px 6px 8px rgba(0,0,0,0.5);
 }
 
-#login_form .btn {
-  margin-left: 16%;
+.col {
+text-align: left;
 }

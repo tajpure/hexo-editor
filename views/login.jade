@@ -1,26 +1,19 @@
 extends layout
 
 block content
-  nav
-    .nav-wrapper
-      a#logo.brand-logo(href='#') Nihility
-      ul#slide-out.side-nav
-        li
-          a(href='#!') First Sidebar Link
-        li
-          a(href='#!') Second Sidebar Link
-      a.button-collapse(href='#', data-activates='slide-out')
-        i.mdi-navigation-menu
-  #login_form.row
-    form.col.s12(action='login')
-      .row
-        .input-field.col.s6
-          input#user_name.validate(type='text', name="username")
-          label(for='first_name') User Name
-      .row
-        .input-field.col.s6
-          input#password.validate(type='password', name="password")
-          label(for='password') Password
-      button.btn.waves-effect.waves-light(type='submit')
-        | LOGIN
-        i.material-icons.right send
+  #login_form
+    .row
+      .col
+        h5 Welcome to Nihility
+      form.grey-text.s12(action='login', method='POST')
+        .row
+          .col.s12
+            label(for='first_name') User Name
+            input#user_name.validate(type='text', name="username")
+        .row
+          .col.s12
+            label(for='password') Password
+            input#password.validate(type='password', name="password")
+        button.btn.grey.waves-effect.waves-light(type='submit')
+          | LOGIN
+          i.material-icons.right send
