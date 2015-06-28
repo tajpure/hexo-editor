@@ -18,8 +18,7 @@ router.post('/login', function(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
   var secret = req.body.secret;
-  console.log(username + password + secret);
-  if (admin.check(username, password)) {
+  if (admin.check(username, password, srcret)) {
     req.session.username = username;
     res.redirect('/');
   } else {
@@ -43,8 +42,15 @@ router.get('/manageItemsPage', function(req, res, next) {
   res.render('manage');
 });
 
-router.get('/newItem', function(req, res, next) {
-
+router.post('/newItem', function(req, res, next) {
+  var title = req.body.title;
+  var date = req.body.date;
+  var categories = req.body.categories;
+  var tags = req.body.tags;
+  var content = req.body.content;
+  console.log(title + ' ' + date);
+  console.log(req.body);
+  res.send('success');
 });
 
 router.get('/deleteItem', function(req, res, next) {
