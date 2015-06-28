@@ -42,15 +42,28 @@ function manageItemsPage() {
 
 }
 
-var isEditor = true;
 function showPreview() {
-	if (isEditor == true) {
+	if ($('#preview').css('display') == 'none') {
 		$('#editor').hide();
 		$('#preview').show();
-		isEditor = false;
 	} else {
 		$('#preview').hide();
 		$('#editor').show();
-		isEditor = true;
+	}
+}
+
+function showCategories() {
+	if ($('#category-list').css('display') == 'none') {
+		$('#category-list').show();
+	} else {
+		$('#category-list').hide();
+	}
+}
+
+function showTags() {
+	if ($('#tag-list').css('display') == 'none') {
+		$('#tag-list').show();
+	} else {
+		$('#tag-list').hide();
 	}
 }

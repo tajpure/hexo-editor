@@ -73,3 +73,10 @@ text-align: left;
   font-size: 18px;
   float: left;
 }
+
+.hidden {
+  display: none;
+}
+
+.tags {
+}

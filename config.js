@@ -1,6 +1,6 @@
 var config = {};
 
-config.local = false;
+config.local = true;
 config.username = 'admin';
 config.password = 'admin';
 config.secret = 'admin';
