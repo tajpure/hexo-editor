@@ -4,16 +4,21 @@ block content
   #login_form
     .row
       .col
-        h5 Welcome to Nihility
+        h5 Welcome to Hexo Editor!
+      .row
       form.grey-text.s12(action='login', method='POST')
         .row
           .col.s12
             label(for='first_name') User Name
-            input#user_name.validate(type='text', name="username")
+            input.validate(type='text', name="username")
         .row
           .col.s12
             label(for='password') Password
-            input#password.validate(type='password', name="password")
+            input.validate(type='password', name="password")
+        .row
+          .col.s12
+            label(for='password') Secret
+            input.validate(type='password', name="secret")
         button.btn.grey.waves-effect.waves-light(type='submit')
           | LOGIN
           i.material-icons.right send

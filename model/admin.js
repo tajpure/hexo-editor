@@ -5,9 +5,15 @@
 function Admin() {
     this.username = 'admin',
     this.password = 'admin',
+    this.secret = 'admin',
     that = this,
-    this.check = function(username, password) {
-      if (username === that.username && password == that.password) {
+    this.init = function(username, password, secret) {
+      that.username = username;
+      that.password = password;
+      that.secret = secret;
+    },
+    this.check = function(username, password, secret) {
+      if (username === that.username && password == that.password && secret == that.secret) {
         console.log(username + " login success.");
         return true;
       } else {

@@ -11,6 +11,7 @@
     "debug": "~2.1.1",
     "express": "~4.11.0",
     "jade": "~1.9.0",
+    "marked": "^0.3.3",
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0"
   }

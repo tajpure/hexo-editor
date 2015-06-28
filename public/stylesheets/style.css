@@ -4,8 +4,16 @@ body {
   background-color: #eceff1;
 }
 
-#logo {
-  margin-left: 20px;
+#logo{
+  background:url(/img/logo.svg);
+  width:60px;
+  height:60px;
+  background-size:60px 60px;
+  display:inline-block
+}
+
+#logo-title {
+  margin-left: 0px;
 }
 
 #login_form {
@@ -23,4 +31,45 @@ body {
 
 .col {
 text-align: left;
+}
+
+#progress-wapper {
+  margin-top: 0px;
+  height: 5px;
+}
+
+#progress {
+  margin-top: 0px;
+  display: none;
+}
+
+#sub-menu {
+  position: relative;
+  width: 15%;
+  height: 740px;
+  float: left;
+  background: rgb(255,255,255);
+}
+
+#editor-wapper {
+  position: relative;
+  margin-left: 1%;
+  width: 84%;
+  height: 78%;
+  float: left;
+}
+
+#preview {
+  width: 99%;
+  height: 720px;
+  float: left;
+  overflow: scroll;
+  display: none;
+}
+
+#editor {
+  width: 99%;
+  height: 740px;
+  font-size: 18px;
+  float: left;
 }
