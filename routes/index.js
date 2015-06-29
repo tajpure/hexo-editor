@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var admin = require('../model/admin');
 var config = require('../config');
+var multiparty = require("multiparty");
 
 admin.init(config.username, config.password);
 
@@ -39,14 +40,11 @@ router.get('/manageItemsPage', function(req, res, next) {
 });
 
 router.post('/newItem', function(req, res, next) {
-  var title = req.body.title;
-  var date = req.body.date;
-  var categories = req.body.categories;
-  var tags = req.body.tags;
-  var content = req.body.content;
-  console.log(title + ' ' + date);
-  console.log(req.body);
-  res.send('success');
+  var form = new multiparty.Form();
+  form.parse(req, function(err, fields, files) {
+    console.log(fields);
+    res.send('success');
+  });
 });
 
 router.get('/deleteItem', function(req, res, next) {

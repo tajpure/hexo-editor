@@ -88,7 +88,6 @@ function newItem() {
 		formData.append('categories', categories);
 		formData.append('tags', tags);
 		formData.append('content', content);
-		alert(formData);
 		$('#progress').fadeIn();
 		$.ajax({
 			url: '/newItem',
@@ -107,7 +106,9 @@ function newItem() {
 			}
 		}).done(function(content) {
 			$('#progress').fadeOut();
-			Materialize.toast('Publish successful!', 5000);
+			if (content === 'success') {
+				Materialize.toast('Publish successful!', 5000);
+			}
 		});
 	}
 }
