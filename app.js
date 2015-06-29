@@ -44,6 +44,15 @@ app.use(function(req, res, next) {
     next(err);
 });
 
+// catch session null and forward to login page
+app.use(function (req, res, next) {
+    if (req.session.username || config.local == true) {
+      next();
+    } else {
+      res.redirect("/");
+    }
+});
+
 // error handlers
 
 // development error handler

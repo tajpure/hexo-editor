@@ -6,8 +6,7 @@ var config = require('../config');
 admin.init(config.username, config.password);
 
 router.get('/', function(req, res, next) {
-  var username = req.session.username;
-  if (username != null || config.local == true) {
+  if (req.session.username || config.local == true) {
     res.render('index');
   } else {
     res.render('login');
@@ -19,10 +18,8 @@ router.post('/login', function(req, res, next) {
   var password = req.body.password;
   if (admin.check(username, password)) {
     req.session.username = username;
-    res.redirect('/');
-  } else {
-    res.redirect('/');
   }
+  res.redirect('/');
 });
 
 router.get('/logout', function(req, res, next) {
