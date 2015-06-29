@@ -46,7 +46,7 @@ text-align: left;
 #sub-menu {
   position: relative;
   width: 15%;
-  height: 740px;
+  height: 750px;
   float: left;
   background: rgb(255,255,255);
 }
@@ -55,13 +55,12 @@ text-align: left;
   position: relative;
   margin-left: 1%;
   width: 84%;
-  height: 78%;
   float: left;
 }
 
 #preview {
   width: 99%;
-  height: 720px;
+  height: 740px;
   float: left;
   overflow: scroll;
   display: none;
@@ -69,7 +68,7 @@ text-align: left;
 
 #editor {
   width: 99%;
-  height: 740px;
+  height: 750px;
   font-size: 18px;
   float: left;
 }

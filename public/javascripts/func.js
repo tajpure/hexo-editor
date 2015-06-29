@@ -88,6 +88,7 @@ function newItem() {
 		formData.append('categories', categories);
 		formData.append('tags', tags);
 		formData.append('content', content);
+		alert(formData);
 		$('#progress').fadeIn();
 		$.ajax({
 			url: '/newItem',

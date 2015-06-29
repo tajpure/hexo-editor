@@ -17,8 +17,7 @@ router.get('/', function(req, res, next) {
 router.post('/login', function(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
-  var secret = req.body.secret;
-  if (admin.check(username, password, srcret)) {
+  if (admin.check(username, password)) {
     req.session.username = username;
     res.redirect('/');
   } else {
@@ -39,7 +38,7 @@ router.get('/newItemPage', function(req, res, next) {
 });
 
 router.get('/manageItemsPage', function(req, res, next) {
-  res.render('manage');
+  res.render('posts');
 });
 
 router.post('/newItem', function(req, res, next) {
