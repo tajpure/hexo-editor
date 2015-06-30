@@ -18,8 +18,6 @@ var server = app.listen(2048, function() {
 });
 
 var config = require('./config');
-var Hexo = require('hexo');
-var hexo = new Hexo(config.base_dir, {});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -76,17 +74,5 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
-hexo.init().then(function(){
-  console.log("Initialized successful in path '" + config.base_dir + "'!");
-});
-
-hexo.call('new', {_:true, title: true}).then(function(){
-  console.log("Generated successful in path '" + config.base_dir + "'!");
-});
-
-// hexo.call('deploy', {}).then(function(){
-//   console.log("Deployed successful in path '" + config.base_dir + "'!");
-// });
 
 module.exports = app;

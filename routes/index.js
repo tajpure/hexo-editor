@@ -3,6 +3,8 @@ var router = express.Router();
 var multiparty = require("multiparty");
 var admin = require('../model/admin');
 var config = require('../config');
+var Hexo = require('hexo');
+var hexo = new Hexo(config.base_dir, {});
 
 admin.init(config.username, config.password);
 
@@ -50,6 +52,9 @@ router.post('/newItem', function(req, res, next) {
     var categories = fields.categories[0];
     var tags = fields.tags[0];
     var content = fields.content[0];
+    hexo.call('new', { _ : [title]}).then(function(){
+      
+    });
     res.send('success');
   });
 });
@@ -73,5 +78,13 @@ router.get('/generate', function(req, res, next) {
 router.get('/deploy', function(req, res, next) {
 
 });
+
+hexo.init().then(function(){
+  console.log("Initialized successful in path '" + config.base_dir + "'");
+});
+
+// hexo.call('deploy', {}).then(function(){
+//   console.log("Deployed successful in path '" + config.base_dir + "'!");
+// });
 
 module.exports = router;
