@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var multiparty = require("multiparty");
 var admin = require('../model/admin');
 var config = require('../config');
-var multiparty = require("multiparty");
 
 admin.init(config.username, config.password);
 
@@ -42,7 +42,14 @@ router.get('/manageItemsPage', function(req, res, next) {
 router.post('/newItem', function(req, res, next) {
   var form = new multiparty.Form();
   form.parse(req, function(err, fields, files) {
-    console.log(fields);
+    if (err) {
+      res.send(err);
+    }
+    var title = fields.title[0];
+    var date = fields.date[0];
+    var categories = fields.categories[0];
+    var tags = fields.tags[0];
+    var content = fields.content[0];
     res.send('success');
   });
 });

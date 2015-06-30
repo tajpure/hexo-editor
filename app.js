@@ -81,10 +81,10 @@ hexo.init().then(function(){
   console.log("Initialized successful in path '" + config.base_dir + "'!");
 });
 
-// hexo.call('generate', {}).then(function(){
-//   console.log("Generated successful in path '" + config.base_dir + "'!");
-// });
-//
+hexo.call('new', {_:true, title: true}).then(function(){
+  console.log("Generated successful in path '" + config.base_dir + "'!");
+});
+
 // hexo.call('deploy', {}).then(function(){
 //   console.log("Deployed successful in path '" + config.base_dir + "'!");
 // });
