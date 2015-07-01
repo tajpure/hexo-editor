@@ -46,7 +46,7 @@ text-align: left;
 #sub-menu {
   position: relative;
   width: 15%;
-  height: 750px;
+  height: 740px;
   float: left;
   background: rgb(255,255,255);
 }
@@ -68,7 +68,7 @@ text-align: left;
 
 #editor {
   width: 99%;
-  height: 750px;
+  height: 740px;
   font-size: 18px;
   float: left;
 }

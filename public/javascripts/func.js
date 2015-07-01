@@ -108,6 +108,8 @@ function newItem() {
 			$('#progress').fadeOut();
 			if (content === 'success') {
 				Materialize.toast('Publish successful!', 5000);
+			} else {
+				Materialize.toast(content, 5000);
 			}
 		});
 	}
