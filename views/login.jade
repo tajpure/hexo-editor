@@ -1,20 +1,21 @@
 extends layout
 
 block content
-  #login_form
-    .row
-      .col
-        h5 Welcome to Hexo Editor!
+  #login-form-wapper
+    #login-form
       .row
-      form.grey-text.s12(action='login', method='POST')
+        .col
+          h5 Welcome to Hexo Editor!
         .row
-          .col.s12
-            label(for='first_name') User Name
-            input.validate(type='text', name="username")
-        .row
-          .col.s12
-            label(for='password') Password
-            input.validate(type='password', name="password")
-        button.btn.grey.waves-effect.waves-light(type='submit')
-          | LOGIN
-          i.material-icons.right send
+        form.grey-text.s12(action='login', method='POST')
+          .row
+            .col.s12
+              label(for='first_name') User Name
+              input.validate(type='text', name="username")
+          .row
+            .col.s12
+              label(for='password') Password
+              input.validate(type='password', name="password")
+          button.btn.grey.waves-effect.waves-light(type='submit')
+            | LOGIN
+            i.material-icons.right send

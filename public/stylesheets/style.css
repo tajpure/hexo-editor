@@ -3,7 +3,9 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #eceff1;
 }
-
+html, body {
+    height: 100%;
+}
 #logo{
   background:url(/img/logo.svg);
   width:60px;
@@ -16,11 +18,16 @@ body {
   margin-left: 0px;
 }
 
-#login_form {
+#login-form-wapper {
+  margin: 0;
+  height: 100%;
+  background-image: url("/img/paper.jpg");
+}
+
+#login-form {
   position: relative;
   top: 16%;
   margin: 0 auto;
-  margin-top: 8%;
   padding: 20px;
   width: 480px;
   background: rgb(255,255,255);
