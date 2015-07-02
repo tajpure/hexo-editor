@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var multiparty = require("multiparty");
-var admin = require('../model/admin');
+var admin = require('../lib/admin');
 var config = require('../config');
 var Hexo = require('hexo');
 var hexo = new Hexo(config.base_dir, {});
@@ -53,7 +53,7 @@ router.post('/newItem', function(req, res, next) {
     var tags = fields.tags[0];
     var content = fields.content[0];
     hexo.call('new', { _ : [title]}).then(function(){
-      
+
     });
     res.send('success');
   });

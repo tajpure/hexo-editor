@@ -35,6 +35,16 @@ var doGet = function(url) {
 }
 
 function newItemPage() {
+	var title = $("#title").val();
+	var date = $("#date").val();
+	var categories = $("#Categories").tagit("assignedTags");
+	var tags = $("#Tags").tagit("assignedTags");
+	var content = editor.getValue();
+	if (title || date || categories || tags || content) {
+		if (!confirm('Do you define to discard this item?')) {
+			return;
+		}
+	}
 	doGet('/newItemPage');
 }
 
