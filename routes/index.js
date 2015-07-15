@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var multiparty = require("multiparty");
-var admin = require('../model/admin');
+var admin = require('../lib/admin');
 var config = require('../config');
-var Hexo = require('hexo');
-var hexo = new Hexo(config.base_dir, {});
+var Editor = require('../lib/editor');
 
 admin.init(config.username, config.password);
+var editor = new Editor(config.base_dir);
 
 router.get('/', function(req, res, next) {
   if (req.session.username || config.local == true) {
@@ -52,9 +52,12 @@ router.post('/newItem', function(req, res, next) {
     var categories = fields.categories[0];
     var tags = fields.tags[0];
     var content = fields.content[0];
-    hexo.call('new', { _ : [title]}).then(function(){
-      
-    });
+    editor.setTitle(title);
+    editor.setDate(date);
+    editor.setCategories(categories);
+    editor.setTags(tags);
+    editor.setContent(content);
+    editor.save();
     res.send('success');
   });
 });
@@ -77,10 +80,6 @@ router.get('/generate', function(req, res, next) {
 
 router.get('/deploy', function(req, res, next) {
 
-});
-
-hexo.init().then(function(){
-  console.log("Initialized successful in path '" + config.base_dir + "'");
 });
 
 // hexo.call('deploy', {}).then(function(){
