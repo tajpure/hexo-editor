@@ -1,5 +1,12 @@
 var eidtor = null;
 
+$(window).unload(function() {
+  var answer = confirm("Are you sure you want to leave?");
+      if(answer){
+      //ajax call here
+  }
+});
+
 function initEditor() {
 	editor = ace.edit("editor");
 	editor.setTheme("ace/theme/twilight");

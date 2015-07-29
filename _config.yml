@@ -1,0 +1,4 @@
+local: false
+username: admin
+password: admin
+base_dir: /home/taojx/workspace/demo_blog
