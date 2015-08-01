@@ -6,9 +6,11 @@ var fs = require('fs');
 var config = yaml.safeLoad(fs.readFileSync('./_config.yml', 'utf8'));
 var admin = require('../lib/admin');
 var Editor = require('../lib/editor');
+var Manager = require('../lib/manager');
 
 admin.init(config.username, config.password);
 var editor = new Editor(config.base_dir);
+var manager = new Manager(config.base_dir);
 
 router.get('/', function(req, res, next) {
   if (req.session.username || config.local == true) {
