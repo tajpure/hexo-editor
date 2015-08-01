@@ -56,7 +56,7 @@ function newItemPage() {
 }
 
 function manageItemsPage() {
-
+  doGet('/manageItemsPage');
 }
 
 function showPreview() {

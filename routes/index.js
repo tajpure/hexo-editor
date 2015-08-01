@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var multiparty = require("multiparty");
+var yaml = require('js-yaml');
+var fs = require('fs');
+var config = yaml.safeLoad(fs.readFileSync('./_config.yml', 'utf8'));
 var admin = require('../lib/admin');
-var config = require('../config');
 var Editor = require('../lib/editor');
 
 admin.init(config.username, config.password);
@@ -26,8 +28,7 @@ router.post('/login', function(req, res, next) {
 });
 
 router.get('/logout', function(req, res, next) {
-  var username = req.body.username;
-  var password = req.body.password;
+  var username = req.session.username;
   console.log(username + ' logout');
   req.session.username = null;
   res.redirect('/');
