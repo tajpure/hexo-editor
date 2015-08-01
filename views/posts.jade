@@ -23,14 +23,20 @@ link(href='/stylesheets/jquery.tagit.css', rel='stylesheet', type='text/css')
 #articles-wapper
   #articles-view
     each article in items
-      .article-row
+      .article-item
         .col.s12.m6
-          .card.article-item
+          .card
             .card-content
               span.card-title.blue-text.text-darken-2 #{article.title}
+              br
+              span.grey-text.text-darken-2 #{article.date}
+              br
+              br
               p
                 content!= article.content
             .card-action
               a(href='#') Edit
               a(href='#') Discard
-    
+#article-add
+  a.btn-floating.btn-large.waves-effect.waves-light.red(href='javascript:newItemPage();')
+    i.material-icons add

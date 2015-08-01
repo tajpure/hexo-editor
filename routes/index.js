@@ -15,7 +15,16 @@ var manager = new Manager(config.base_dir);
 
 router.get('/', function(req, res, next) {
   if (req.session.username || config.local == true) {
-    res.render('index');
+    var itemsPromise = manager.getItems();
+    itemsPromise.then(function(files) {
+      var items = new Array();
+      for (var i = 0; i < files.length; i++) {
+        items.push((new Article(manager.post_dir + files[i])).getPreview());
+      }
+      res.render('index', {'items': items});
+    }, function (err) {
+        console.error(err)
+    });
   } else {
     res.render('login');
   }
