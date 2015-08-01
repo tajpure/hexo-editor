@@ -9,15 +9,18 @@ var session = require('express-session');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var yaml = require('js-yaml');
+var fs = require('fs');
+var config = yaml.safeLoad(fs.readFileSync('./_config.yml', 'utf8'));
+
 var app = express();
 
 var server = app.listen(2048, function() {
   var host = server.address().address;
   var port = server.address().port;
-  console.log('Nihility listening at http://%s:%s', host, port);
+  console.log('Hexo Editor listening at http://%s:%s', host, port);
 });
 
-var config = require('./config');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

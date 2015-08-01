@@ -1,1 +1,42 @@
-manage
+script(src='/javascripts/marked.js', type='text/javascript')
+script(src='/javascripts/dateFormat.js', type='text/javascript')
+script(src='/javascripts/ace/ace.js', type='text/javascript')
+script(src='/javascripts/ace/theme-twilight.js', type='text/javascript')
+script(src='/javascripts/jquery-ui.min.js', type='text/javascript', charset='utf-8')
+script(src='/javascripts/tag-it.min.js', type='text/javascript', charset='utf-8')
+link(rel='stylesheet', type='text/css', href='/stylesheets/jquery-ui.css')
+link(href='/stylesheets/jquery.tagit.css', rel='stylesheet', type='text/css')
+
+#sub-menu
+  ul.collection
+    li.collection-item
+      div
+        | Generate
+        a.secondary-content(href='javascript:showPreview();')
+          i.material-icons visibility
+    li.collection-item
+      div
+        | Deploy
+        a.secondary-content(href='javascript:newItem();')
+          i.material-icons send
+
+#articles-wapper
+  #articles-view
+    each article in items
+      .article-item
+        .col.s12.m6
+          .card
+            .card-content
+              span.card-title.blue-text.text-darken-2 #{article.title}
+              br
+              span.grey-text.text-darken-2 #{article.date}
+              br
+              br
+              p
+                content!= article.content
+            .card-action
+              a(href='#') Edit
+              a(href='#') Discard
+#article-add
+  a.btn-floating.btn-large.waves-effect.waves-light.red(href='javascript:newItemPage();')
+    i.material-icons add

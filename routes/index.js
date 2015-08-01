@@ -1,16 +1,30 @@
 var express = require('express');
 var router = express.Router();
 var multiparty = require("multiparty");
+var yaml = require('js-yaml');
+var fs = require('fs');
+var config = yaml.safeLoad(fs.readFileSync('./_config.yml', 'utf8'));
 var admin = require('../lib/admin');
-var config = require('../config');
 var Editor = require('../lib/editor');
+var Manager = require('../lib/manager');
+var Article = require('../lib/article');
 
 admin.init(config.username, config.password);
 var editor = new Editor(config.base_dir);
+var manager = new Manager(config.base_dir);
 
 router.get('/', function(req, res, next) {
   if (req.session.username || config.local == true) {
-    res.render('index');
+    var itemsPromise = manager.getItems();
+    itemsPromise.then(function(files) {
+      var items = new Array();
+      for (var i = 0; i < files.length; i++) {
+        items.push((new Article(manager.post_dir + files[i])).getPreview());
+      }
+      res.render('index', {'items': items});
+    }, function (err) {
+        console.error(err)
+    });
   } else {
     res.render('login');
   }
@@ -26,8 +40,7 @@ router.post('/login', function(req, res, next) {
 });
 
 router.get('/logout', function(req, res, next) {
-  var username = req.body.username;
-  var password = req.body.password;
+  var username = req.session.username;
   console.log(username + ' logout');
   req.session.username = null;
   res.redirect('/');
@@ -38,7 +51,16 @@ router.get('/newItemPage', function(req, res, next) {
 });
 
 router.get('/manageItemsPage', function(req, res, next) {
-  res.render('posts');
+  var itemsPromise = manager.getItems();
+  itemsPromise.then(function(files) {
+    var items = new Array();
+    for (var i = 0; i < files.length; i++) {
+      items.push((new Article(manager.post_dir + files[i])).getPreview());
+    }
+    res.render('posts', {'items': items});
+  }, function (err) {
+      console.error(err)
+  });
 });
 
 router.post('/newItem', function(req, res, next) {

@@ -2,12 +2,10 @@ extends layout
 
 block content
   nav
-    .nav-wrapper.white.z-depth-1
+    .nav-wrapper.white
       a#logo(href='#')
       a#logo-title.grey-text.text-darken-3.brand-logo Hexo Editor
       ul#nav-mobile.right.hide-on-med-and-down
-        li
-          a.grey-text.text-darken-3(href='javascript:newItemPage();') New
         li
           a.grey-text.text-darken-3(href='javascript:manageItemsPage();') Posts
         li
@@ -19,4 +17,4 @@ block content
       .indeterminate.lime.accent-3
 
   #content
-    include editor.jade
+    include posts.jade
