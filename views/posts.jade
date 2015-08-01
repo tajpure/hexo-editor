@@ -22,21 +22,15 @@ link(href='/stylesheets/jquery.tagit.css', rel='stylesheet', type='text/css')
 
 #articles-wapper
   #articles-view
-    ul.pagination.footer
-      li.disabled
-        a(href='#!')
-          i.material-icons chevron_left
-      li.active
-        a(href='#!') 1
-      li.waves-effect
-        a(href='#!') 2
-      li.waves-effect
-        a(href='#!') 3
-      li.waves-effect
-        a(href='#!') 4
-      li.waves-effect
-        a(href='#!') 5
-      li.waves-effect
-        a(href='#!')
-          i.material-icons chevron_right
+    each article in items
+      .article-row
+        .col.s12.m6
+          .card.article-item
+            .card-content
+              span.card-title.blue-text.text-darken-2 #{article.title}
+              p
+                content!= article.content
+            .card-action
+              a(href='#') Edit
+              a(href='#') Discard
     

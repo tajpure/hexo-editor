@@ -7,6 +7,7 @@ var config = yaml.safeLoad(fs.readFileSync('./_config.yml', 'utf8'));
 var admin = require('../lib/admin');
 var Editor = require('../lib/editor');
 var Manager = require('../lib/manager');
+var Article = require('../lib/article');
 
 admin.init(config.username, config.password);
 var editor = new Editor(config.base_dir);
@@ -41,7 +42,16 @@ router.get('/newItemPage', function(req, res, next) {
 });
 
 router.get('/manageItemsPage', function(req, res, next) {
-  res.render('posts');
+  var itemsPromise = manager.getItems();
+  itemsPromise.then(function(files) {
+    var items = new Array();
+    for (var i = 0; i < files.length; i++) {
+      items.push((new Article(manager.post_dir + files[i])).getPreview());
+    }
+    res.render('posts', {'items': items});
+  }, function (err) {
+      console.error(err)
+  });
 });
 
 router.post('/newItem', function(req, res, next) {
