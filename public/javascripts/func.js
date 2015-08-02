@@ -1,4 +1,4 @@
-var eidtor = null;
+var editor = null;
 
 $(window).unload(function() {
   var answer = confirm("Are you sure you want to leave?");
@@ -42,16 +42,18 @@ var doGet = function(url) {
 }
 
 function newItemPage() {
-	var title = $("#title").val();
-	var date = $("#date").val();
-	var categories = $("#Categories").tagit("assignedTags");
-	var tags = $("#Tags").tagit("assignedTags");
-	var content = editor.getValue();
-	if (title || date || categories || tags || content) {
-		if (!confirm('Do you define to discard this item?')) {
-			return;
-		}
-	}
+  if (editor) {
+    var title = $("#title").val();
+  	var date = $("#date").val();
+  	var categories = $("#Categories").tagit("assignedTags");
+  	var tags = $("#Tags").tagit("assignedTags");
+  	var content = editor.getValue();
+  	if (title || date || categories || tags || content) {
+  		if (!confirm('Do you define to discard this item?')) {
+  			return;
+  		}
+  	}
+  }
 	doGet('/newItemPage');
 }
 
