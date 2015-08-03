@@ -42,6 +42,7 @@ var doGet = function(url) {
 }
 
 function newItemPage() {
+  if (editor) {
 	var title = $("#title").val();
 	var date = $("#date").val();
 	var categories = $("#Categories").tagit("assignedTags");
@@ -52,6 +53,7 @@ function newItemPage() {
 			return;
 		}
 	}
+  }
 	doGet('/newItemPage');
 }
 
