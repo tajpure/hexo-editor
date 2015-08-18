@@ -6,19 +6,15 @@ script(src='/javascripts/jquery-ui.min.js', type='text/javascript', charset='utf
 script(src='/javascripts/tag-it.min.js', type='text/javascript', charset='utf-8')
 link(rel='stylesheet', type='text/css', href='/stylesheets/jquery-ui.css')
 link(href='/stylesheets/jquery.tagit.css', rel='stylesheet', type='text/css')
-
-#sub-menu
-  ul.collection
-    li.collection-item
-      div
-        | Generate
-        a.secondary-content(href='javascript:showPreview();')
-          i.material-icons visibility
-    li.collection-item
-      div
-        | Deploy
-        a.secondary-content(href='javascript:newItem();')
-          i.material-icons send
+link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
+//- #sub-menu
+//-   .collection
+//-     a.collection-item(href='#!')
+//-       | Generate
+//-       span.badge 1
+//-     a.text-grey.collection-item(href='#!')
+//-       | Deploy
+//-       i.fa.fa-camera-retro
 
 #articles-wapper
   #articles-view
@@ -38,5 +34,22 @@ link(href='/stylesheets/jquery.tagit.css', rel='stylesheet', type='text/css')
               a(href='#') Edit
               a(href='#') Discard
 #article-add
-  a.btn-floating.btn-large.waves-effect.waves-light.red(href='javascript:newItemPage();')
-    i.material-icons add
+  .fixed-action-btn(style='bottom: 45px; right: 24px;')
+        a.btn-floating.btn-large.red(href='javascript:newItemPage();')
+          i.large.material-icons mode_edit
+        ul
+          li
+            a.btn-floating.red
+              i.material-icons insert_chart
+          li
+            a.btn-floating.yellow.darken-1
+              i.material-icons format_quote
+          li
+            a.btn-floating.green
+              i.material-icons publish
+          li
+            a.btn-floating.blue
+              i.material-icons attach_file
+  //- a.btn-floating.btn-large.waves-effect.waves-light.red(href='javascript:newItemPage();')
+  //-   i.material-icons add
+    
