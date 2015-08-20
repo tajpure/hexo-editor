@@ -1,5 +1,6 @@
 local: true
 username: admin
 password: admin
-#base_dir: /home/taojx/workspace/demo_blog
-base_dir: /demo_blog
+base_dir: /home/tajpure/workspace/demo_blog
+#base_dir: /demo_blog
+trash_dir: /home/tajpure/workspace/demo_blog/trash

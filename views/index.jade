@@ -1,20 +1,20 @@
 extends layout
 
 block content
-  nav
-    .nav-wrapper.white
-      a#logo(href='#')
-      a#logo-title.grey-text.text-darken-3.brand-logo Hexo Editor
-      ul#nav-mobile.right.hide-on-med-and-down
-        li
-          a.grey-text.text-darken-3(href='javascript:manageItemsPage();') Posts
-        li
-          a.grey-text.text-darken-3(href='javascript:manageItemsPage();') Settings
-        li
-          a.grey-text.text-darken-3(href='logout') Logout
-  #progress-wapper
-    #progress.progress.red.lighten-3
-      .indeterminate.lime.accent-3
-
+  .navbar-fixed
+    nav
+      .nav-wrapper.white
+        a#logo(href='#')
+        a#logo-title.grey-text.text-darken-3.brand-logo Hexo Editor
+        ul#nav-mobile.right.hide-on-med-and-down
+          li
+            a.grey-text.text-darken-3(href='javascript:manageItemsPage();') Posts
+          li
+            a.grey-text.text-darken-3(href='javascript:manageItemsPage();') Settings
+          li
+            a.grey-text.text-darken-3(href='logout') Logout
+    #progress-wapper
+      #progress.progress.red.lighten-3
+        .indeterminate.lime.accent-3
   #content
     include posts.jade
