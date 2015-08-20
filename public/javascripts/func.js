@@ -9,7 +9,7 @@ $(window).unload(function() {
 
 function initEditor() {
 	editor = ace.edit("editor");
-	editor.setTheme("ace/theme/twilight");
+	editor.setTheme("ace/theme/tomorrow");
 	editor.getSession().setUseWrapMode(true);
 	editor.on('change', function(e) {
 		var curContent = editor.getValue();

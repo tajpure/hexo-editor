@@ -53,6 +53,10 @@ html, body {
   float: left;
 }
 
+#sub-menu .item {
+  cursor: pointer;
+}
+
 #editor-wapper {
   position: relative;
   margin-left: 1%;
@@ -85,11 +89,7 @@ html, body {
 }
 
 #articles-wapper {
-  position: relative;
-  margin-left: 1%;
-  height: 100%;
-  width: 84%;
-  float: left;
+  margin-left: 3%;
 }
 
 #articles-view {
@@ -116,4 +116,8 @@ html, body {
   position: fixed;
   bottom: 20px;
   right: 32px;
+}
+
+.secondary-content {
+  color: grey;
 }

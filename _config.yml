@@ -1,4 +1,4 @@
-local: true
+local: false
 username: admin
 password: admin
 base_dir: /home/tajpure/workspace/demo_blog
