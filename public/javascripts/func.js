@@ -43,19 +43,7 @@ var doGet = function(url) {
 
 function newItemPage() {
   if (editor) {
-<<<<<<< HEAD
-	var title = $("#title").val();
-	var date = $("#date").val();
-	var categories = $("#Categories").tagit("assignedTags");
-	var tags = $("#Tags").tagit("assignedTags");
-	var content = editor.getValue();
-	if (title || date || categories || tags || content) {
-		if (!confirm('Do you define to discard this item?')) {
-			return;
-		}
-	}
-=======
-    var title = $("#title").val();
+  	var title = $("#title").val();
   	var date = $("#date").val();
   	var categories = $("#Categories").tagit("assignedTags");
   	var tags = $("#Tags").tagit("assignedTags");
@@ -65,7 +53,6 @@ function newItemPage() {
   			return;
   		}
   	}
->>>>>>> d4ee0f22fbdd8121717f0d639203583b0fa1f0ad
   }
 	doGet('/newItemPage');
 }
