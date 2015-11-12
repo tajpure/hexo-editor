@@ -1,10 +1,7 @@
 var editor = null;
 
 $(window).unload(function() {
-  var answer = confirm("Are you sure you want to leave?");
-      if(answer){
-      //ajax call here
-  }
+  console.log('save workspace');
 });
 
 function initEditor() {
@@ -49,9 +46,9 @@ function newItemPage() {
   	var tags = $("#Tags").tagit("assignedTags");
   	var content = editor.getValue();
   	if (title || date || categories || tags || content) {
-  		if (!confirm('Do you define to discard this item?')) {
-  			return;
-  		}
+  		// if (!confirm('Do you define to discard this item?')) {
+  		// 	return;
+  		// }
   	}
   }
 	doGet('/newItemPage');
