@@ -8,6 +8,7 @@ var admin = require('../lib/admin');
 var Editor = require('../lib/editor');
 var Manager = require('../lib/manager');
 var Article = require('../lib/article');
+var Util = require('../lib/util');
 
 admin.init(config.username, config.password);
 var editor = new Editor(config.base_dir);
@@ -21,6 +22,8 @@ router.get('/', function(req, res, next) {
       for (var i = 0; i < files.length; i++) {
         items.push((new Article(manager.post_dir + files[i])).getPreview());
       }
+      items.sort(function(post0, post1){ return Util.compareDate(post0.date, post1.date)});
+      items.forEach(function(post) {console.log(post.date);});
       res.render('index', {'items': items});
     }, function (err) {
         console.error(err)
@@ -57,6 +60,8 @@ router.get('/manageItemsPage', function(req, res, next) {
     for (var i = 0; i < files.length; i++) {
       items.push((new Article(manager.post_dir + files[i])).getPreview());
     }
+    items.sort(function(post0, post1){ return Util.compareDate(post0.getDate(), post1.getDate())});
+    console.log('items:' + items);
     res.render('posts', {'items': items});
   }, function (err) {
       console.error(err)
