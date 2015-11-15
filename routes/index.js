@@ -22,8 +22,7 @@ router.get('/', function(req, res, next) {
       for (var i = 0; i < files.length; i++) {
         items.push((new Article(manager.post_dir + files[i])).getPreview());
       }
-      items.sort(function(post0, post1){ return Util.compareDate(post0.date, post1.date)});
-      items.forEach(function(post) {console.log(post.date);});
+      Util.sortPosts(items);
       res.render('index', {'items': items});
     }, function (err) {
         console.error(err)
@@ -60,8 +59,7 @@ router.get('/manageItemsPage', function(req, res, next) {
     for (var i = 0; i < files.length; i++) {
       items.push((new Article(manager.post_dir + files[i])).getPreview());
     }
-    items.sort(function(post0, post1){ return Util.compareDate(post0.getDate(), post1.getDate())});
-    console.log('items:' + items);
+    Util.sortPosts(items);
     res.render('posts', {'items': items});
   }, function (err) {
       console.error(err)
