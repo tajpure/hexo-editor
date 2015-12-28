@@ -17,10 +17,16 @@
     "jade": "~1.9.0",
     "js-yaml": "3.3.1",
     "marked": "^0.3.3",
+    "material-design-icons": "^2.1.1",
     "material-ui": "^0.10.2",
     "morgan": "~1.5.1",
     "multiparty": "~4.1.2",
     "promise": "7.0.3",
     "serve-favicon": "~2.2.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tajpure/hexo-editor.git"
   }
 }
