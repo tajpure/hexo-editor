@@ -3,9 +3,35 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #eceff1;
 }
+
 html, body {
     height: 100%;
 }
+
+header {
+    height: 4em;
+    background-color: #FF9800;
+}
+
+header i {
+  color: white;
+}
+
+header .menu-btn {
+  margin-top: 0.5em;
+  margin-left: 0.8em;
+  float: left;
+}
+
+header .first-title, header .title-arrow, header .second-title {
+  float: left;
+  position: relative;
+  margin-top: 0.8em;
+  margin-left: 0.2em;
+  color: white;
+  font-size: 1.6em;
+}
+
 #logo{
   background:url(/img/logo.svg);
   width:60px;
@@ -20,7 +46,7 @@ html, body {
 
 #login-form-wapper {
   margin: 0;
-  height: 100%;
+  height: 92%;
   /*background-image: url("/img/paper.jpg");*/
 }
 

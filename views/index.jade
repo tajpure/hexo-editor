@@ -1,12 +1,16 @@
 extends layout
 
 block content
-  .navbar-fixed
+  header.mdl-shadow--2dp
+    button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn
+      i.material-icons menu
+    a.first-title Hexo Editor
+    a.title-arrow
+     i.material-icons keyboard_arrow_right
+    a.second-title login
+    .navbar-fixed
     nav
       .nav-wrapper.white
-        a.btn-floating.waves-effect.waves-light.red
-          i.material-icons add
-        //- a#logo(href='#')
         a#logo-title.grey-text.text-darken-3.brand-logo Hexo Editor
         ul#nav-mobile.right.hide-on-med-and-down
           li

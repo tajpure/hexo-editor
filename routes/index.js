@@ -4,13 +4,13 @@ var multiparty = require("multiparty");
 var yaml = require('js-yaml');
 var fs = require('fs');
 var config = yaml.safeLoad(fs.readFileSync('./_config.yml', 'utf8'));
-var admin = require('../lib/admin');
+var auth = require('../lib/auth');
 var Editor = require('../lib/editor');
 var Manager = require('../lib/manager');
 var Article = require('../lib/article');
 var Util = require('../lib/util');
 
-admin.init(config.username, config.password);
+auth.init(config.username, config.password);
 var editor = new Editor(config.base_dir);
 var manager = new Manager(config.base_dir);
 
@@ -35,7 +35,7 @@ router.get('/', function(req, res, next) {
 router.post('/login', function(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
-  if (admin.check(username, password)) {
+  if (auth.check(username, password)) {
     req.session.username = username;
   }
   res.redirect('/');

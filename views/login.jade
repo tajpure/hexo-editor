@@ -1,11 +1,18 @@
 extends layout
 
 block content
+  header.mdl-shadow--2dp
+    button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn
+      i.material-icons menu
+    a.first-title Hexo Editor
+    a.title-arrow
+     i.material-icons keyboard_arrow_right
+    a.second-title login
   #login-form-wapper
     #login-form
       .row
         .col
-          h5 Welcome to Hexo Editor!
+          h5 Welcome Here!
         .row
         form.grey-text.s12(action='login', method='POST')
           .row
