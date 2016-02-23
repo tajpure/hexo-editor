@@ -23,13 +23,22 @@ header .menu-btn {
   float: left;
 }
 
-header .first-title, header .title-arrow, header .second-title {
+header [class*="title"] {
   float: left;
   position: relative;
   margin-top: 0.8em;
   margin-left: 0.2em;
   color: white;
   font-size: 1.6em;
+}
+
+header .first-title {
+  margin-left: 0.5em;
+}
+
+header .right-title {
+  float: right;
+  margin-right: 20px;
 }
 
 #logo{
@@ -86,26 +95,25 @@ header .first-title, header .title-arrow, header .second-title {
 #editor-wapper {
   position: relative;
   margin-left: 1%;
-  margin-top: 10px;
+  margin-top: 5px;
   height: 100%;
   width: 84%;
   float: left;
 }
 
 #preview {
-  width: 99%;
-  height: 720px;
+  width: 50%;
+  height: 48em;
   float: left;
-  overflow: scroll;
+  overflow: auto;
   font-size: 15px;
-  display: none;
   background: rgb(255,255,255);
   padding: 10px;
 }
 
 #editor {
-  width: 99%;
-  height: 720px;
+  width: 50%;
+  height: 48em;
   font-size: 15px;
   float: left;
 }

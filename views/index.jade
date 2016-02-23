@@ -4,23 +4,10 @@ block content
   header.mdl-shadow--2dp
     button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn
       i.material-icons menu
-    a.first-title Hexo Editor
-    a.title-arrow
-     i.material-icons keyboard_arrow_right
-    a.second-title login
-    .navbar-fixed
-    nav
-      .nav-wrapper.white
-        a#logo-title.grey-text.text-darken-3.brand-logo Hexo Editor
-        ul#nav-mobile.right.hide-on-med-and-down
-          li
-            a.grey-text.text-darken-3(href='javascript:manageItemsPage();') Posts
-          li
-            a.grey-text.text-darken-3(href='javascript:manageItemsPage();') Settings
-          li
-            a.grey-text.text-darken-3(href='logout') Logout
-    #progress-wapper
-      #progress.progress.red.lighten-3
-        .indeterminate.lime.accent-3
+    a.first-title Edit
+    a.right-title(href='/logout') Exit
+  #progress-wapper
+    #progress.progress.red.lighten-3
+      .indeterminate.lime.accent-3
   #content
     include posts.jade
