@@ -1,6 +1,6 @@
-local: false
+local: true
 username: admin
 password: admin
-base_dir: /home/tajpure/workspace/tajpure/
+base_dir: /home/tajpure/workspace/blog0
 #base_dir: /demo_blog
 trash_dir: /home/tajpure/workspace/tajpure/trash

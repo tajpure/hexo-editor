@@ -7,50 +7,25 @@ script(src='/javascripts/tag-it.min.js', type='text/javascript', charset='utf-8'
 link(rel='stylesheet', type='text/css', href='/stylesheets/jquery-ui.css')
 link(href='/stylesheets/jquery.tagit.css', rel='stylesheet', type='text/css')
 link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
-//- #sub-menu
-//-   .collection
-//-     a.collection-item(href='#!')
-//-       | Generate
-//-       span.badge 1
-//-     a.text-grey.collection-item(href='#!')
-//-       | Deploy
-//-       i.fa.fa-camera-retro
 
 #articles-wapper
   #articles-view
-    each article in items
-      //- ul.collapsible(data-collapsible='expandable') #{article.title}
-      .article-item
-        .col.s12.m6
-          .card
-            .card-content
-              span.card-title.blue-text.text-darken-2 #{article.title}
-              br
-              span.grey-text.text-darken-2 #{article.date}
-              br
-              br
-              p
-                content!= article.content
-            .card-action
-              a(href='#') Edit
-              a(href='#') Discard
+    ul.collapsible.popout(data-collapsible='accordion')
+      each article, index in items
+        li(id='article-#{index}')
+          .collapsible-header
+            i.material-icons library_books
+            | #{article.title}
+          .collapsible-body
+            | #{article.content}
+              
 #article-add
-  .fixed-action-btn(style='bottom: 45px; right: 24px;')
-        a.btn-floating.btn-large.red(href='javascript:newItemPage();')
-          i.large.material-icons mode_edit
-        ul
-          li
-            a.btn-floating.red
-              i.material-icons insert_chart
-          li
-            a.btn-floating.yellow.darken-1
-              i.material-icons format_quote
-          li
-            a.btn-floating.green
-              i.material-icons publish
-          li
-            a.btn-floating.blue
-              i.material-icons attach_file
-  //- a.btn-floating.btn-large.waves-effect.waves-light.red(href='javascript:newItemPage();')
-  //-   i.material-icons add
-    
+  a.btn-floating.btn-large.waves-effect.waves-light.red(href='javascript:newPost();')
+    i.material-icons add
+  
+script.
+  $(document).ready(function(){
+    $('.collapsible').collapsible({
+      accordion : false
+    });
+  });

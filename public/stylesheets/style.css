@@ -1,6 +1,6 @@
 body {
-  padding: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 0;
+  font: 1em "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #eceff1;
 }
 
@@ -9,8 +9,10 @@ html, body {
 }
 
 header {
+    position: fixed;
+    width: 100%;
     height: 4em;
-    background-color: #FF9800;
+    background-color: #1565C0;
 }
 
 header i {
@@ -38,7 +40,12 @@ header .first-title {
 
 header .right-title {
   float: right;
-  margin-right: 20px;
+  margin-right: 1em;
+  margin-top: 0.4em;
+}
+
+#content {
+    margin-top: 4em;
 }
 
 #logo{
@@ -56,15 +63,14 @@ header .right-title {
 #login-form-wapper {
   margin: 0;
   height: 92%;
-  /*background-image: url("/img/paper.jpg");*/
 }
 
 #login-form {
   position: relative;
   top: 16%;
   margin: 0 auto;
-  padding: 20px;
-  width: 480px;
+  padding: 1em  ;
+  width: 30em;
   background: rgb(255,255,255);
   color: #333;
   text-align: center;
@@ -123,22 +129,23 @@ header .right-title {
 }
 
 #articles-wapper {
-  margin-left: 3%;
+  margin-left: 10%;
 }
 
 #articles-view {
-  width: 96%;
-  height: 720px;
+  width: 86%;
   float: left;
   font-size: 15px;
-  background: #eceff1;
+  padding: 10px;
+}
+
+#articles-view .collapsible-body {
+  background-color: white;
   padding: 10px;
 }
 
 .article-item {
-  margin: 12px;
-  width: 30%;
-  float: left;
+  width: 80%;
   height: 240px;
 }
 

@@ -38,7 +38,7 @@ var doGet = function(url) {
 	});
 }
 
-function newItemPage() {
+function newPost() {
   if (editor) {
   	var title = $("#title").val();
   	var date = $("#date").val();

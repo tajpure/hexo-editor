@@ -4,8 +4,9 @@ block content
   header.mdl-shadow--2dp
     button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn
       i.material-icons menu
-    a.first-title Edit
-    a.right-title(href='/logout') Exit
+    a.first-title Posts
+    button.right-title.mdl-button.mdl-js-button.mdl-js-ripple-effect(onclick='exit();')
+      i.material-icons exit_to_app
   #progress-wapper
     #progress.progress.red.lighten-3
       .indeterminate.lime.accent-3
