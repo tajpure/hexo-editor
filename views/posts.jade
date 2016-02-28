@@ -17,8 +17,18 @@ link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.m
             i.material-icons library_books
             | #{article.title}
             .collapsible-header-right
-              button.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--colored
-                i.material-icons(z-index="0") more_vert
+              button.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--colored(id='#article-menu-#{index}')
+                i.material-icons more_vert
+              ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='#article-menu-#{index}')
+                li.mdl-menu__item 
+                  i.material-icons edit
+                  | Edit
+                li.mdl-menu__item 
+                  i.material-icons book
+                  | Stash
+                li.mdl-menu__item 
+                  i.material-icons delete
+                  | Delete
             .collapsible-header-right
               | #{article.date}
           .collapsible-body
@@ -27,7 +37,7 @@ link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.m
               new Vue({
                 el: '#article-#{index}',
                 methods: {
-                  showContent: function () {
+                  showContent: function() {
                     var self = this;
                     $.get('content?key=#{article.key}', function(data) {
                       var className = '#article-#{index} .collapsible-body .markdown-body';
@@ -35,6 +45,15 @@ link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.m
                       var $element = $(className).append(marked(data));
                       self.$compile($element.get(0));
                     });
+                  },
+                  editArticle: function() {
+                    
+                  },
+                  stashArticle: function() {
+                    
+                  },
+                  deleteArticle: function() {
+                    
                   }
                 }
                 })
@@ -48,4 +67,7 @@ script.
     $('.collapsible').collapsible({
       accordion : false
     });
+    $(".collapsible-header-right button").click(function(e) {
+       e.stopPropagation();
+    })
   });

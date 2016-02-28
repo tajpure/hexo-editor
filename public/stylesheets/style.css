@@ -14,7 +14,7 @@ header {
     width: 100%;
     height: 3.5em;
     background-color: #673AB7;
-    z-index: 99999:
+    z-index: 99999;
 }
 
 header i {
@@ -97,6 +97,7 @@ header .right-title {
 }
 
 #main {
+    position: relative;
     margin-top: 4em;
 }
 
@@ -131,7 +132,9 @@ header .right-title {
 }
 
 #articles-wapper {
-  width: 79%;
+  width: 72%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #articles-wapper .collapsible-body {
@@ -164,8 +167,14 @@ header .right-title {
 }
 
 .collapsible-header-right {
+  position: relative;
   float: right;
   margin-left: 10px;
+}
+
+.collapsible-header-right button {
+  position: inherit;
+  clear: right;
 }
 
 .markdown-body {
