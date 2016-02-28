@@ -12,12 +12,32 @@ link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.m
   #articles-view
     ul.collapsible.popout(data-collapsible='accordion')
       each article, index in items
-        li(id='article-#{index}')
+        li(id='article-#{index}', v-on:click="showContent")
           .collapsible-header
             i.material-icons library_books
             | #{article.title}
+            .collapsible-header-right
+              button.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--colored
+                i.material-icons(z-index="0") more_vert
+            .collapsible-header-right
+              | #{article.date}
           .collapsible-body
-            | #{article.content}
+            .markdown-body(width='60%')
+            script.
+              new Vue({
+                el: '#article-#{index}',
+                methods: {
+                  showContent: function () {
+                    var self = this;
+                    $.get('content?key=#{article.key}', function(data) {
+                      var className = '#article-#{index} .collapsible-body .markdown-body';
+                      $(className).html('');
+                      var $element = $(className).append(marked(data));
+                      self.$compile($element.get(0));
+                    });
+                  }
+                }
+                })
               
 #article-add
   a.btn-floating.btn-large.waves-effect.waves-light.red(href='javascript:newPost();')

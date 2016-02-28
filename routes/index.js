@@ -9,6 +9,7 @@ var Editor = require('../lib/editor');
 var Manager = require('../lib/manager');
 var Article = require('../lib/article');
 var Util = require('../lib/util');
+var cache = require('../lib/cache')
 
 auth.init(config.username, config.password);
 var editor = new Editor(config.base_dir);
@@ -20,7 +21,9 @@ router.get('/', function(req, res, next) {
     itemsPromise.then(function(files) {
       var items = new Array();
       for (var i = 0; i < files.length; i++) {
-        items.push((new Article(manager.post_dir + files[i])).getPreview());
+        var article = new Article(manager.post_dir + files[i]);
+        items.push(article.getPreview());
+        cache.put(article.hashCode(), article);
       }
       Util.sortPosts(items);
       res.render('index', {'items': items});
@@ -105,6 +108,12 @@ router.get('/generate', function(req, res, next) {
 
 router.get('/deploy', function(req, res, next) {
 
+});
+
+router.get('/content', function(req, res, next) {
+  var articleKey = req.query.key;
+  var article = cache.get(articleKey);
+  res.send(article.getPreview().content);
 });
 
 // hexo.call('deploy', {}).then(function(){

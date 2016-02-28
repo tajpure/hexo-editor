@@ -1,5 +1,6 @@
 body {
   padding: 0;
+  width: 100%;
   font: 1em "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #eceff1;
 }
@@ -11,8 +12,9 @@ html, body {
 header {
     position: fixed;
     width: 100%;
-    height: 4em;
-    background-color: #1565C0;
+    height: 3.5em;
+    background-color: #673AB7;
+    z-index: 99999:
 }
 
 header i {
@@ -20,7 +22,7 @@ header i {
 }
 
 header .menu-btn {
-  margin-top: 0.5em;
+  margin-top: 0.45em;
   margin-left: 0.8em;
   float: left;
 }
@@ -28,7 +30,7 @@ header .menu-btn {
 header [class*="title"] {
   float: left;
   position: relative;
-  margin-top: 0.8em;
+  margin-top: 0.45em;
   margin-left: 0.2em;
   color: white;
   font-size: 1.6em;
@@ -40,12 +42,8 @@ header .first-title {
 
 header .right-title {
   float: right;
-  margin-right: 1em;
-  margin-top: 0.4em;
-}
-
-#content {
-    margin-top: 4em;
+  margin-right: 0.5em;
+  margin-top: 0.34em;
 }
 
 #logo{
@@ -78,7 +76,7 @@ header .right-title {
 }
 
 #progress-wapper {
-  margin-top: 0px;
+  margin-top: 0;
   height: 5px;
 }
 
@@ -96,6 +94,10 @@ header .right-title {
 
 #sub-menu .item {
   cursor: pointer;
+}
+
+#main {
+    margin-top: 4em;
 }
 
 #editor-wapper {
@@ -129,19 +131,17 @@ header .right-title {
 }
 
 #articles-wapper {
-  margin-left: 10%;
+  width: 79%;
 }
 
-#articles-view {
-  width: 86%;
-  float: left;
-  font-size: 15px;
-  padding: 10px;
-}
-
-#articles-view .collapsible-body {
+#articles-wapper .collapsible-body {
   background-color: white;
   padding: 10px;
+}
+
+.collapsible-body p {
+  margin: 0;
+  padding: 0.5em 0 0.5em 0 ;
 }
 
 .article-item {
@@ -161,4 +161,13 @@ header .right-title {
 
 .secondary-content {
   color: grey;
+}
+
+.collapsible-header-right {
+  float: right;
+  margin-left: 10px;
+}
+
+.markdown-body {
+  margin: 0 1em 0 1em;
 }

@@ -1,6 +1,8 @@
-local: true
+# access the hexo editor directly
+local: false
+# the username to logining hexo editor
 username: admin
+# the password for logining hexo editor
 password: admin
+# the blog directory
 base_dir: /home/tajpure/workspace/blog0
-#base_dir: /demo_blog
-trash_dir: /home/tajpure/workspace/tajpure/trash

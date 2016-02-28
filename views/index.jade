@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  header.mdl-shadow--2dp
+  header.z-depth-2
     button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn
       i.material-icons menu
     a.first-title Posts
@@ -10,5 +10,5 @@ block content
   #progress-wapper
     #progress.progress.red.lighten-3
       .indeterminate.lime.accent-3
-  #content
+  #main
     include posts.jade
