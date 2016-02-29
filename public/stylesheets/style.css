@@ -1,7 +1,6 @@
 body {
-  padding: 0;
   width: 100%;
-  font: 1em "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #eceff1;
 }
 
@@ -12,38 +11,56 @@ html, body {
 header {
     position: fixed;
     width: 100%;
-    height: 3.5em;
+    height: 3.6em;
     background-color: #673AB7;
     z-index: 99999;
+    display:inline-block;
+    vertical-align: text-bottom;
+    box-shadow: 0 0 2px 3px #757575;
 }
 
 header i {
   color: white;
 }
 
+header ul {
+  height: 100%;
+  margin: 0;
+}
+
+header ul li {
+  height: 100%;
+  margin: 0;
+  padding: 14px;
+}
+
+header ul li a {
+  cursor: pointer;
+}
+
 header .menu-btn {
-  margin-top: 0.45em;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
   margin-left: 0.8em;
-  float: left;
 }
 
-header [class*="title"] {
+header .left-title-list {
   float: left;
-  position: relative;
-  margin-top: 0.45em;
-  margin-left: 0.2em;
+  margin-left: 3em;
+  font-size: 1.5em;
   color: white;
-  font-size: 1.6em;
 }
 
-header .first-title {
-  margin-left: 0.5em;
-}
-
-header .right-title {
+header .right-title-list {
   float: right;
   margin-right: 0.5em;
-  margin-top: 0.34em;
+  color: white;
+}
+
+header .left-title, header .right-title {
+  color: white;
 }
 
 #logo{
@@ -98,7 +115,7 @@ header .right-title {
 
 #main {
     position: relative;
-    margin-top: 4em;
+    margin-top: 5em;
 }
 
 #editor-wapper {

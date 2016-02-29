@@ -1,13 +1,13 @@
 extends layout
 
 block content
-  header.mdl-shadow--2dp
+  header
     button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn
       i.material-icons menu
-    a.first-title Hexo Editor
-    a.title-arrow
-     i.material-icons keyboard_arrow_right
-    a.second-title login
+    ul.left-title-list
+      li
+        a.left-title login
+    
   #login-form-wapper
     #login-form
       .row
