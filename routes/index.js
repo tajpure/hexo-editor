@@ -9,7 +9,8 @@ var Editor = require('../lib/editor');
 var Manager = require('../lib/manager');
 var Article = require('../lib/article');
 var Util = require('../lib/util');
-var cache = require('../lib/cache')
+var cache = require('../lib/cache');
+var emoji = require('../lib/emoji')
 
 auth.init(config.username, config.password);
 var editor = new Editor(config.base_dir);
@@ -31,7 +32,7 @@ router.get('/', function(req, res, next) {
         console.error(err)
     });
   } else {
-    res.render('login');
+    res.render('login', {'emoji': emoji.random()});
   }
 });
 

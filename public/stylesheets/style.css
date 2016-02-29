@@ -1,11 +1,8 @@
 body {
   width: 100%;
+  height: 100%;
   font: "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #eceff1;
-}
-
-html, body {
-    height: 100%;
 }
 
 header {
