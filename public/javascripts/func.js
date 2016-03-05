@@ -14,7 +14,7 @@ function initEditor() {
 	});
 }
 
-$(".button-collapse").sideNav();
+// $(".button-collapse").sideNav();
 
 var doGet = function(url) {
 	$('#progress').fadeIn();

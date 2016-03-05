@@ -7,6 +7,6 @@
     location.href = '/logout';
   };
   self.get = function() {
-    
+
   };
 }).call(this);

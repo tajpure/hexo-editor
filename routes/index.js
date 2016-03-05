@@ -17,6 +17,7 @@ var editor = new Editor(config.base_dir);
 var manager = new Manager(config.base_dir);
 
 router.get('/', function(req, res, next) {
+  console.log(config.local);
   if (req.session.username || config.local == true) {
     var itemsPromise = manager.getItems();
     itemsPromise.then(function(files) {
@@ -70,7 +71,7 @@ router.get('/manageItemsPage', function(req, res, next) {
   });
 });
 
-router.post('/newItem', function(req, res, next) {
+router.post('/post', function(req, res, next) {
   var form = new multiparty.Form();
   form.parse(req, function(err, fields, files) {
     if (err) {
@@ -91,15 +92,21 @@ router.post('/newItem', function(req, res, next) {
   });
 });
 
-router.get('/deleteItem', function(req, res, next) {
+router.delete('/post', function(req, res, next) {
 
 });
 
-router.get('/updateItem', function(req, res, next) {
+router.put('/post', function(req, res, next) {
 
 });
 
-router.get('/getItem', function(req, res, next) {
+router.get('/post', function(req, res, next) {
+  var articleId = req.query.id;
+  var article = cache.get(articleId);
+  res.send(article.getPreview().content);
+});
+
+router.put('/draft', function(req, res, next) {
 
 });
 
@@ -109,12 +116,6 @@ router.get('/generate', function(req, res, next) {
 
 router.get('/deploy', function(req, res, next) {
 
-});
-
-router.get('/content', function(req, res, next) {
-  var articleKey = req.query.key;
-  var article = cache.get(articleKey);
-  res.send(article.getPreview().content);
 });
 
 // hexo.call('deploy', {}).then(function(){

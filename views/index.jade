@@ -1,8 +1,8 @@
 extends layout
 
 block content
-  header
-    button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn
+  header.mdl-shadow--6dp
+    button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn(id='menu-btn', v-on:click="showOrHide")
       i.material-icons menu
     ul.left-title-list
       li
@@ -12,7 +12,49 @@ block content
         a.right-title(onclick='exit();')
           i.material-icons exit_to_app
   #progress-wapper
-    #progress.progress.red.lighten-3
-      .indeterminate.lime.accent-3
+    #progress.mdl-progress.mdl-js-progress.mdl-progress__indeterminate
+  #left(ransition="fade")
+    ul.left-menu
+      li.left-menu-row.active
+        i.material-icons(style='color:#00BCD4;') description
+        a.left-title Posts
+      li.left-menu-row
+        i.material-icons(style='color:#FF9800;') folder
+        a.left-title Drafts
+      li.left-menu-row
+        i.material-icons(style='color:#795548;') delete
+        a.left-title Trash
+      li.left-menu-row
+        i.material-icons(style='color:#673AB7;') settings
+        a.left-title Settings
   #main
     include posts.jade
+  script.
+    var leftMenuTransition = Vue.transition('fade', {
+      css: false,
+      enter: function (el, done) {
+        $(el).css('opacity', 0).animate({ opacity: 1 }, 1000, done)
+      },
+      leave: function (el, done) {
+        $(el).animate({ opacity: 0 }, 1000, done)
+      }
+    })
+    var menuBtn = new Vue({
+      el: '#menu-btn',
+      data: {
+        isShowed: true
+      },
+      methods: {
+        showOrHide: function() {
+          if (this.isShowed) {
+            console.log('test');
+            leftMenuTransition.leave(this);
+            this.isShowed = false;
+          } else {
+            console.log('ddd');
+            leftMenuTransition.enter(this);
+            this.isShowed = true;
+          }
+        }
+      }
+    });

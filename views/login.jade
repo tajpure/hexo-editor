@@ -1,28 +1,24 @@
 extends layout
 
 block content
-  header
+  header.mdl-shadow--6dp
     button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn
       i.material-icons menu
     ul.left-title-list
       li
         a.left-title Login
-    
   #login-form-wapper
-    #login-form
+    #login-form.mdl-shadow--2dp
       .row
-        .col
-          h5 Welcome~ #{emoji}
+        h5 Welcome~ #{emoji}
+      .row
+      form(action='login', method='POST')
+        .row.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+          input.mdl-textfield__input(id='username', type='text', name='username')
+          label.mdl-textfield__label(for='username') User Name
+        .row.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+          input.mdl-textfield__input(id='password', type='password', name='password')
+          label.mdl-textfield__label(for='password') Password
         .row
-        form.grey-text.s12(action='login', method='POST')
-          .row
-            .input-field.col.s12
-              label(for='first_name') User Name
-              input.validate(type='text', name="username")
-          .row
-            .input-field.col.s12
-              label(for='password') Password
-              input.validate(type='password', name="password")
-          button.btn.grey.waves-effect.waves-light(type='submit')
+          button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--accent(type='submit', style='color:white;')
             | LOGIN
-            i.material-icons.right send

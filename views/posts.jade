@@ -2,18 +2,18 @@ script(src='/javascripts/marked.js', type='text/javascript')
 script(src='/javascripts/dateFormat.js', type='text/javascript')
 script(src='/javascripts/ace/ace.js', type='text/javascript')
 script(src='/javascripts/ace/theme-twilight.js', type='text/javascript')
-script(src='/javascripts/jquery-ui.min.js', type='text/javascript', charset='utf-8')
-script(src='/javascripts/tag-it.min.js', type='text/javascript', charset='utf-8')
-link(rel='stylesheet', type='text/css', href='/stylesheets/jquery-ui.css')
-link(href='/stylesheets/jquery.tagit.css', rel='stylesheet', type='text/css')
+//- script(src='/javascripts/jquery-ui.min.js', type='text/javascript', charset='utf-8')
+//- script(src='/javascripts/tag-it.min.js', type='text/javascript', charset='utf-8')
+//- link(rel='stylesheet', type='text/css', href='/stylesheets/jquery-ui.css')
+//- link(href='/stylesheets/jquery.tagit.css', rel='stylesheet', type='text/css')
 link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
 
 #articles-wapper
   #articles-view
-    ul.collapsible.popout(data-collapsible='accordion')
+    ul.collapsible
       each article, index in items
-        li(id='article-#{index}', v-on:click="showContent")
-          .collapsible-header
+        li.mdl-shadow--2dp(id='article-#{index}')
+          .collapsible-header(v-on:click="showContent")
             i.material-icons library_books
             | #{article.title}
             .collapsible-header-right
@@ -36,15 +36,31 @@ link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.m
             script.
               new Vue({
                 el: '#article-#{index}',
+                data: {
+                  isOpened: false
+                },
                 methods: {
                   showContent: function() {
                     var self = this;
-                    $.get('content?key=#{article.key}', function(data) {
-                      var className = '#article-#{index} .collapsible-body .markdown-body';
-                      $(className).html('');
-                      var $element = $(className).append(marked(data));
-                      self.$compile($element.get(0));
+                    $('.collapsible-body').each(function() {
+                      $(this).hide();
                     });
+                    $('.collapsible .active').each(function() {
+                      $(this).removeClass('active');
+                    });
+                    if (self.isOpened) {
+                      self.isOpened = false;
+                    } else {
+                      $.get('post?id=#{article.key}', function(data) {
+                        $('#article-#{index} .collapsible-body').show();
+                        var className = '#article-#{index} .collapsible-body .markdown-body';
+                        $(className).html('');
+                        var $element = $(className).append(marked(data));
+                        self.$compile($element.get(0));
+                        $('#article-#{index}').addClass('active');
+                      });
+                      self.isOpened = true;
+                    }
                   },
                   editArticle: function() {
                     
@@ -59,14 +75,11 @@ link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.m
                 })
               
 #article-add
-  a.btn-floating.btn-large.waves-effect.waves-light.red(href='javascript:newPost();')
+  button.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored(href='javascript:newPost();', style='color:white;')
     i.material-icons add
   
 script.
   $(document).ready(function(){
-    $('.collapsible').collapsible({
-      accordion : false
-    });
     $(".collapsible-header-right button").click(function(e) {
        e.stopPropagation();
     })

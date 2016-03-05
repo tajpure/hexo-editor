@@ -10,10 +10,20 @@ header {
     width: 100%;
     height: 3.6em;
     background-color: #673AB7;
-    z-index: 99999;
+    z-index: 9999;
     display:inline-block;
     vertical-align: text-bottom;
-    box-shadow: 0 0 2px 3px #757575;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+li {
+  margin: 0;
+  padding: 0;
 }
 
 header i {
@@ -22,7 +32,6 @@ header i {
 
 header ul {
   height: 100%;
-  margin: 0;
 }
 
 header ul li {
@@ -60,7 +69,7 @@ header .left-title, header .right-title {
   color: white;
 }
 
-#logo{
+#logo {
   background:url(/img/logo.svg);
   width:60px;
   height:60px;
@@ -81,12 +90,19 @@ header .left-title, header .right-title {
   position: relative;
   top: 16%;
   margin: 0 auto;
-  padding: 1em  ;
+  padding: 0.5em  ;
   width: 30em;
   background: rgb(255,255,255);
   color: #333;
   text-align: center;
-  box-shadow: 0px 2px 2px rgba(0,0,0,0.5);
+}
+
+.row input {
+  height: 2em;
+}
+
+.row button {
+  margin-bottom: 1.5em;
 }
 
 #progress-wapper {
@@ -112,7 +128,53 @@ header .left-title, header .right-title {
 
 #main {
     position: relative;
-    margin-top: 5em;
+    margin-top: 4.2em;
+}
+
+#left {
+  position: fixed;
+  display: block;
+  margin-top: 4.2em;
+  width: 14%;
+  height: 90%;
+  overflow-y: auto;
+  z-index: 9999;
+}
+
+#left .left-menu {
+  width: 100%;
+  margin: 0;
+}
+
+#left .left-menu-row {
+  cursor: pointer;
+  height: 24px;
+  margin: 0 10px 0 10px;
+  padding: 12px;
+  border-radius: 5px;
+}
+
+#left .left-menu-row i {
+  float: left;
+}
+
+#left .left-menu-row a {
+  margin-left: 10px;
+  color: #616161;
+}
+
+#left .left-menu-row:hover {
+  background-color: #E0E0E0;
+}
+
+#left .left-menu .active {
+  background-color: #E0E0E0;
+}
+
+#left .left-menu .active a {
+  margin-left: 10px;
+  color: #616161;
+  font-weight: bold;
 }
 
 #editor-wapper {
@@ -180,6 +242,34 @@ header .left-title, header .right-title {
   color: grey;
 }
 
+.collapsible .active {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.collapsible .collapsible-header {
+  background-color: white;
+  padding: 10px;
+  border-top: 1px solid #E0E0E0;
+  cursor: pointer;
+}
+
+.collapsible .collapsible-header .fixed {
+  position:fixed;
+  top:0px;
+  z-index:999;
+}
+
+.collapsible .collapsible-header i {
+  float: left;
+  margin-right: 16px;
+}
+
+.collapsible .collapsible-body {
+  display: none;
+  border-top: 1px solid #E0E0E0;
+}
+
 .collapsible-header-right {
   position: relative;
   float: right;
@@ -188,9 +278,28 @@ header .left-title, header .right-title {
 
 .collapsible-header-right button {
   position: inherit;
-  clear: right;
+  float: right;
+  margin-top: -4px;
+}
+
+.collapsible-header-right ul i {
+  margin-top: 12px;
 }
 
 .markdown-body {
   margin: 0 1em 0 1em;
+}
+
+.moveout-transition {
+
+}
+
+.moveout-leave {
+
+}
+
+.moveout-enter {
+  height: 0;
+  padding: 0 10px;
+  opacity: 0;
 }
