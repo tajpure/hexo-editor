@@ -1,3 +1,7 @@
+html {
+  height: 100%;
+}
+
 body {
   width: 100%;
   height: 100%;
@@ -115,6 +119,10 @@ header .left-title, header .right-title {
   display: none;
 }
 
+#content {
+  height: 99%;
+}
+
 #sub-menu {
   position: relative;
   margin-top: 0px;
@@ -128,13 +136,13 @@ header .left-title, header .right-title {
 
 #main {
     position: relative;
-    margin-top: 4.2em;
+    margin-top: 3.7em;
 }
 
 #left {
   position: fixed;
   display: block;
-  margin-top: 4.2em;
+  margin-top: 3.7em;
   width: 14%;
   height: 90%;
   overflow-y: auto;
@@ -178,29 +186,31 @@ header .left-title, header .right-title {
 }
 
 #editor-wapper {
-  position: relative;
-  margin-left: 1%;
-  margin-top: 5px;
-  height: 100%;
-  width: 84%;
-  float: left;
+  margin-top: 3.5em;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  height: calc(100% - 3.5em);
+  background-color: #789012;
 }
 
 #preview {
-  width: 50%;
-  height: 48em;
   float: left;
+  width: 50%;
+  height: 100%;
   overflow: auto;
   font-size: 15px;
+  word-wrap:break-word;
   background: rgb(255,255,255);
-  padding: 10px;
 }
 
 #editor {
-  width: 50%;
-  height: 48em;
-  font-size: 15px;
   float: left;
+  width: 50%;
+  height: 100%;
+  overflow: auto;
+  font-size: 15px;
+  background: rgb(255,255,255);
 }
 
 .hidden {

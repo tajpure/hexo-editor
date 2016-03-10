@@ -13,8 +13,30 @@ html
     script(src='/javascripts/material.min.js')
     //- script(src='/javascripts/materialize.min.js')
     script(src='/javascripts/vue.js')
+    script(src='/javascripts/marked.js', type='text/javascript')
+    script(src='/javascripts/dateFormat.js', type='text/javascript')
+    script(src='/javascripts/ace/ace.js', type='text/javascript')
+    script(src='/javascripts/ace/theme-twilight.js', type='text/javascript')
+    script(src='/javascripts/jquery-ui.min.js', type='text/javascript', charset='utf-8')
+    script(src='/javascripts/tag-it.min.js', type='text/javascript', charset='utf-8')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/jquery-ui.css')
+    link(href='/stylesheets/jquery.tagit.css', rel='stylesheet', type='text/css')
+    script(src='/javascripts/marked.js', type='text/javascript')
+    script(src='/javascripts/dateFormat.js', type='text/javascript')
+    script(src='/javascripts/ace/ace.js', type='text/javascript')
+    script(src='/javascripts/ace/theme-twilight.js', type='text/javascript')
+    link(rel='stylesheet', href='//cdn.jsdelivr.net/highlight.js/9.2.0/styles/default.min.css')
+    script(src='//cdn.jsdelivr.net/highlight.js/9.2.0/highlight.min.js')
+    //- script(src='/javascripts/jquery-ui.min.js', type='text/javascript', charset='utf-8')
+    //- script(src='/javascripts/tag-it.min.js', type='text/javascript', charset='utf-8')
+    //- link(rel='stylesheet', type='text/css', href='/stylesheets/jquery-ui.css')
+    //- link(href='/stylesheets/jquery.tagit.css', rel='stylesheet', type='text/css')
+    link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
     //- script(src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML')
   body
-    block content
-    script(src='/javascripts/func.js?v=20150629')
+    #content
+      block content
     script(src='/javascripts/app.js?v=20160303')
+    //- #snackbar.mdl-js-snackbar.mdl-snackbar
+    //-     .mdl-snackbar__text
+    //-     button.mdl-snackbar__action(type='button')

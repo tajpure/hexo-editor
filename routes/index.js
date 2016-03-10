@@ -50,10 +50,10 @@ router.get('/logout', function(req, res, next) {
   var username = req.session.username;
   console.log(username + ' logout');
   req.session.username = null;
-  res.redirect('/');
+  res.redirect('/', {});
 });
 
-router.get('/newItemPage', function(req, res, next) {
+router.get('/editor', function(req, res, next) {
   res.render('editor');
 });
 

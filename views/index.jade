@@ -30,15 +30,6 @@ block content
   #main
     include posts.jade
   script.
-    var leftMenuTransition = Vue.transition('fade', {
-      css: false,
-      enter: function (el, done) {
-        $(el).css('opacity', 0).animate({ opacity: 1 }, 1000, done)
-      },
-      leave: function (el, done) {
-        $(el).animate({ opacity: 0 }, 1000, done)
-      }
-    })
     var menuBtn = new Vue({
       el: '#menu-btn',
       data: {
@@ -47,12 +38,10 @@ block content
       methods: {
         showOrHide: function() {
           if (this.isShowed) {
-            console.log('test');
-            leftMenuTransition.leave(this);
+            $('#left').hide();
             this.isShowed = false;
           } else {
-            console.log('ddd');
-            leftMenuTransition.enter(this);
+            $('#left').show();
             this.isShowed = true;
           }
         }
