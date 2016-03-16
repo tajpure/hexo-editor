@@ -2,18 +2,18 @@ extends layout
 
 block content
   header.mdl-shadow--6dp
-    button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn(id='menu-btn', v-on:click="showOrHide")
+    button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn(id='menu-btn')
       i.material-icons menu
     ul.left-title-list
       li
         a.left-title Posts
     ul.right-title-list
       li
-        a.right-title(onclick='exit();')
+        a.mdl-button.mdl-js-button.mdl-button--icon.right-title(onclick='exit();')
           i.material-icons exit_to_app
   #progress-wapper
     #progress.mdl-progress.mdl-js-progress.mdl-progress__indeterminate
-  #left(ransition="fade")
+  #left
     ul.left-menu
       li.left-menu-row.active
         i.material-icons(style='color:#00BCD4;') description
@@ -30,20 +30,10 @@ block content
   #main
     include posts.jade
   script.
-    var menuBtn = new Vue({
-      el: '#menu-btn',
-      data: {
-        isShowed: true
-      },
-      methods: {
-        showOrHide: function() {
-          if (this.isShowed) {
-            $('#left').hide();
-            this.isShowed = false;
-          } else {
-            $('#left').show();
-            this.isShowed = true;
-          }
-        }
+    $('#menu-btn').click(function() {
+      if ($('#left').css('display') === 'none') {
+        $('#left').show();
+      } else {
+        $('#left').hide();
       }
     });

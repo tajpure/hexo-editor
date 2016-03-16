@@ -1,20 +1,20 @@
 header.mdl-shadow--6dp
   button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn(id='menu-btn', v-on:click="showOrHide")
     i.material-icons arrow_back
-  ul.left-title-list
+  ul.right-title-list
     li
-      a.left-title New Post
-  //- ul.right-title-list
-  //-   li
-  //-     a.right-title(onclick='exit();')
-  //-       i.material-icons exit_to_app
+      a.mdl-button.mdl-js-button.mdl-button--icon.right-title(id='menu-btn', v-on:click="publish")
+        i.material-icons edit
+    li
+      a.mdl-button.mdl-js-button.mdl-button--icon.right-title(id='menu-btn', v-on:click="publish")
+        i.material-icons send
 #progress-wapper
   #progress.mdl-progress.mdl-js-progress.mdl-progress__indeterminate
 
 
 #editor-wapper.markdown-body
   #editor(v-model="input")
-  #preview(v-html="input | marked")
+  //- #preview(v-html="input | marked")
 
 script(type="text/javascript").
   var editor = ace.edit("editor");
@@ -23,83 +23,3 @@ script(type="text/javascript").
   editor.on('change', function(e) {
   	$('#preview').html(marked(editor.getValue()));
   });
-//- script(type="text/javascript").
-//-   var editor = ace.edit("editor");
-//-   editor.setTheme("ace/theme/tomorrow");
-//-   editor.getSession().setUseWrapMode(true);
-//- 	editor.on('change', function(e) {
-//- 		var curContent = editor.getValue();
-//- 	});
-  //- script(type="text/x-mathjax-config").
-  //- MathJax.Hub.Config({
-  //-   tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-  //- });
-//- #sub-menu
-//-   ul.collection
-//-     li.collection-item
-//-       div.item
-//-         | Preview
-//-         a.secondary-content.text-grey(href='javascript:showPreview();')
-//-           i.material-icons input
-//-     li.collection-item
-//-       div.item
-//-         | Publish
-//-         a.secondary-content(href='javascript:newItem();')
-//-           i.material-icons send
-//-     li.collection-item
-//-       div.item
-//-         | Save
-//-         a.secondary-content(href='#!')
-//-           i.material-icons grade
-//-     li.collection-item
-//-       div
-//-         .row
-//-           .input-field.col.s12
-//-             label(for='title') Title
-//-             input#title.validate(type='text')
-//-     li.collection-item
-//-       div
-//-         .row
-//-           .col.s12
-//-             label(for='title') Date
-//-             input#date.validate(type='text')
-//-     li.collection-item
-//-       div
-//-         | Categories
-//-         a.secondary-content
-//-           i.material-icons playlist_add
-//-     li#category-list.collection-item
-//-       ul#Categories
-//-     li.collection-item
-//-       div
-//-         | Tags
-//-         a.secondary-content
-//-           i.material-icons playlist_add
-//-     li#tag-list.collection-item
-//-       ul#Tags
-//- 
-//- #editor-wapper
-//-   #editor(v-model="input")
-//-   #preview(v-html="input | marked")
-//-   script(type='text/javascript').
-//-     initEditor();
-//-     var markdownEditor = new Vue({
-//-       el: '#editor',
-//-       data: {
-//-         input: '# hello'
-//-       },
-//-       filters: {
-//-         marked: marked
-//-       }
-//-     });
-//-     var editor = ace.edit("editor");
-//-     editor.setTheme("ace/theme/tomorrow");
-//-     editor.getSession().setUseWrapMode(true);
-//-   	editor.on('change', function(e) {
-//-   		var curContent = editor.getValue();
-//-       markdownEditor.input = curContent;
-//-   	});
-  //- script(type="text/x-mathjax-config").
-  //- MathJax.Hub.Config({
-  //-   tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-  //- });

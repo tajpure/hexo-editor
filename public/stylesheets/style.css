@@ -39,9 +39,8 @@ header ul {
 }
 
 header ul li {
-  height: 100%;
-  margin: 0;
-  padding: 14px;
+  position:relative;
+  padding: 25%;
 }
 
 header ul li a {
@@ -63,9 +62,19 @@ header .left-title-list {
   color: white;
 }
 
+header .left-title-list li {
+  float: left;
+}
+
 header .right-title-list {
   float: right;
-  margin-right: 0.5em;
+  margin-right: 1em;
+  color: white;
+  /*width: 50%;*/
+}
+
+header .right-title-list li {
+  float: right;
   color: white;
 }
 
@@ -205,7 +214,7 @@ header .left-title, header .right-title {
 }
 
 #editor {
-  float: left;
+  /*float: left;*/
   width: 50%;
   height: 100%;
   overflow: auto;
@@ -312,4 +321,9 @@ header .left-title, header .right-title {
   height: 0;
   padding: 0 10px;
   opacity: 0;
+}
+
+.title-wrapper {
+  margin-left: 1em;
+  color: white;
 }

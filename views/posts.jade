@@ -3,7 +3,7 @@
     ul.collapsible
       each article, index in items
         li.mdl-shadow--2dp(id='article-#{index}')
-          .collapsible-header(v-on:click="showContent")
+          .collapsible-header(id='#{index}', key="#{article.key}")
             i.material-icons library_books
             | #{article.title}
             .collapsible-header-right
@@ -23,46 +23,6 @@
               | #{article.date}
           .collapsible-body
             .markdown-body(width='60%')
-            script.
-              new Vue({
-                el: '#article-#{index}',
-                data: {
-                  isOpened: false
-                },
-                methods: {
-                  showContent: function() {
-                    var self = this;
-                    $('.collapsible-body').each(function() {
-                      $(this).hide();
-                    });
-                    $('.collapsible .active').each(function() {
-                      $(this).removeClass('active');
-                    });
-                    if (self.isOpened) {
-                      self.isOpened = false;
-                    } else {
-                      $.get('post?id=#{article.key}', function(data) {
-                        $('#article-#{index} .collapsible-body').show();
-                        var className = '#article-#{index} .collapsible-body .markdown-body';
-                        $(className).html('');
-                        var $element = $(className).append(marked(data));
-                        self.$compile($element.get(0));
-                        $('#article-#{index}').addClass('active');
-                      });
-                      self.isOpened = true;
-                    }
-                  },
-                  editArticle: function() {
-                    
-                  },
-                  stashArticle: function() {
-                    
-                  },
-                  deleteArticle: function() {
-                    
-                  }
-                }
-                })
               
 #article-add
   button.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored(onclick='newPostPage();', style='color:white;')
@@ -73,4 +33,29 @@ script.
     $(".collapsible-header-right button").click(function(e) {
        e.stopPropagation();
     })
+  });
+  $('.collapsible-header').each(function(index){
+    var isOpened = false;
+    var id = $(this).attr('id');
+    var key = $(this).attr('key');
+    $(this).click(function() {
+      $('.collapsible-body').each(function() {
+        $(this).hide();
+      });
+      $('.collapsible .active').each(function() {
+        $(this).removeClass('active');
+      });
+      if (isOpened) {
+        isOpened = false;
+      } else {
+        $.get('post?id=' + key, function(data) {
+          $('#article-' + id + ' .collapsible-body').show();
+          var className = '#article-' + id + ' .collapsible-body .markdown-body';
+          $(className).html('');
+          $(className).append(marked(data));
+          $('#article-' + id).addClass('active');
+        });
+        isOpened = true;
+      }
+    });
   });

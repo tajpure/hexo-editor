@@ -37,7 +37,9 @@
   		}
   	}).done(function(content) {
   		$('#progress').fadeOut();
-  		$("#content").html(content);
+      var dom = jQuery.parseHTML(content, true);
+      componentHandler.upgradeElements(dom);
+  		$("#content").html(dom);
   	});
   };
 
