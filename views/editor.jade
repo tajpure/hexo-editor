@@ -1,25 +1,68 @@
-header.mdl-shadow--6dp
-  button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn(id='menu-btn', v-on:click="showOrHide")
-    i.material-icons arrow_back
-  ul.right-title-list
-    li
-      a.mdl-button.mdl-js-button.mdl-button--icon.right-title(id='menu-btn', v-on:click="publish")
-        i.material-icons edit
-    li
-      a.mdl-button.mdl-js-button.mdl-button--icon.right-title(id='menu-btn', v-on:click="publish")
-        i.material-icons send
-#progress-wapper
-  #progress.mdl-progress.mdl-js-progress.mdl-progress__indeterminate
+extends layout
+
+block content
+  header.mdl-shadow--6dp
+    button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn(id='menu-btn')
+      i.material-icons arrow_back
+    .left-title
+      a.mdl-button.mdl-js-button.mdl-js-ripple-effect New
+    ul
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+          i.material-icons publish
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+          i.material-icons redo
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+          i.material-icons undo
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+          i.material-icons insert_link
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+          i.material-icons insert_photo
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+          i.material-icons border_all
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+          i.material-icons format_quote
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+          i.material-icons format_size
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+          i.material-icons format_list_bulleted
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+          i.material-icons format_list_numbered
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+          i.material-icons format_underlined
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+          i.material-icons format_italic
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+          i.material-icons format_bold
+      li.right-title
+        input(id='title', value='Untitled')
+      li.right-title
+        .status-bar
+          i.material-icons done
+  #progress-wapper
+    #progress.mdl-progress.mdl-js-progress.mdl-progress__indeterminate
 
 
-#editor-wapper.markdown-body
-  #editor(v-model="input")
-  //- #preview(v-html="input | marked")
+  #editor-wapper
+    #editor.mdl-shadow--2dp(v-model="input")
+    //- #preview(v-html="input | marked")
 
-script(type="text/javascript").
-  var editor = ace.edit("editor");
-  editor.setTheme("ace/theme/tomorrow");
-  editor.getSession().setUseWrapMode(true);
-  editor.on('change', function(e) {
-  	$('#preview').html(marked(editor.getValue()));
-  });
+  script(type="text/javascript").
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/tomorrow");
+    editor.getSession().setUseWrapMode(true);
+    editor.on('change', function(e) {
+    	$('#preview').html(marked(editor.getValue()));
+    });

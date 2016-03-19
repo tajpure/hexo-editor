@@ -4,12 +4,11 @@ block content
   header.mdl-shadow--6dp
     button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn(id='menu-btn')
       i.material-icons menu
-    ul.left-title-list
-      li
-        a.left-title Posts
-    ul.right-title-list
-      li
-        a.mdl-button.mdl-js-button.mdl-button--icon.right-title(onclick='exit();')
+    .left-title
+      a.mdl-button.mdl-js-button.mdl-js-ripple-effect Posts
+    ul
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
           i.material-icons exit_to_app
   #progress-wapper
     #progress.mdl-progress.mdl-js-progress.mdl-progress__indeterminate

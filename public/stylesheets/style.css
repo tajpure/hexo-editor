@@ -11,9 +11,11 @@ body {
 
 header {
     position: fixed;
+    display: table;
+    margin: 0 auto;
     width: 100%;
     height: 3.6em;
-    background-color: #673AB7;
+    background-color: #757575;
     z-index: 9999;
     display:inline-block;
     vertical-align: text-bottom;
@@ -36,15 +38,12 @@ header i {
 
 header ul {
   height: 100%;
+  margin-left: 3em;
 }
 
 header ul li {
-  position:relative;
-  padding: 25%;
-}
-
-header ul li a {
-  cursor: pointer;
+  float: right;
+  height: 100%;
 }
 
 header .menu-btn {
@@ -55,30 +54,29 @@ header .menu-btn {
   margin-left: 0.8em;
 }
 
-header .left-title-list {
-  float: left;
-  margin-left: 3em;
-  font-size: 1.5em;
+header .left-title {
+  position: absolute;
+  margin-left: 4em;
+  height: 100%;
+}
+
+header .status-bar {
+  padding: 12px;
+  font-size: 1.3em;
+}
+
+header .status-bar i {
+  color: #AEEA00;
+}
+
+header .left-title .mdl-button {
+  padding: 8px;
   color: white;
+  font-size: 1.3em;
 }
 
-header .left-title-list li {
-  float: left;
-}
-
-header .right-title-list {
-  float: right;
-  margin-right: 1em;
-  color: white;
-  /*width: 50%;*/
-}
-
-header .right-title-list li {
-  float: right;
-  color: white;
-}
-
-header .left-title, header .right-title {
+header .right-title .mdl-button {
+  padding: 9px;
   color: white;
 }
 
@@ -195,15 +193,14 @@ header .left-title, header .right-title {
 }
 
 #editor-wapper {
-  margin-top: 3.5em;
+  margin-top: 4em;
   margin-left: 0;
   margin-right: 0;
   width: 100%;
-  height: calc(100% - 3.5em);
-  background-color: #789012;
+  height: calc(100% - 4em);
 }
 
-#preview {
+#editor-wapper #preview {
   float: left;
   width: 50%;
   height: 100%;
@@ -213,12 +210,22 @@ header .left-title, header .right-title {
   background: rgb(255,255,255);
 }
 
+#title {
+  margin: 8px 40px 8px 8px;
+  padding: 3px;
+  width: 200px;
+  height: 2em;
+  border: none;
+  border-radius: 2px;
+}
+
 #editor {
-  /*float: left;*/
-  width: 50%;
+  margin-left: 10%;
+  width: 80%;
   height: 100%;
   overflow: auto;
-  font-size: 15px;
+  font-size: 1.2em;
+  line-height: 1.4em;
   background: rgb(255,255,255);
 }
 
