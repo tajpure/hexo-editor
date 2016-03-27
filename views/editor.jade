@@ -8,61 +8,54 @@ block content
       a.mdl-button.mdl-js-button.mdl-js-ripple-effect New
     ul
       li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+        a.mdl-button.mdl-js-button.mdl-button--icon(title='publish')
           i.material-icons publish
       li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+        a.mdl-button.mdl-js-button.mdl-button--icon(title='redo')
           i.material-icons redo
       li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+        a.mdl-button.mdl-js-button.mdl-button--icon(title='undo')
           i.material-icons undo
       li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
-          i.material-icons insert_link
-      li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+        a.mdl-button.mdl-js-button.mdl-button--icon(title='insert photo')
           i.material-icons insert_photo
       li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
-          i.material-icons border_all
+        a.mdl-button.mdl-js-button.mdl-button--icon(title='insert link')
+          i.material-icons insert_link
       li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+        a.mdl-button.mdl-js-button.mdl-button--icon(title='insert code')
+          i.material-icons code
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(title='format quote')
           i.material-icons format_quote
       li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
-          i.material-icons format_size
-      li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+        a.mdl-button.mdl-js-button.mdl-button--icon(title='format list bulleted')
           i.material-icons format_list_bulleted
       li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+        a.mdl-button.mdl-js-button.mdl-button--icon(title='format list numbered')
           i.material-icons format_list_numbered
       li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
-          i.material-icons format_underlined
-      li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+        a.mdl-button.mdl-js-button.mdl-button--icon(title='format italic')
           i.material-icons format_italic
       li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+        a.mdl-button.mdl-js-button.mdl-button--icon(title='format bold')
           i.material-icons format_bold
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='preview();', title='preview')
+          i.material-icons(id='visibility') visibility
       li.right-title
         input(id='title', value='Untitled')
       li.right-title
-        .status-bar
+        #done
           i.material-icons done
+        #loading
+          .mdl-spinner.mdl-js-spinner.is-active
   #progress-wapper
     #progress.mdl-progress.mdl-js-progress.mdl-progress__indeterminate
 
-
   #editor-wapper
-    #editor.mdl-shadow--2dp(v-model="input")
-    //- #preview(v-html="input | marked")
+    #editor.mdl-shadow--2dp
+    #preview.mdl-shadow--2dp
 
   script(type="text/javascript").
-    var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/tomorrow");
-    editor.getSession().setUseWrapMode(true);
-    editor.on('change', function(e) {
-    	$('#preview').html(marked(editor.getValue()));
-    });
+    initEditor();

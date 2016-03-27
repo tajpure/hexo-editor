@@ -13,13 +13,40 @@ var fs = require('fs');
 var config = yaml.safeLoad(fs.readFileSync('./_config.yml', 'utf8'));
 
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
-var server = app.listen(2048, function() {
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log('Hexo Editor listening at http://%s:%s', host, port);
+var yaml = require('js-yaml');
+var fs = require('fs');
+var config = yaml.safeLoad(fs.readFileSync('./_config.yml', 'utf8'));
+
+var Manager = require('./lib/manager');
+var manager = new Manager(config.base_dir);
+
+server.listen(2048);
+
+var dist = '';
+io.on('connection', function (socket) {
+  socket.on('syncText', function (data) {
+    console.log(data);
+    var text = '';
+    for (var i in data) {
+      if (data[i] === null) {
+        text += dist.slice((i * 32), (i * 32) + 32);
+        continue;
+      }
+      if (data[i].pos !== null) {
+        text += dist.slice(data[i].pos, data[i].pos + 32);
+      } else if (data[i].data) {
+        text += data[i].data;
+      }
+    }
+    console.log(text);
+    dist = text;
+    manager.saveToDraft('test', dist);
+    socket.emit('syncEnd', 'finished');
+  });
 });
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

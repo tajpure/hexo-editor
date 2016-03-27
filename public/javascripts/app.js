@@ -18,6 +18,24 @@
     snackbarContainer.MaterialSnackbar.showSnackbar(data);
   };
   self.initEditor = function() {
+    editor = ace.edit("editor");
+    editor.setTheme("ace/theme/tomorrow");
+    editor.getSession().setUseWrapMode(true);
+    editor.$blockScrolling = Infinity;
+    self.sync();
+  };
+  self.sync = function() {
+    var socket = io();
+    editor.on('change', function(e) {
+      $('#done').css('display', 'none');
+      $('#loading').css('display', 'block');
+      var syncData = self.TextSync.sync(editor.getValue());
+      socket.emit('syncText', syncData);
+      socket.on('syncEnd', function (data) {
+        $('#done').css('display', 'block');
+        $('#loading').css('display', 'none');
+      });
+    });
   };
   self.doGet = function(url) {
   	$('#progress').fadeIn();
@@ -54,6 +72,18 @@
     doGet('/editor');
   };
 
+  self.preview = function() {
+    if ($('#editor').css('display') === 'block') {
+      $('#preview').html(marked(editor.getValue()));
+      $('#editor').hide();
+      $('#preview').show();
+      $('#visibility').text('visibility_off');
+    } else {
+      $('#editor').show();
+      $('#preview').hide();
+      $('#visibility').text('visibility');
+    }
+  }
   self.newPost = function() {
   	var title = $("#title").val();
   	var date = $("#date").val();

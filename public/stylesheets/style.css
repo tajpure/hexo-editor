@@ -60,12 +60,12 @@ header .left-title {
   height: 100%;
 }
 
-header .status-bar {
+header #done {
   padding: 12px;
   font-size: 1.3em;
 }
 
-header .status-bar i {
+header #done i {
   color: #AEEA00;
 }
 
@@ -78,6 +78,11 @@ header .left-title .mdl-button {
 header .right-title .mdl-button {
   padding: 9px;
   color: white;
+}
+
+header .right-title #loading {
+  display: none;
+  padding: 10px;
 }
 
 #logo {
@@ -193,20 +198,22 @@ header .right-title .mdl-button {
 }
 
 #editor-wapper {
-  margin-top: 4em;
+  margin-top: 3.7em;
   margin-left: 0;
   margin-right: 0;
   width: 100%;
-  height: calc(100% - 4em);
+  height: calc(100% - 3.7em);
 }
 
 #editor-wapper #preview {
-  float: left;
-  width: 50%;
-  height: 100%;
+  display: none;
+  padding: 1%;
+  margin-left: 19.1%;
+  width: 59.8%;
+  height: 96%;
   overflow: auto;
-  font-size: 15px;
-  word-wrap:break-word;
+  font-size: 1.2em;
+  line-height: 1.4em;
   background: rgb(255,255,255);
 }
 
@@ -219,9 +226,9 @@ header .right-title .mdl-button {
   border-radius: 2px;
 }
 
-#editor {
-  margin-left: 10%;
-  width: 80%;
+#editor-wapper #editor {
+  margin-left: 19.1%;
+  width: 61.8%;
   height: 100%;
   overflow: auto;
   font-size: 1.2em;
