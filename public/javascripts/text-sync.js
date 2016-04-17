@@ -7,7 +7,7 @@
 
    this.TextSync = {
     dist: null,
-    ChunkSize: 32,
+    ChunkSize: 64,
     sync: function sync(source) {
       var chunks = this.cmp(source, this.dist);
       this.dist = source;
@@ -62,7 +62,7 @@
    checksum: function (data, isNotRolling) {
      var buffer = this.strToBuffer(data);
      var length = buffer.length;
-     var M = Math.pow(2, 32);
+     var M = Math.pow(2, 64);
      var a = 0;
      var b = 0;
      var last = this.last;

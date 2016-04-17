@@ -26,6 +26,11 @@
   };
   self.sync = function() {
     var socket = io();
+
+    socket.on('init', function (data) {
+      editor.setValue(data, 0);
+    });
+
     editor.on('change', function(e) {
       $('#done').css('display', 'none');
       $('#loading').css('display', 'block');

@@ -25,25 +25,28 @@ var manager = new Manager(config.base_dir);
 
 server.listen(2048);
 
-var dist = '';
+var CHUNK_SIZE = 64;
+
 io.on('connection', function (socket) {
+  var untitled = manager.readFromDraft('untitled');
+  
+  socket.emit('init', untitled);
+
   socket.on('syncText', function (data) {
-    console.log(data);
     var text = '';
     for (var i in data) {
       if (data[i] === null) {
-        text += dist.slice((i * 32), (i * 32) + 32);
+        text += dist.slice((i * CHUNK_SIZE), (i * CHUNK_SIZE) + CHUNK_SIZE);
         continue;
       }
       if (data[i].pos !== null) {
-        text += dist.slice(data[i].pos, data[i].pos + 32);
+        text += dist.slice(data[i].pos, data[i].pos + CHUNK_SIZE);
       } else if (data[i].data) {
         text += data[i].data;
       }
     }
-    console.log(text);
     dist = text;
-    manager.saveToDraft('test', dist);
+    manager.saveToDraft('untitled', dist);
     socket.emit('syncEnd', 'finished');
   });
 });
