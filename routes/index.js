@@ -17,7 +17,6 @@ var editor = new Editor(config.base_dir);
 var manager = new Manager(config.base_dir);
 
 router.get('/', function(req, res, next) {
-  console.log(config.local);
   if (req.session.username || config.local == true) {
     var itemsPromise = manager.getItems();
     itemsPromise.then(function(files) {
@@ -50,7 +49,7 @@ router.get('/logout', function(req, res, next) {
   var username = req.session.username;
   console.log(username + ' logout');
   req.session.username = null;
-  res.redirect('/', {});
+  res.redirect('/');
 });
 
 router.get('/editor', function(req, res, next) {

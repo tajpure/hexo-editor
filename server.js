@@ -29,7 +29,7 @@ var CHUNK_SIZE = 64;
 
 io.on('connection', function (socket) {
   var untitled = manager.readFromDraft('untitled');
-  
+  var dist = '';
   socket.emit('init', untitled);
 
   socket.on('syncText', function (data) {

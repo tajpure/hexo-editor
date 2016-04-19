@@ -26,11 +26,9 @@
   };
   self.sync = function() {
     var socket = io();
-
     socket.on('init', function (data) {
       editor.setValue(data, 0);
     });
-
     editor.on('change', function(e) {
       $('#done').css('display', 'none');
       $('#loading').css('display', 'block');
@@ -42,6 +40,51 @@
       });
     });
   };
+  self.formatBlod = function () {
+    var range = editor.selection.getRange();
+    var blodText = '**' + editor.getSelectedText() + '**';
+    editor.session.replace(range, blodText);
+  };
+  self.formatItalic = function () {
+    var range = editor.selection.getRange();
+    var italicText = '*' + editor.getSelectedText() + '*';
+    editor.session.replace(range, italicText);
+  };
+  self.formatListNumbered = function () {
+    var range = editor.selection.getRange();
+    var formatText = editor.getSelectedText();
+    var rows = formatText.split('\n');
+    formatText = '';
+    for (var i = 1; i <= rows.length; i++) {
+      formatText += i + '. ' + rows[i-1] + '\n';
+    }
+    editor.session.replace(range, formatText);
+  };
+  self.formatListBulleted = function () {
+    var range = editor.selection.getRange();
+    var formatText = editor.getSelectedText();
+    var rows = formatText.split('\n');
+    formatText = '';
+    for (var i = 1; i <= rows.length; i++) {
+      formatText += '* ' + rows[i-1] + '\n';
+    }
+    editor.session.replace(range, formatText);
+  };
+  self.formatQuote = function () {
+    var range = editor.selection.getRange();
+    var formatText = editor.getSelectedText();
+    var rows = formatText.split('\n');
+    formatText = '';
+    for (var i = 1; i <= rows.length; i++) {
+      formatText += '> ' + rows[i-1] + '\n';
+    }
+    editor.session.replace(range, formatText);
+  };
+  self.formatCode = function () {
+    var range = editor.selection.getRange();
+    var italicText = '```\n' + editor.getSelectedText() + '\n```';
+    editor.session.replace(range, italicText);
+  }
   self.doGet = function(url) {
   	$('#progress').fadeIn();
   	$.ajax({
