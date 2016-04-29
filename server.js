@@ -1,11 +1,11 @@
 var express = require('express');
+var stylus = require('stylus');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
 var routes = require('./routes/index');
 
 var yaml = require('js-yaml');
@@ -16,12 +16,14 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-var yaml = require('js-yaml');
-var fs = require('fs');
-var config = yaml.safeLoad(fs.readFileSync('./_config.yml', 'utf8'));
-
 var Manager = require('./lib/manager');
 var manager = new Manager(config.base_dir);
+
+function compile(str, path) {
+  return stylus(str)
+    .set('filename', path)
+    .use(nib());
+}
 
 server.listen(2048);
 
@@ -54,6 +56,13 @@ io.on('connection', function (socket) {
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+app.use(stylus.middleware(
+  {
+    src: __dirname + '/public',
+    compile: compile
+  }
+));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
