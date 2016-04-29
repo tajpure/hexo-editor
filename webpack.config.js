@@ -28,9 +28,8 @@ module.exports = {
     plugins: [
       new webpack.optimize.UglifyJsPlugin({minimize: true}),
       new BrowserSyncPlugin({
-        host: 'localhost',
-        port: 2049,
-        server: { baseDir: ['public'] }
+        proxy: 'localhost:2048',
+        port: 3000
       })
     ]
 }
