@@ -14,8 +14,8 @@
   },
   "scripts": {
     "test": "test",
-    "dev": "npm run start && webpack --progress --debug --display-error-details",
-    "start": "supervisor server.js"
+    "dev": "npm run start & webpack --watch --progress --debug --display-error-details",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
