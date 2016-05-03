@@ -1,20 +1,27 @@
 var path = require('path');
 var webpack = require("webpack");
-var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
-    entry: [
-            './public/javascripts/app.js',
-            './public/javascripts/marked.js',
-            './public/javascripts/markdown.js',
-            './public/javascripts/text-sync.js',
-            './public/javascripts/material.min.js',
-            './public/javascripts/jquery-1.11.3.min.js',
-            './public/javascripts/date-format.js'
-            ],
+    entry: {
+      main: [
+        './public/javascripts/app.js',
+        './public/javascripts/text-sync.js',
+        './public/javascripts/date-format.js',
+        './public/javascripts/markdown.js',
+        './public/stylesheets/style.css',
+        './public/stylesheets/icon.css',
+        './public/stylesheets/github-markdown.css',
+      ],
+      static: [
+        './node_modules/marked/marked.min.js',
+        './node_modules/material-design-lite/material.min.js',
+        './node_modules/jquery/dist/jquery.min.js',
+        './node_modules/material-design-lite/material.min.css'
+      ]
+    },
     output: {
-        path: path.join(__dirname, '/public/javascripts'),
-        filename: 'bundle.js'
+        path: path.join(__dirname, '/public'),
+        filename: "[name].bundle.js"
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
@@ -22,14 +29,11 @@ module.exports = {
     module: {
         loaders: [
             { test: /\.js|jsx$/, loaders: ['babel'] },
-            {test: /\app.js$/, loader: "eslint-loader"}
+            { test: /\app.js$/, loader: "eslint-loader" },
+            { test: /\.css$/, loader: "style-loader!css-loader" }
         ]
     },
     plugins: [
-      new webpack.optimize.UglifyJsPlugin({minimize: true}),
-      new BrowserSyncPlugin({
-        proxy: 'localhost:2048',
-        port: 3000
-      })
+      new webpack.optimize.UglifyJsPlugin({minimize: true})
     ]
 }
