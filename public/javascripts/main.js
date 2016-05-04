@@ -1,15 +1,14 @@
 /*
 * author:tajpure
 */
-var $ = require('jquery');
 
-var editor = ace.edit("editor");
+var editor = null;
 var socket = io();
-// var snackbarContainer = document.querySelector('#snackbar');
+var snackbarContainer = document.querySelector('#snackbar');
 
-// var exit = function() {
-//   location.href = '/logout';
-// };
+var exit = function() {
+  location.href = '/logout';
+};
 
 var toast = function(msg, timeout, handler, actionText) {
   var data = {
@@ -22,10 +21,11 @@ var toast = function(msg, timeout, handler, actionText) {
 };
 
 var initEditor = function() {
+  editor = ace.edit("editor");
   editor.setTheme("ace/theme/tomorrow");
   editor.getSession().setUseWrapMode(true);
   editor.$blockScrolling = Infinity;
-  // sync();
+  sync();
 };
 
 var sync = function() {
