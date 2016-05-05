@@ -4,13 +4,13 @@ var multiparty = require("multiparty");
 var yaml = require('js-yaml');
 var fs = require('fs');
 var config = yaml.safeLoad(fs.readFileSync('./_config.yml', 'utf8'));
-var auth = require('../lib/auth');
-var Editor = require('../lib/editor');
-var Manager = require('../lib/manager');
-var Article = require('../lib/article');
-var Util = require('../lib/util');
-var cache = require('../lib/cache');
-var emoji = require('../lib/emoji')
+var auth = require('../models/auth');
+var Editor = require('../models/editor');
+var Manager = require('../models/manager');
+var Article = require('../models/article');
+var Util = require('../models/util');
+var cache = require('../models/cache');
+var emoji = require('../models/emoji')
 
 auth.init(config.username, config.password);
 var editor = new Editor(config.base_dir);

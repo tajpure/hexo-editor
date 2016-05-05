@@ -16,7 +16,7 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-var Manager = require('./lib/manager');
+var Manager = require('./models/manager');
 var manager = new Manager(config.base_dir);
 
 function compile(str, path) {

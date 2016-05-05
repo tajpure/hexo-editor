@@ -5,7 +5,7 @@ const babel = require('gulp-babel');
 const eslint = require('gulp-eslint');
 const cleanCSS = require('gulp-clean-css');
 const merge = require('merge-stream');
-const hash = require('gulp-hash');
+const rev = require('gulp-rev');
 const replace = require('gulp-replace-task');
 
 gulp.task('scripts', () => {
@@ -14,11 +14,13 @@ gulp.task('scripts', () => {
     'node_modules/material-design-lite/material.min.js',
     'node_modules/socket.io-client/socket.io.js',
     'node_modules/jquery/dist/jquery.min.js',
+    'node_modules/marked/marked.min.js',
     'public/javascripts/*.js'
   ]).pipe(concat('app.js'))
     .pipe(uglify())
-    .pipe(hash())
-    .pipe(hash.manifest('scripts.json'))
+    .pipe(rev())
+    .pipe(gulp.dest('public/dist'))
+    .pipe(rev.manifest('scripts.json'))
     .pipe(gulp.dest('public/dist'));
 });
 
@@ -28,15 +30,17 @@ gulp.task('css', () => {
     'public/stylesheets/*.css'
   ]).pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(concat('style.css'))
-    .pipe(hash())
-    .pipe(hash.manifest('css.json'))
+    .pipe(rev())
+    .pipe(gulp.dest('public/dist'))
+    .pipe(rev.manifest('css.json'))
     .pipe(gulp.dest('public/dist'));
 });
 
 gulp.task('replace', () => {
   const cssJson = require('./public/dist/css.json');
   const scriptsJson = require('./public/dist/scripts.json');
-  return gulp.src('views/layout.jade')
+  return gulp.src('views/origin-layout.jade')
+    .pipe(concat('layout.jade'))
     .pipe(replace({
       patterns: [
         {
