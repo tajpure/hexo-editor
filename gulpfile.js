@@ -8,6 +8,11 @@ const merge = require('merge-stream');
 const rev = require('gulp-rev');
 const replace = require('gulp-replace-task');
 
+const paths = {
+    scripts: ['public/javascripts/*.js'],
+    sheets: ['public/stylesheets/*.css']
+};
+
 gulp.task('scripts', () => {
   return gulp.src([
     'node_modules/ace-builds/src/ace.js',
@@ -24,7 +29,7 @@ gulp.task('scripts', () => {
     .pipe(gulp.dest('public/dist'));
 });
 
-gulp.task('css', () => {
+gulp.task('sheets', () => {
   return gulp.src([
     'node_modules/material-design-lite/material.min.css',
     'public/stylesheets/*.css'
@@ -82,3 +87,10 @@ gulp.task('lint', () => {
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
+
+gulp.task('watch', () => {
+  gulp.watch(paths.scripts, ['scripts', 'replace']);
+  gulp.watch(paths.sheets, ['sheets', 'replace']);
+});
+
+gulp.task('default', ['watch', 'scripts', 'sheets']);

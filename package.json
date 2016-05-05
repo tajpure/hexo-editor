@@ -14,7 +14,8 @@
   },
   "scripts": {
     "test": "test",
-    "dev": "gulp scripts && gulp css && gulp replace && npm run start",
+    "clean": "rm -rf public/dist/*",
+    "dev": "gulp & gulp replace && npm run start",
     "start": "node server.js"
   },
   "repository": {
