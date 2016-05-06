@@ -1,23 +1,25 @@
-var express = require('express');
-var stylus = require('stylus');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var routes = require('./routes/index');
+'use strict';
+const compression = require('compression');
+const express = require('express');
+const stylus = require('stylus');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const routes = require('./routes/index');
 
-var yaml = require('js-yaml');
-var fs = require('fs');
-var config = yaml.safeLoad(fs.readFileSync('./_config.yml', 'utf8'));
+const yaml = require('js-yaml');
+const fs = require('fs');
+const config = yaml.safeLoad(fs.readFileSync('./_config.yml', 'utf8'));
 
-var app = express();
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
+const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
-var Manager = require('./models/manager');
-var manager = new Manager(config.base_dir);
+const Manager = require('./models/manager');
+const manager = new Manager(config.base_dir);
 
 function compile(str, path) {
   return stylus(str)
@@ -27,16 +29,16 @@ function compile(str, path) {
 
 server.listen(2048);
 
-var CHUNK_SIZE = 64;
+const CHUNK_SIZE = 64;
 
-io.on('connection', function (socket) {
-  var untitled = manager.readFromDraft('untitled');
-  var dist = '';
+io.on('connection', (socket) => {
+  let untitled = manager.readFromDraft('untitled');
+  let dist = '';
   socket.emit('init', untitled);
 
-  socket.on('syncText', function (data) {
-    var text = '';
-    for (var i in data) {
+  socket.on('syncText', (data) => {
+    let text = '';
+    for (let i in data) {
       if (data[i] === null) {
         text += dist.slice((i * CHUNK_SIZE), (i * CHUNK_SIZE) + CHUNK_SIZE);
         continue;
@@ -66,6 +68,7 @@ app.use(stylus.middleware(
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(compression());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -77,14 +80,14 @@ app.use(session({ username: null, saveUninitialized: true, secret: 'keyboard cat
 app.use('/', routes);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
+app.use((req, res, next) => {
+    let err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
 // catch session null and forward to login page
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
     if (req.session.username || config.local == true) {
       next();
     } else {
@@ -97,7 +100,7 @@ app.use(function (req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
+    app.use((err, req, res, next) => {
         res.status(err.status || 500);
         res.render('error', {
             message: err.message,
@@ -108,7 +111,7 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.render('error', {
         message: err.message,

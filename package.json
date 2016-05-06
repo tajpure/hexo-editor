@@ -15,7 +15,7 @@
   "scripts": {
     "test": "test",
     "clean": "rm -rf public/dist/*",
-    "dev": "gulp & gulp replace && npm run start",
+    "dev": "gulp & npm run start",
     "start": "node server.js"
   },
   "repository": {
@@ -34,6 +34,7 @@
   "homepage": "https://github.com/tajpure/hexo-editor#readme",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "compression": "^1.6.1",
     "cookie-parser": "^1.4.1",
     "debug": "^2.2.0",
     "express": "^4.13.4",

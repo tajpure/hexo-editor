@@ -10,7 +10,8 @@ const replace = require('gulp-replace-task');
 
 const paths = {
     scripts: ['public/javascripts/*.js'],
-    sheets: ['public/stylesheets/*.css']
+    sheets: ['public/stylesheets/*.css'],
+    dist: ['public/dist/*.js', 'public/dist/*.css']
 };
 
 gulp.task('scripts', () => {
@@ -89,8 +90,9 @@ gulp.task('lint', () => {
 });
 
 gulp.task('watch', () => {
-  gulp.watch(paths.scripts, ['scripts', 'replace']);
-  gulp.watch(paths.sheets, ['sheets', 'replace']);
+  gulp.watch(paths.scripts, ['scripts']);
+  gulp.watch(paths.sheets, ['sheets']);
+  gulp.watch(paths.dist, ['replace']);
 });
 
 gulp.task('default', ['watch', 'scripts', 'sheets']);
