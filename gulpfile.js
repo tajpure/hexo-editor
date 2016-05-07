@@ -90,8 +90,8 @@ gulp.task('lint', () => {
 });
 
 gulp.task('watch', () => {
-  gulp.watch(paths.scripts, ['scripts']);
-  gulp.watch(paths.sheets, ['sheets']);
+  gulp.watch(paths.scripts, ['scripts', 'replace']);
+  gulp.watch(paths.sheets, ['sheets', 'replace']);
   gulp.watch(paths.dist, ['replace']);
 });
 

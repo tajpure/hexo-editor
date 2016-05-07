@@ -22,7 +22,6 @@ var toast = function(msg, timeout, handler, actionText) {
 
 var initEditor = function() {
   editor = ace.edit("editor");
-  editor.setTheme("ace/theme/tomorrow");
   editor.getSession().setUseWrapMode(true);
   editor.$blockScrolling = Infinity;
   sync();
@@ -93,6 +92,14 @@ var formatCode = function () {
   var range = editor.selection.getRange();
   var italicText = '```\n' + editor.getSelectedText() + '\n```';
   editor.session.replace(range, italicText);
+};
+
+var redo = function () {
+  editor.session.getUndoManager().redo(true);
+};
+
+var undo = function () {
+  editor.session.getUndoManager().undo(true);
 };
 
 var doGet = function(url) {
