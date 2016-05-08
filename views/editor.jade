@@ -17,10 +17,10 @@ block content
         a.mdl-button.mdl-js-button.mdl-button--icon(title='undo', onclick='undo()')
           i.material-icons undo
       li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(title='insert photo')
+        a.mdl-button.mdl-js-button.mdl-button--icon(title='insert photo', onclick='uploadImage()')
           i.material-icons insert_photo
       li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(title='insert link')
+        a.mdl-button.mdl-js-button.mdl-button--icon(title='insert link', onclick='insertLink()')
           i.material-icons insert_link
       li.right-title
         a.mdl-button.mdl-js-button.mdl-button--icon(title='insert code', onclick='formatCode()')
@@ -41,7 +41,7 @@ block content
         a.mdl-button.mdl-js-button.mdl-button--icon(title='format bold', onclick='formatBlod()')
           i.material-icons format_bold
       li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='preview();', title='preview')
+        a.mdl-button.mdl-js-button.mdl-button--icon(title='preview', onclick='preview()')
           i.material-icons(id='visibility') visibility
       li.right-title
         input(id='title', value='Untitled')
@@ -56,6 +56,10 @@ block content
   #editor-wapper
     #editor.mdl-shadow--2dp
     #preview.mdl-shadow--2dp
+    
+  #image-upload-dialog.mdl-shadow--2dp
+    a(onclick='closeDialog("#image-upload-dialog")')
+      i.material-icons(id='clear') clear
 
   script(type="text/javascript").
     initEditor();

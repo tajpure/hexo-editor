@@ -341,3 +341,15 @@ header .right-title #loading {
   margin-left: 1em;
   color: white;
 }
+
+#image-upload-dialog {
+  background-color: white;
+  position: fixed;
+  margin: 0 auto;
+  z-index: 99;
+  width: 40%;
+  height: 400px;
+  top: 10%;
+  left: 0;
+  right: 0;
+}

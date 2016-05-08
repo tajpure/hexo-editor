@@ -29,7 +29,7 @@ var initEditor = function() {
 
 var sync = function() {
   socket.on('init', function (data) {
-    editor.setValue(data, 0);
+    editor.setValue(data, 1);
   });
   editor.on('change', function(e) {
     $('#done').css('display', 'none');
@@ -41,6 +41,14 @@ var sync = function() {
       $('#loading').css('display', 'none');
     });
   });
+};
+
+var uploadImage = function () {
+  alert('image');
+};
+
+var insertLink = function () {
+  editor.insert('[]()');
 };
 
 var formatBlod = function () {
@@ -149,6 +157,7 @@ var preview = function() {
     $('#visibility').text('visibility');
   }
 }
+
 var newPost = function() {
 	var title = $("#title").val();
 	var date = $("#date").val();
