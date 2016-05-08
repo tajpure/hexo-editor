@@ -2,47 +2,30 @@ extends layout
 
 block content
   header.mdl-shadow--6dp
-    button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn(id='menu-btn')
+    button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn(id='menu-btn', title='back', onclick='back()')
       i.material-icons arrow_back
     .left-title
       a.mdl-button.mdl-js-button.mdl-js-ripple-effect New
     ul
-      li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(title='publish')
-          i.material-icons publish
-      li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(title='redo', onclick='redo()')
-          i.material-icons redo
-      li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(title='undo', onclick='undo()')
-          i.material-icons undo
-      li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(title='insert photo', onclick='uploadImage()')
-          i.material-icons insert_photo
-      li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(title='insert link', onclick='insertLink()')
-          i.material-icons insert_link
-      li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(title='insert code', onclick='formatCode()')
-          i.material-icons code
-      li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(title='format quote', onclick='formatQuote()')
-          i.material-icons format_quote
-      li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(title='format list bulleted', onclick='formatListBulleted()')
-          i.material-icons format_list_bulleted
-      li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(title='format list numbered', onclick='formatListNumbered()')
-          i.material-icons format_list_numbered
-      li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(title='format italic', onclick='formatItalic()')
-          i.material-icons format_italic
-      li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(title='format bold', onclick='formatBlod()')
-          i.material-icons format_bold
-      li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(title='preview', onclick='preview()')
-          i.material-icons(id='visibility') visibility
+      -
+        var items = [
+          {title:'publish', onclick:'publish()', icon: 'publish'},
+          {title:'redo', onclick:'redo()', icon: 'redo'},
+          {title:'undo', onclick:'undo()', icon: 'undo'},
+          {title:'insert photo', onclick:'uploadImage()', icon: 'insert_photo'},
+          {title:'insert link', onclick:'insertLink()', icon: 'insert_link'},
+          {title:'insert code', onclick:'formatCode()', icon: 'code'},
+          {title:'format quote', onclick:'formatQuote()', icon: 'format_quote'},
+          {title:'format list bulleted', onclick:'formatListBulleted()', icon: 'format_list_bulleted'},
+          {title:'format list numbered', onclick:'formatListNumbered()', icon: 'format_list_numbered'},
+          {title:'format italic', onclick:'formatItalic()', icon: 'format_italic'},
+          {title:'format bold', onclick:'formatBlod()', icon: 'format_bold'},
+          {title:'preview', onclick:'preview()', icon: 'visibility'}
+        ]
+      each item in items
+        li.right-title
+          a.mdl-button.mdl-js-button.mdl-button--icon(title=item.title, onclick=item.onclick)
+            i.material-icons=item.icon
       li.right-title
         input(id='title', value='Untitled')
       li.right-title

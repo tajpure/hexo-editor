@@ -78,6 +78,11 @@ header .left-title .mdl-button {
 header .right-title .mdl-button {
   padding: 9px;
   color: white;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 
 header .right-title #loading {
@@ -345,6 +350,7 @@ header .right-title #loading {
 #image-upload-dialog {
   background-color: white;
   position: fixed;
+  display: none;
   margin: 0 auto;
   z-index: 99;
   width: 40%;

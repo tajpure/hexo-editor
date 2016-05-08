@@ -6,11 +6,11 @@ var editor = null;
 var socket = io();
 var snackbarContainer = document.querySelector('#snackbar');
 
-var exit = function() {
+function exit() {
   location.href = '/logout';
 };
 
-var toast = function(msg, timeout, handler, actionText) {
+function toast(msg, timeout, handler, actionText) {
   var data = {
     message: msg,
     timeout: timeout,
@@ -20,97 +20,7 @@ var toast = function(msg, timeout, handler, actionText) {
   snackbarContainer.MaterialSnackbar.showSnackbar(data);
 };
 
-var initEditor = function() {
-  editor = ace.edit("editor");
-  editor.getSession().setUseWrapMode(true);
-  editor.$blockScrolling = Infinity;
-  sync();
-};
-
-var sync = function() {
-  socket.on('init', function (data) {
-    editor.setValue(data, 1);
-  });
-  editor.on('change', function(e) {
-    $('#done').css('display', 'none');
-    $('#loading').css('display', 'block');
-    var syncData = TextSync.sync(editor.getValue());
-    socket.emit('syncText', syncData);
-    socket.on('syncEnd', function (data) {
-      $('#done').css('display', 'block');
-      $('#loading').css('display', 'none');
-    });
-  });
-};
-
-var uploadImage = function () {
-  alert('image');
-};
-
-var insertLink = function () {
-  editor.insert('[]()');
-};
-
-var formatBlod = function () {
-  var range = editor.selection.getRange();
-  var blodText = '**' + editor.getSelectedText() + '**';
-  editor.session.replace(range, blodText);
-};
-
-var formatItalic = function () {
-  var range = editor.selection.getRange();
-  var italicText = '*' + editor.getSelectedText() + '*';
-  editor.session.replace(range, italicText);
-};
-
-var formatListNumbered = function () {
-  var range = editor.selection.getRange();
-  var formatText = editor.getSelectedText();
-  var rows = formatText.split('\n');
-  formatText = '';
-  for (var i = 1; i <= rows.length; i++) {
-    formatText += i + '. ' + rows[i-1] + '\n';
-  }
-  editor.session.replace(range, formatText);
-};
-
-var formatListBulleted = function () {
-  var range = editor.selection.getRange();
-  var formatText = editor.getSelectedText();
-  var rows = formatText.split('\n');
-  formatText = '';
-  for (var i = 1; i <= rows.length; i++) {
-    formatText += '* ' + rows[i-1] + '\n';
-  }
-  editor.session.replace(range, formatText);
-};
-
-var formatQuote = function () {
-  var range = editor.selection.getRange();
-  var formatText = editor.getSelectedText();
-  var rows = formatText.split('\n');
-  formatText = '';
-  for (var i = 1; i <= rows.length; i++) {
-    formatText += '> ' + rows[i-1] + '\n';
-  }
-  editor.session.replace(range, formatText);
-};
-
-var formatCode = function () {
-  var range = editor.selection.getRange();
-  var italicText = '```\n' + editor.getSelectedText() + '\n```';
-  editor.session.replace(range, italicText);
-};
-
-var redo = function () {
-  editor.session.getUndoManager().redo(true);
-};
-
-var undo = function () {
-  editor.session.getUndoManager().undo(true);
-};
-
-var doGet = function(url) {
+function doGet(url) {
 	$('#progress').fadeIn();
 	$.ajax({
 		url: url,
@@ -134,7 +44,7 @@ var doGet = function(url) {
 	});
 };
 
-var newPostPage = function() {
+function newPostPage() {
   if (editor) {
     var title = $("#title").val();
     var date = $("#date").val();
@@ -145,20 +55,7 @@ var newPostPage = function() {
   doGet('/editor');
 };
 
-var preview = function() {
-  if ($('#editor').css('display') === 'block') {
-    $('#preview').html(marked(editor.getValue()));
-    $('#editor').hide();
-    $('#preview').show();
-    $('#visibility').text('visibility_off');
-  } else {
-    $('#editor').show();
-    $('#preview').hide();
-    $('#visibility').text('visibility');
-  }
-}
-
-var newPost = function() {
+function newPost() {
 	var title = $("#title").val();
 	var date = $("#date").val();
 	var categories = $("#Categories").tagit("assignedTags");

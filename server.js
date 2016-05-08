@@ -88,7 +88,7 @@ app.use((req, res, next) => {
 
 // catch session null and forward to login page
 app.use((req, res, next) => {
-    if (req.session.username || config.local == true) {
+    if (req.session.username || config.local === true) {
       next();
     } else {
       res.redirect("/");

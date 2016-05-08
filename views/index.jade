@@ -2,13 +2,13 @@ extends layout
 
 block content
   header.mdl-shadow--6dp
-    button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn(id='menu-btn')
+    button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn(id='menu-btn', title='menu')
       i.material-icons menu
     .left-title
       a.mdl-button.mdl-js-button.mdl-js-ripple-effect Posts
     ul
       li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();')
+        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();', title='exit')
           i.material-icons exit_to_app
   #progress-wapper
     #progress.mdl-progress.mdl-js-progress.mdl-progress__indeterminate

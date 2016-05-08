@@ -22,7 +22,7 @@ gulp.task('clean', () => {
 });
 
 gulp.task('clean-js', () => {
-  return gulp.src('public/dist/*.js', {read: false})
+  return gulp.src('public/dist/app*.js', {read: false})
     .pipe(clean());
 });
 
