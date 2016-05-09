@@ -1,46 +1,55 @@
-const gulp = require('gulp');
-const uglify = require('gulp-uglify');
-const concat = require('gulp-concat');
-const babel = require('gulp-babel');
-const eslint = require('gulp-eslint');
-const cleanCSS = require('gulp-clean-css');
-const merge = require('merge-stream');
-const rev = require('gulp-rev');
-const replace = require('gulp-replace-task');
-const clean = require('gulp-clean');
-const fs = require('fs');
+const gulp = require('gulp')
+const uglify = require('gulp-uglify')
+const concat = require('gulp-concat')
+const babel = require('gulp-babel')
+const eslint = require('gulp-eslint')
+const cleanCSS = require('gulp-clean-css')
+const merge = require('merge-stream')
+const rev = require('gulp-rev')
+const replace = require('gulp-replace-task')
+const clean = require('gulp-clean')
+const fs = require('fs')
+const rollup = require('gulp-rollup')
+const sourcemaps = require('gulp-sourcemaps')
 
 const paths = {
     scripts: ['public/javascripts/*.js'],
     sheets: ['public/stylesheets/*.css'],
     dist: ['public/dist/*.js', 'public/dist/*.css']
-};
+}
 
 gulp.task('clean', () => {
   return gulp.src('views/layout.jade', {read: false})
-    .pipe(clean());
-});
+    .pipe(clean())
+})
 
 gulp.task('clean-js', () => {
   return gulp.src('public/dist/app*.js', {read: false})
-    .pipe(clean());
-});
+    .pipe(clean())
+})
 
 gulp.task('clean-css', () => {
   return gulp.src('public/dist/*.css', {read: false})
-    .pipe(clean());
-});
+    .pipe(clean())
+})
 
 gulp.task('scripts', () => {
   return gulp.src([
     'public/javascripts/*.js'
-  ]).pipe(concat('app.js'))
+  ]).pipe(rollup({
+      sourceMap: true
+    }))
+    .pipe(babel({
+       presets: ['es2015']
+     }))
+    .pipe(sourcemaps.write("."))
+    .pipe(concat('app.js'))
     .pipe(uglify())
     .pipe(rev())
     .pipe(gulp.dest('public/dist'))
     .pipe(rev.manifest('scripts.json'))
-    .pipe(gulp.dest('public/dist'));
-});
+    .pipe(gulp.dest('public/dist'))
+})
 
 gulp.task('lib-scripts', () => {
   return gulp.src([
@@ -54,27 +63,40 @@ gulp.task('lib-scripts', () => {
     .pipe(rev())
     .pipe(gulp.dest('public/dist'))
     .pipe(rev.manifest('libs.json'))
-    .pipe(gulp.dest('public/dist'));
-});
+    .pipe(gulp.dest('public/dist'))
+})
 
 gulp.task('sheets', () => {
   return gulp.src([
-    'node_modules/material-design-lite/material.min.css',
     'public/stylesheets/*.css'
   ]).pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(concat('style.css'))
     .pipe(rev())
     .pipe(gulp.dest('public/dist'))
     .pipe(rev.manifest('css.json'))
-    .pipe(gulp.dest('public/dist'));
-});
+    .pipe(gulp.dest('public/dist'))
+})
+
+gulp.task('lib-sheets', () => {
+  return gulp.src([
+    'node_modules/material-design-lite/material.min.css',
+    'node_modules/github-markdown-css/github-markdown.css'
+  ]).pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(concat('libs.css'))
+    .pipe(rev())
+    .pipe(gulp.dest('public/dist'))
+    .pipe(rev.manifest('libs-css.json'))
+    .pipe(gulp.dest('public/dist'))
+})
 
 gulp.task('replace', () => {
-  const cssJson = JSON.parse(fs.readFileSync('./public/dist/css.json', 'utf8'));
+  const cssJson = JSON.parse(fs.readFileSync('./public/dist/css.json', 'utf8'))
   const scriptsJson = JSON.parse(fs.readFileSync('./public/dist/scripts.json',
-    'utf8'));
+    'utf8'))
   const libsJson = JSON.parse(fs.readFileSync('./public/dist/libs.json',
-    'utf8'));
+    'utf8'))
+  const libsCSS = JSON.parse(fs.readFileSync('./public/dist/libs-css.json',
+    'utf8'))
   return gulp.src('views/origin-layout.jade')
     .pipe(concat('layout.jade'))
     .pipe(replace({
@@ -82,6 +104,14 @@ gulp.task('replace', () => {
         {
           match: 'style.css',
           replacement: cssJson['style.css']
+        }
+      ]
+    }))
+    .pipe(replace({
+      patterns: [
+        {
+          match: 'libs.css',
+          replacement: libsCSS['libs.css']
         }
       ]
     }))
@@ -101,8 +131,8 @@ gulp.task('replace', () => {
         }
       ]
     }))
-    .pipe(gulp.dest('views'));
-});
+    .pipe(gulp.dest('views'))
+})
 
 gulp.task('lint', () => {
   return gulp.src('public/javascripts/*.js')
@@ -124,13 +154,13 @@ gulp.task('lint', () => {
         ]
     }))
     .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
-});
+    .pipe(eslint.failAfterError())
+})
 
 gulp.task('watch', () => {
-  gulp.watch(paths.scripts, ['scripts', 'clean-js', 'clean']);
-  gulp.watch(paths.sheets, ['sheets', 'clean-css', 'clean']);
-  gulp.watch(paths.dist, ['replace']);
-});
+  gulp.watch(paths.scripts, ['scripts', 'clean-js', 'clean'])
+  gulp.watch(paths.sheets, ['sheets', 'clean-css', 'clean'])
+  gulp.watch(paths.dist, ['replace'])
+})
 
-gulp.task('default', ['clean', 'watch', 'lib-scripts', 'scripts', 'sheets']);
+gulp.task('default', ['clean', 'watch', 'lib-scripts', 'lib-sheets', 'scripts', 'sheets'])
