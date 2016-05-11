@@ -11,10 +11,11 @@ const clean = require('gulp-clean')
 const fs = require('fs')
 const rollup = require('gulp-rollup')
 const sourcemaps = require('gulp-sourcemaps')
+const stylus = require('gulp-stylus')
 
 const paths = {
     scripts: ['public/javascripts/*.js'],
-    sheets: ['public/stylesheets/*.css'],
+    sheets: ['public/stylesheets/*.styl'],
     dist: ['public/dist/*.js', 'public/dist/*.css']
 }
 
@@ -29,7 +30,7 @@ gulp.task('clean-js', () => {
 })
 
 gulp.task('clean-css', () => {
-  return gulp.src('public/dist/*.css', {read: false})
+  return gulp.src('public/dist/style*.css', {read: false})
     .pipe(clean())
 })
 
@@ -68,8 +69,9 @@ gulp.task('lib-scripts', () => {
 
 gulp.task('sheets', () => {
   return gulp.src([
-    'public/stylesheets/*.css'
-  ]).pipe(cleanCSS({compatibility: 'ie8'}))
+    'public/stylesheets/*.styl'
+  ]).pipe(stylus({ compress: true }))
+    .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(concat('style.css'))
     .pipe(rev())
     .pipe(gulp.dest('public/dist'))

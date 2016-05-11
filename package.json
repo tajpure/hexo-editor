@@ -68,6 +68,7 @@
     "gulp-rev": "^7.0.0",
     "gulp-rollup": "^1.9.0",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-stylus": "^2.3.1",
     "gulp-uglify": "^1.5.3",
     "gulp-wrap-commonjs": "^0.1.14",
     "jquery": "^2.2.3",
