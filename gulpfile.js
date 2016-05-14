@@ -37,13 +37,14 @@ gulp.task('clean-css', () => {
 gulp.task('scripts', () => {
   return gulp.src([
     'public/javascripts/*.js'
-  ]).pipe(rollup({
-      sourceMap: true
-    }))
-    .pipe(babel({
-       presets: ['es2015']
-     }))
-    .pipe(sourcemaps.write("."))
+  ])
+    // .pipe(rollup({
+    //   sourceMap: true
+    // }))
+    // .pipe(babel({
+    //    presets: ['es2015']
+    //  }))
+    // .pipe(sourcemaps.write("."))
     .pipe(concat('app.js'))
     .pipe(uglify())
     .pipe(rev())

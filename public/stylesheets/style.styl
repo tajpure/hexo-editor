@@ -2,6 +2,7 @@ html
   height 100%
 
 body
+  margin 0
   width 100%
   height 100%
   font "Lucida Grande", Helvetica, Arial, sans-serif
@@ -43,12 +44,12 @@ li
 
 header
   position fixed
-  display table
   margin 0 auto
+  top 0
   width 100%
   height 3.6em
   background-color #757575
-  z-index 9999
+  z-index 97
   display inline-block
   vertical-align text-bottom
   i
@@ -121,14 +122,6 @@ header
   button
     margin-bottom 1.5em
 
-#progress-wapper
-  margin-top 0
-  height 5px
-
-#progress
-  margin-top 0px
-  display none
-
 #content
   height 99%
 
@@ -175,126 +168,11 @@ header
     &:hover
       background-color #E0E0E0
 
-#editor-wapper
-  margin-top 3.7em
-  margin-left 0
-  margin-right 0
+#shadow-mask
+  position fixed
+  display none
+  opacity 0.4
+  background-color black
+  z-index 98
   width 100%
-  height calc(100% - 3.7em)
-  #preview
-    display none
-    padding 1%
-    margin-left 19.1%
-    width 59.8%
-    height 96%
-    overflow auto
-    font-size 1.2em
-    line-height 1.4em
-    background rgb(255,255,255)
-  #editor
-    margin-left 19.1%
-    width 61.8%
-    height 100%
-    overflow auto
-    font-size 1.2em
-    line-height 1.4em
-    background rgb(255,255,255)
-
-#title
-  margin 8px 40px 8px 8px
-  padding 3px
-  width 200px
-  height 2em
-  border none
-  border-radius 2px
-
-.hidden
-  display none
-
-#articles-wapper
-  width 72%
-  margin-left auto
-  margin-right auto
-  .collapsible-body
-    background-color white
-    padding 10px
-
-.collapsible-body
-  p
-    margin 0
-    padding 0.5em 0 0.5em 0
-
-.article-item
-  width 80%
-  height 240px
-
-.article-date
-  margin-left 20px
-
-#article-add
-  position fixed
-  bottom 20px
-  right 32px
-
-.secondary-content
-  color grey
-
-.collapsible
-  .active
-    margin-top 10px
-    margin-bottom 10px
-  .collapsible-header
-    background-color white
-    padding 10px
-    border-top 1px solid #E0E0E0
-    cursor pointer
-    .fixed
-      position fixed
-      top 0px
-      z-index 999
-    i
-      float left
-      margin-right 16px
-  .collapsible-body
-    display none
-    border-top 1px solid #E0E0E0
-
-.collapsible-header-right
-  position relative
-  float right
-  margin-left 10px
-  button
-    position inherit
-    float right
-    margin-top -4px
-  ul
-    i
-      margin-top 12px
-
-.markdown-body
-  margin 0 1em 0 1em
-
-.moveout-transition
-
-.moveout-leave
-
-.moveout-enter
-  height 0
-  padding 0 10px
-  opacity 0
-
-.title-wrapper
-  margin-left 1em
-  color white
-
-#image-upload-dialog
-  background-color white
-  position fixed
-  display none
-  margin 0 auto
-  z-index 99
-  width 40%
-  height 400px
-  top 10%
-  left 0
-  right 0
+  height 100%
