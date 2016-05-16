@@ -6,37 +6,6 @@
 var editor = null;
 var socket = io();
 
-var fileInputTextDiv = $('#file_input_text_div');
-var fileInput = $('#file_input_file');
-var fileInputText = $('#file_input_text');
-fileInput.change(changeInputText);
-fileInput.change(changeState);
-
-function changeInputText() {
-  console.log('dd');
-  var str = fileInput.value;
-  var i;
-  if (str.lastIndexOf('\\')) {
-    i = str.lastIndexOf('\\') + 1;
-  } else if (str.lastIndexOf('/')) {
-    i = str.lastIndexOf('/') + 1;
-  }
-  fileInputText.value = str.slice(i, str.length);
-}
-
-function changeState() {
-  console.log('dddd');
-  if (fileInputText.value.length != 0) {
-    if (!fileInputTextDiv.classList.contains("is-focused")) {
-      fileInputTextDiv.classList.add('is-focused');
-    }
-  } else {
-    if (fileInputTextDiv.classList.contains("is-focused")) {
-      fileInputTextDiv.classList.remove('is-focused');
-    }
-  }
-}
-
 function back() {
   location.href = '/';
 }
@@ -49,6 +18,32 @@ function closeDialog(dialogId) {
 function uploadImage() {
   $('#shadow-mask').css('display', 'block');
   $('#image-upload-dialog').css('display', 'block');
+  var fileInputTextDiv = $('#file_input_text_div');
+  var fileInput = $('#file_input');
+  var fileInputText = $('#file_input_text');
+  fileInput.change(changeInputText);
+  fileInput.change(changeState);
+  function changeInputText() {
+    var str = fileInput.val();
+    var i;
+    if (str.lastIndexOf('\\')) {
+      i = str.lastIndexOf('\\') + 1;
+    } else if (str.lastIndexOf('/')) {
+      i = str.lastIndexOf('/') + 1;
+    }
+    fileInputText.val(str.slice(i, str.length));
+  }
+  function changeState() {
+    if (fileInputText.val().length != 0) {
+      if (!fileInputTextDiv.hasClass("is-focused")) {
+        fileInputTextDiv.addClass('is-focused');
+      }
+    } else {
+      if (fileInputTextDiv.hasClass("is-focused")) {
+        fileInputTextDiv.removeClass('is-focused');
+      }
+    }
+  }
 };
 
 function initEditor() {
@@ -73,6 +68,27 @@ function sync() {
     });
   });
 };
+
+function insertImage () {
+  var fileInput = $('#file_input')[0].files[0];
+  if (fileInput) {
+    var formData = new FormData();
+    formData.append('file', fileInput);
+    $.ajax({
+      type: "POST",
+      url: '/image',
+      data: formData,
+      success: function(data) {
+        console.log(data);
+      },
+      cache: false,
+      contentType: false,
+      processData: false
+    });
+    $('#file_input').val(null);
+    $('#file_input_text').val(null);
+  }
+}
 
 function insertLink () {
   editor.insert('[]()');

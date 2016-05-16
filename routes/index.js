@@ -10,7 +10,9 @@ var Manager = require('../models/manager');
 var Article = require('../models/article');
 var Util = require('../models/util');
 var cache = require('../models/cache');
-var emoji = require('../models/emoji')
+var emoji = require('../models/emoji');
+var image = require('../models/image');
+var busboy = require('connect-busboy');
 
 auth.init(config.username, config.password);
 var editor = new Editor(config.base_dir);
@@ -115,6 +117,20 @@ router.get('/generate', function(req, res, next) {
 
 router.get('/deploy', function(req, res, next) {
 
+});
+
+router.post('/image', function(req, res, next) {
+  var fstream;
+    req.pipe(req.busboy);
+    req.busboy.on('file', function (fieldname, file, filename) {
+        console.log("Uploading: " + filename);
+        console.log(file);
+        fstream = fs.createWriteStream(__dirname + '/' + filename);
+        file.pipe(fstream);
+        fstream.on('close', function () {
+            res.redirect('back');
+        });
+    });
 });
 
 // hexo.call('deploy', {}).then(function(){

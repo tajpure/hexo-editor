@@ -21,6 +21,8 @@ const io = require('socket.io')(server);
 const Manager = require('./models/manager');
 const manager = new Manager(config.base_dir);
 
+const busboy = require('connect-busboy');
+
 function compile(str, path) {
   return stylus(str)
     .set('filename', path)
@@ -65,6 +67,8 @@ app.use(stylus.middleware(
     compile: compile
   }
 ));
+
+app.use(busboy());
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
