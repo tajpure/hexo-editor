@@ -10,9 +10,9 @@ function back() {
   location.href = '/';
 }
 
-function closeDialog(dialogId) {
+function closeDialog() {
   $('#shadow-mask').css('display', 'none');
-  $(dialogId).css('display', 'none');
+  $('#image-upload-dialog').css('display', 'none');
 }
 
 function uploadImage() {
@@ -79,7 +79,8 @@ function insertImage () {
       url: '/image',
       data: formData,
       success: function(data) {
-        console.log(data);
+        editor.insert('\n![](' + data + ')');
+        closeDialog();
       },
       cache: false,
       contentType: false,
@@ -87,6 +88,8 @@ function insertImage () {
     });
     $('#file_input').val(null);
     $('#file_input_text').val(null);
+  } else {
+    alert('Please add image!');
   }
 }
 
@@ -167,5 +170,27 @@ function preview() {
 }
 
 function publish() {
-
+  var title = $('#title').val();
+  var content = editor.getValue();
+  var formData = new FormData();
+  formData.append('title', title);
+  formData.append('content', content);
+  console.log(title);
+  $.ajax({
+    url: '/post',
+    timeout : 3000,
+    type: "POST",
+    data: formData,
+    processData: false,
+    contentType: false,
+    error : function(xhr, textStatus) {
+      if (textStatus === 'timeout') {
+        toast('Timeout!', 5000);
+        } else {
+        toast('Failed!', 5000);
+      }
+    }
+  }).done(function(content) {
+    toast('Success', 5000);
+  });
 }

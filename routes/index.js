@@ -79,14 +79,8 @@ router.post('/post', function(req, res, next) {
       res.send(err);
     }
     var title = fields.title[0];
-    var date = fields.date[0];
-    var categories = fields.categories[0];
-    var tags = fields.tags[0];
     var content = fields.content[0];
     editor.setTitle(title);
-    editor.setDate(date);
-    editor.setCategories(categories);
-    editor.setTags(tags);
     editor.setContent(content);
     editor.save();
     res.send('success');
@@ -125,10 +119,10 @@ router.post('/image', function(req, res, next) {
     req.busboy.on('file', function (fieldname, file, filename) {
         console.log("Uploading: " + filename);
         console.log(file);
-        fstream = fs.createWriteStream(__dirname + '/' + filename);
+        fstream = fs.createWriteStream(config.base_dir + '/source/' + filename);
         file.pipe(fstream);
         fstream.on('close', function () {
-            res.redirect('back');
+            res.send(filename);
         });
     });
 });
