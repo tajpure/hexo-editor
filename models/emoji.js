@@ -1,4 +1,5 @@
-var emojis = [
+'use strict';
+const emojis = [
   '(´･ω･`)',
   '｜ω・）',
   '｜ω＋））',
@@ -50,7 +51,7 @@ var emojis = [
 ];
 
 module.exports = {
-  random: function() {
+  random() {
     return emojis[Math.floor(Math.random() * emojis.length) % emojis.length];
   }
 }

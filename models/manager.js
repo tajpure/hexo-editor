@@ -1,33 +1,43 @@
-var fs = require('hexo-fs');
-var Hexo = require('hexo');
+'use strict';
+const fs = require('hexo-fs');
+const Hexo = require('hexo');
 
-var SUFFIX = '.md';
+const SUFFIX = '.md';
 
-function Manager(base_dir) {
-  this.hexo = new Hexo(base_dir, {});
-  this.post_dir = base_dir + '/source/_posts/';
-  this.draft_dir = base_dir + '/source/_drafts/';
-  this.trash_dir = base_dir + '/source/_trash/';
-  var self = this;
-  this.generate = function () {
+class Manager {
 
-  };
-  this.deploy = function () {
+  constructor(base_dir) {
+    this.hexo = new Hexo(base_dir, {});
+    this.post_dir = base_dir + '/source/_posts/';
+    this.draft_dir = base_dir + '/source/_drafts/';
+    this.trash_dir = base_dir + '/source/_trash/';
+  }
 
-  };
-  this.getItems = function () {
-    return fs.listDir(self.post_dir, []);
-  };
-  this.saveToDraft = function (title, content) {
-    var path = self.draft_dir + title + SUFFIX;
+  generate () {
+    this.hexo.call('generate', {}).then(function(){
+    });
+  }
+
+  deploy () {
+    this.hexo.call('deploy', {}).then(function(){
+    });
+  }
+
+  getItems () {
+    return fs.listDir(this.post_dir, []);
+  }
+
+  saveToDraft (title, content) {
+    let path = this.draft_dir + title + SUFFIX;
     fs.writeFileSync(path, content, ['utf8', '438', 'w']);
-  };
-  this.readFromDraft = function (title) {
-    var path = self.draft_dir + title + SUFFIX;
+  }
+
+  readFromDraft (title) {
+    let path = this.draft_dir + title + SUFFIX;
     try {
       return fs.readFileSync(path, ['utf8', 'r', true]);
     } catch (e) {
-      return '';
+      return 'title:\ndate:\n';
     }
   }
 }

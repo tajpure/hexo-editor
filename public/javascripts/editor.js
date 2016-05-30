@@ -76,7 +76,7 @@ function insertImage () {
     formData.append('file', fileInput);
     $.ajax({
       type: "POST",
-      url: '/image',
+      url: '/editor/image',
       data: formData,
       success: function(data) {
         editor.insert('\n![](' + data + ')');
@@ -177,7 +177,7 @@ function publish() {
   formData.append('content', content);
   console.log(title);
   $.ajax({
-    url: '/post',
+    url: 'post',
     timeout : 3000,
     type: "POST",
     data: formData,

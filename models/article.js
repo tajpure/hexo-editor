@@ -1,66 +1,78 @@
-var fs = require('hexo-fs');
-var md5 = require('./md5');
+'use strict';
+const fs = require('hexo-fs');
+const md5 = require('./md5');
 
-function Article(path) {
-  this.content = fs.readFileSync(path, ['utf8', 'r', true]);
-  var self = this;
-  this.getTitle = function() {
-    var regExp = /title: (.*)/i;
-    var title = regExp.exec(self.content)[1];
+class Article {
+
+  constructor(path) {
+    this.content = fs.readFileSync(path, ['utf8', 'r', true]);
+  }
+
+  getTitle() {
+    const regExp = /title: (.*)/i;
+    const title = regExp.exec(this.content)[1];
     return title;
-  };
-  this.getDate = function() {
-    var regExp = /date: (.*)/i;
-    var date = regExp.exec(self.content);
+  }
+
+  getDate() {
+    const regExp = /date: (.*)/i;
+    const date = regExp.exec(this.content);
     if (date != null && date.length > 0) {
       return date[1];
     } else {
       return date;
     }
-  };
-  this.getTags = function() {
-    var regExp = /tags: (.*)/i;
-    var tags = regExp.exec(self.content);
+  }
+
+  getTags() {
+    const regExp = /tags: (.*)/i;
+    const tags = regExp.exec(this.content);
     if (tags && tags.length > 0) {
       return tags[1];
     } else {
       return tags;
     }
-  };
-  this.getCategories = function() {
-    var regExp = /categories: (.*)/i;
-    var categories = regExp.exec(self.content);
+  }
+
+  getCategories() {
+    const regExp = /categories: (.*)/i;
+    const categories = regExp.exec(this.content);
     if (categories && categories.length > 0) {
       return categories[1];
     } else {
       return categories;
     }
-  };
-  this.getPreviewContent = function() {
-    var start = self.content.indexOf('---') + 4;
-    return self.content.substr(start, self.content.length);
-  };
-  this.getContent = function() {
-    var start = self.content.indexOf('---') + 4;
-    return self.content.substr(start, self.content.length);
-  };
-  this.getImage = function() {
-    var regExp = /categories: (.*)/i;
-    return regExp.exec(self.content);
-  };
-  this.getPreview = function() {
+  }
+
+  getPreviewContent() {
+    const start = this.content.indexOf('---') + 4;
+    return this.content.substr(start, this.content.length);
+  }
+
+  getContent() {
+    const start = this.content.indexOf('---') + 4;
+    return this.content.substr(start, this.content.length);
+  }
+
+  getImage() {
+    const regExp = /categories: (.*)/i;
+    return regExp.exec(this.content);
+  }
+
+  getPreview() {
     return {
-      "title": self.getTitle(),
-      "date": self.getDate(),
-      "tags": self.getTags(),
-      "categories": self.getCategories(),
-      "content": self.getContent(),
-      "image": self.getImage(),
-      "key": self.hashCode()
+      "title": this.getTitle(),
+      "date": this.getDate(),
+      "tags": this.getTags(),
+      "categories": this.getCategories(),
+      "content": this.getContent(),
+      "image": this.getImage(),
+      "key": this.hashCode()
     };
-  };
-  this.hashCode = function() {
-    return md5(self.content);
+  }
+
+  hashCode() {
+    return md5(this.content);
   }
 }
 

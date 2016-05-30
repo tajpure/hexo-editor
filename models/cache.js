@@ -1,11 +1,11 @@
-
-var hashmap = new Array();
+'use strict';
+let hashmap = new Array();
 
 module.exports = {
-  put: function(key, value) {
+  put(key, value) {
     hashmap[key] = value;
   },
-  get: function(key) {
+  get(key) {
     return hashmap[key];
   }
 }

@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const routes = require('./routes/index');
+const editorRoutes = require('./routes/editor-route');
 
 const yaml = require('js-yaml');
 const fs = require('fs');
@@ -18,10 +19,8 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
-const Manager = require('./models/manager');
-const manager = new Manager(config.base_dir);
-
 const busboy = require('connect-busboy');
+const sync = require('./models/sync')
 
 function compile(str, path) {
   return stylus(str)
@@ -31,31 +30,7 @@ function compile(str, path) {
 
 server.listen(2048);
 
-const CHUNK_SIZE = 64;
-
-io.on('connection', (socket) => {
-  let untitled = manager.readFromDraft('untitled');
-  let dist = '';
-  socket.emit('init', untitled);
-
-  socket.on('syncText', (data) => {
-    let text = '';
-    for (let i in data) {
-      if (data[i] === null) {
-        text += dist.slice((i * CHUNK_SIZE), (i * CHUNK_SIZE) + CHUNK_SIZE);
-        continue;
-      }
-      if (data[i].pos !== null) {
-        text += dist.slice(data[i].pos, data[i].pos + CHUNK_SIZE);
-      } else if (data[i].data) {
-        text += data[i].data;
-      }
-    }
-    dist = text;
-    manager.saveToDraft('untitled', dist);
-    socket.emit('syncEnd', 'finished');
-  });
-});
+io.on('connection', sync);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -81,6 +56,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(config.base_dir + '/source'));
 app.use(session({ username: null, saveUninitialized: true, secret: 'keyboard cat', resave: true, cookie: { maxAge: 60000 }}));
 
+app.use('/editor', editorRoutes);
 app.use('/', routes);
 
 // catch 404 and forward to error handler
