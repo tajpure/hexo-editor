@@ -157,7 +157,7 @@ function formatQuote() {
 
 function formatCode() {
   var range = editor.selection.getRange();
-  var italicText = '```\n' + editor.getSelectedText() + '\n```';
+  var italicText = '\n```\n' + editor.getSelectedText() + '\n```';
   editor.session.replace(range, italicText);
 };
 

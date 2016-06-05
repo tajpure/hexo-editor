@@ -32,10 +32,14 @@ block content
   #main
     include posts.jade
   script.
+    $('#left').animate({left: "0"}, 200);
     $('#menu-btn').click(function() {
       if ($('#left').css('display') === 'none') {
         $('#left').show();
+        $('#left').animate({left: "0"}, 200);
       } else {
-        $('#left').hide();
+        $('#left').animate({left: "-14%"}, 200, function() {
+          $('#left').hide();
+        });
       }
     });
