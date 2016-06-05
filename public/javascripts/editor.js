@@ -55,13 +55,17 @@ function initEditor() {
 
 function sync() {
   socket.on('init', function (data) {
-    editor.setValue(data, 1);
+    $('#title').val(data.title);
+    editor.setValue(data.content, 1);
   });
   editor.on('change', function(e) {
     $('#done').css('display', 'none');
     $('#loading').css('display', 'block');
+    var title = $('#title').val();
     var syncData = TextSync.sync(editor.getValue());
-    socket.emit('syncText', syncData);
+    var article = {'title': title, 'date': '', 'tags': '',
+                  'categories': '', 'data': syncData};
+    socket.emit('syncText', article);
     socket.on('syncEnd', function (data) {
       $('#done').css('display', 'block');
       $('#loading').css('display', 'none');
@@ -172,25 +176,11 @@ function preview() {
 function publish() {
   var title = $('#title').val();
   var content = editor.getValue();
-  var formData = new FormData();
-  formData.append('title', title);
-  formData.append('content', content);
-  console.log(title);
-  $.ajax({
-    url: 'post',
-    timeout : 3000,
-    type: "POST",
-    data: formData,
-    processData: false,
-    contentType: false,
-    error : function(xhr, textStatus) {
-      if (textStatus === 'timeout') {
-        toast('Timeout!', 5000);
-        } else {
-        toast('Failed!', 5000);
-      }
-    }
-  }).done(function(content) {
+  var date = new Date();
+  var article = {'title': title, 'date': date.format('yyyy-mm-dd HH:MM:ss'),
+                 'tags': '', 'categories': '', 'content': content};
+  socket.emit('publish', article);
+  socket.on('publishEnd', function(e) {
     toast('Success', 5000);
   });
 }

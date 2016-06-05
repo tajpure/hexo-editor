@@ -16,9 +16,9 @@ class Editor {
   }
 
   setTitle(title) {
-    title = this.title.replace(/\s+/g, "-");
-    file = '/' + this.title + '.md';
-    title = 'title: ' + this.title + '';
+    this.title = this.title.replace(/\s+/g, "-");
+    this.file = '/' + this.title + '.md';
+    this.title = 'title: ' + this.title + '';
   }
 
   getTitle() {
@@ -26,7 +26,7 @@ class Editor {
   }
 
   setDate(date) {
-    date = '\ndate: ' + this.date;
+    this.date = '\ndate: ' + this.date;
   }
 
   getDate() {
@@ -34,7 +34,7 @@ class Editor {
   }
 
   setTags(tags) {
-    tags = '\ntags: [' + this.tags + ']';
+    this.tags = '\ntags: [' + this.tags + ']';
   }
 
   getTags() {
@@ -42,7 +42,7 @@ class Editor {
   }
 
   setCategories(categories) {
-    categories = '\ncategories: ' + this.categories;
+    this.categories = '\ncategories: ' + this.categories;
   }
 
   getCategories() {
@@ -50,7 +50,7 @@ class Editor {
   }
 
   setContent(content) {
-    content = '\n---\n' + this.content;
+    this.content = '\n---\n' + this.content;
   }
 
   getContent() {
@@ -61,7 +61,7 @@ class Editor {
     let path = this.post_dir + this.file;
     let source = this.getTitle() + this.getDate() + this.getTags() +
     this.getContent();
-    fs.writeFileSync(this.path, source, ['utf8', '438', 'w']);
+    fs.writeFileSync(path, source, ['utf8', '438', 'w']);
     console.log('This item ' + this.file + ' was saved!');
   }
 

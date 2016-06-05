@@ -100,6 +100,7 @@ gulp.task('replace', () => {
     'utf8'))
   const libsCSS = JSON.parse(fs.readFileSync('./public/dist/libs-css.json',
     'utf8'))
+
   return gulp.src('views/origin-layout.jade')
     .pipe(concat('layout.jade'))
     .pipe(replace({
@@ -166,4 +167,4 @@ gulp.task('watch', () => {
   gulp.watch(paths.dist, ['replace'])
 })
 
-gulp.task('default', ['clean', 'watch', 'lib-scripts', 'lib-sheets', 'scripts', 'sheets'])
+gulp.task('default', ['clean', 'lib-scripts', 'lib-sheets', 'scripts', 'sheets', 'watch'])

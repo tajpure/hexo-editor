@@ -4,7 +4,7 @@
   margin-left 0
   margin-right 0
   width 100%
-  height calc(100% - 3.4em)
+  height calc(100% - 3.6em)
   #preview
     display none
     padding 1%
@@ -15,11 +15,6 @@
     font-size 1.2em
     line-height 1.4em
     background rgb(255,255,255)
-    blockquote
-      quotes none
-    blockquote:before, blockquote:after, q:before, q:after
-      content ""
-      content none
   #editor
     margin-left 19.1%
     width 61.8%
@@ -102,6 +97,13 @@
 
 .markdown-body
   margin 0 1em 0 1em
+  blockquote
+    quotes none
+  blockquote:before, blockquote:after, q:before, q:after
+    content ""
+    content none
+  hr
+    height 1px !important
 
 .moveout-transition
 

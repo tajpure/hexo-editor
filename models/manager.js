@@ -1,8 +1,8 @@
 'use strict';
 const fs = require('hexo-fs');
 const Hexo = require('hexo');
-
-const SUFFIX = '.md';
+const Article = require('./article');
+const suffix = '.md';
 
 class Manager {
 
@@ -11,34 +11,34 @@ class Manager {
     this.post_dir = base_dir + '/source/_posts/';
     this.draft_dir = base_dir + '/source/_drafts/';
     this.trash_dir = base_dir + '/source/_trash/';
+    this.cache = '';
   }
 
-  generate () {
+  generate() {
     this.hexo.call('generate', {}).then(function(){
     });
   }
 
-  deploy () {
+  deploy() {
     this.hexo.call('deploy', {}).then(function(){
     });
   }
 
-  getItems () {
+  getItems() {
     return fs.listDir(this.post_dir, []);
   }
 
-  saveToDraft (title, content) {
-    let path = this.draft_dir + title + SUFFIX;
-    fs.writeFileSync(path, content, ['utf8', '438', 'w']);
+  saveToDraft(article) {
+    Article.parseJson(article).saveTo(this.draft_dir);
   }
 
-  readFromDraft (title) {
-    let path = this.draft_dir + title + SUFFIX;
-    try {
-      return fs.readFileSync(path, ['utf8', 'r', true]);
-    } catch (e) {
-      return 'title:\ndate:\n';
-    }
+  readFromDraft(title) {
+    let path = this.draft_dir + title + suffix;
+    return (new Article(path)).toJson();
+  }
+
+  saveToPost(article) {
+    Article.parseJson(article).saveTo(this.post_dir);
   }
 }
 

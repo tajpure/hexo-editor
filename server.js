@@ -1,7 +1,6 @@
 'use strict';
 const compression = require('compression');
 const express = require('express');
-const stylus = require('stylus');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
@@ -20,13 +19,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
 const busboy = require('connect-busboy');
-const sync = require('./models/sync')
-
-function compile(str, path) {
-  return stylus(str)
-    .set('filename', path)
-    .use(nib());
-}
+const sync = require('./models/sync');
 
 server.listen(2048);
 
@@ -35,13 +28,6 @@ io.on('connection', sync);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
-app.use(stylus.middleware(
-  {
-    src: __dirname + '/public',
-    compile: compile
-  }
-));
 
 app.use(busboy());
 
