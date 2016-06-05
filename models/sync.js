@@ -2,17 +2,23 @@
 const yaml = require('js-yaml');
 const fs = require('fs');
 const config = yaml.safeLoad(fs.readFileSync('_config.yml', 'utf8'));
-
+const cache = require('./cache');
 const Manager = require('./manager');
 
 const chunk_size = 64;
-const cache_file_name = '.cache';
+const cache_name = 'cache';
 
 module.exports = (socket) => {
   const manager = new Manager(config.base_dir);
-  let cache = manager.readFromDraft(cache_file_name);
   let dist = '';
-  socket.emit('init', cache);
+
+  cache.get(cache_name, (article) => {
+    if (!article) {
+      article = {'title': 'Untitled', 'date': '', 'tags': '',
+                 'categories': '', 'content': ''};
+    }
+    socket.emit('init', article);
+  });
 
   socket.on('syncText', (article) => {
     const data = article.data;
@@ -30,8 +36,11 @@ module.exports = (socket) => {
     }
     dist = text;
     article.content = dist;
-    article.filename = cache_file_name;
-    manager.saveToDraft(article);
+    if (article.key) {
+      cache.put(cache_name + article.key, article);
+    } else {
+      cache.put(cache_name, article);
+    }
     socket.emit('syncEnd', 'finished');
   });
 
@@ -40,8 +49,7 @@ module.exports = (socket) => {
     manager.saveToPost(article);
     article = {'title': 'Untitled', 'date': '', 'tags': '',
                   'categories': '', 'content': ''};
-    article.filename = cache_file_name;
-    manager.saveToDraft(article);
+    cache.put(cache_name, article);
     socket.emit('publishEnd', 'ok');
   });
 };

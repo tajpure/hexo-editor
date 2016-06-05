@@ -29,7 +29,7 @@ block content
         a.mdl-button.mdl-js-button.mdl-button--icon(title='preview', onclick='preview()')
           i.material-icons(id='visibility') visibility
       li.right-title
-        input(id='title', value='Untitled')
+        input(id='title', value='#{article.title}')
       li.right-title
         #done
           i.material-icons done
@@ -56,4 +56,4 @@ block content
         | Insert Image
     
   script(type="text/javascript").
-    initEditor();
+    initEditor("#{article.key}");

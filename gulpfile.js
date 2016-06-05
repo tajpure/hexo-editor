@@ -12,6 +12,7 @@ const fs = require('fs')
 const rollup = require('gulp-rollup')
 const sourcemaps = require('gulp-sourcemaps')
 const stylus = require('gulp-stylus')
+const gutil = require('gulp-util')
 
 const paths = {
     scripts: ['public/javascripts/*.js'],
@@ -45,8 +46,8 @@ gulp.task('scripts', () => {
     //    presets: ['es2015']
     //  }))
     // .pipe(sourcemaps.write("."))
+    .pipe(uglify().on('error', gutil.log))
     .pipe(concat('app.js'))
-    .pipe(uglify())
     .pipe(rev())
     .pipe(gulp.dest('public/dist'))
     .pipe(rev.manifest('scripts.json'))

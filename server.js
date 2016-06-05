@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const routes = require('./routes/index');
-const editorRoutes = require('./routes/editor-route');
+const loginRoute = require('./routes/login');
 
 const yaml = require('js-yaml');
 const fs = require('fs');
@@ -42,7 +42,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(config.base_dir + '/source'));
 app.use(session({ username: null, saveUninitialized: true, secret: 'keyboard cat', resave: true, cookie: { maxAge: 60000 }}));
 
-app.use('/editor', editorRoutes);
+app.use('/', loginRoute);
+
+// catch session null and forward to login page
+app.use((req, res, next) => {
+    if (req.session.username || config.local === true) {
+      next();
+    } else {
+      res.redirect('/');
+    }
+});
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler
@@ -50,15 +60,6 @@ app.use((req, res, next) => {
     let err = new Error('Not Found');
     err.status = 404;
     next(err);
-});
-
-// catch session null and forward to login page
-app.use((req, res, next) => {
-    if (req.session.username || config.local === true) {
-      next();
-    } else {
-      res.redirect("/");
-    }
 });
 
 // error handlers

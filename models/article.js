@@ -118,7 +118,8 @@ class Article {
       "date": this.getDate(),
       "tags": this.getTags(),
       "categories": this.getCategories(),
-      "content": this.getContent()
+      "content": this.getContent(),
+      "key": this.hashCode()
     };
   }
 

@@ -17,3 +17,15 @@ function toast(msg, timeout, handler, actionText) {
   };
   snackbarContainer.MaterialSnackbar.showSnackbar(data);
 };
+
+function edit(key) {
+  location.href = '/editor?id=' + key;
+};
+
+function stash(key, id) {
+  $('#article-' + id).remove();
+};
+
+function _delete(key, id) {
+  $('#article-' + id).remove();
+};

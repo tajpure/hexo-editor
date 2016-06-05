@@ -46,25 +46,31 @@ function uploadImage() {
   }
 };
 
-function initEditor() {
+function initEditor(key) {
   editor = ace.edit("editor");
   editor.getSession().setUseWrapMode(true);
   editor.$blockScrolling = Infinity;
-  sync();
+  sync(key);
 };
 
-function sync() {
-  socket.on('init', function (data) {
-    $('#title').val(data.title);
-    editor.setValue(data.content, 1);
-  });
+function sync(key) {
+  if (key) {
+    $.get('post?id=' + key, function(data) {
+      editor.setValue(data, 1);
+    });
+  } else {
+    socket.on('init', function (data) {
+      $('#title').val(data.title);
+      editor.setValue(data.content, 1);
+    });
+  }
   editor.on('change', function(e) {
     $('#done').css('display', 'none');
     $('#loading').css('display', 'block');
     var title = $('#title').val();
     var syncData = TextSync.sync(editor.getValue());
     var article = {'title': title, 'date': '', 'tags': '',
-                  'categories': '', 'data': syncData};
+                  'categories': '', 'data': syncData, 'key': key};
     socket.emit('syncText', article);
     socket.on('syncEnd', function (data) {
       $('#done').css('display', 'block');
@@ -73,7 +79,7 @@ function sync() {
   });
 };
 
-function insertImage () {
+function insertImage() {
   var fileInput = $('#file_input')[0].files[0];
   if (fileInput) {
     var formData = new FormData();
@@ -97,23 +103,23 @@ function insertImage () {
   }
 }
 
-function insertLink () {
+function insertLink() {
   editor.insert('[]()');
 };
 
-function formatBlod () {
+function formatBlod() {
   var range = editor.selection.getRange();
   var blodText = '**' + editor.getSelectedText() + '**';
   editor.session.replace(range, blodText);
 };
 
-function formatItalic () {
+function formatItalic() {
   var range = editor.selection.getRange();
   var italicText = '*' + editor.getSelectedText() + '*';
   editor.session.replace(range, italicText);
 };
 
-function formatListNumbered () {
+function formatListNumbered() {
   var range = editor.selection.getRange();
   var formatText = editor.getSelectedText();
   var rows = formatText.split('\n');
@@ -124,7 +130,7 @@ function formatListNumbered () {
   editor.session.replace(range, formatText);
 };
 
-function formatListBulleted () {
+function formatListBulleted() {
   var range = editor.selection.getRange();
   var formatText = editor.getSelectedText();
   var rows = formatText.split('\n');
@@ -135,7 +141,7 @@ function formatListBulleted () {
   editor.session.replace(range, formatText);
 };
 
-function formatQuote () {
+function formatQuote() {
   var range = editor.selection.getRange();
   var formatText = editor.getSelectedText();
   var rows = formatText.split('\n');
@@ -146,17 +152,17 @@ function formatQuote () {
   editor.session.replace(range, formatText);
 };
 
-function formatCode () {
+function formatCode() {
   var range = editor.selection.getRange();
   var italicText = '```\n' + editor.getSelectedText() + '\n```';
   editor.session.replace(range, italicText);
 };
 
-function redo () {
+function redo() {
   editor.session.getUndoManager().redo(true);
 };
 
-function undo () {
+function undo() {
   editor.session.getUndoManager().undo(true);
 };
 
@@ -182,5 +188,6 @@ function publish() {
   socket.emit('publish', article);
   socket.on('publishEnd', function(e) {
     toast('Success', 5000);
+    location.href = '/';
   });
 }
