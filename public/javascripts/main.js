@@ -18,7 +18,16 @@ function toast(msg, timeout, handler, actionText) {
   snackbarContainer.MaterialSnackbar.showSnackbar(data);
 };
 
-function edit(key) {
+function edit(event, key) {
+  if (!event) {
+    alert("Your current browser isn't supported.");
+    return;
+  }
+  if (event.stopPropagation) {
+    event.stopPropagation();
+  } else {
+    event.cancelBubble = true;
+  }
   location.href = '/editor?id=' + key;
 };
 

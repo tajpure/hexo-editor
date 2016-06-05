@@ -1,3 +1,5 @@
+#port
+port: 2048
 # access the hexo editor directly
 local: false
 # the username to logining hexo editor

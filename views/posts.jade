@@ -10,7 +10,7 @@
               button.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--colored(id='#article-menu-#{index}')
                 i.material-icons more_vert
               ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='#article-menu-#{index}')
-                li.mdl-menu__item(onclick='edit("#{article.key}")')
+                li.mdl-menu__item(onclick='edit(event, "#{article.key}")')
                   i.material-icons.green edit
                   | Edit
                 li.mdl-menu__item(onclick='stash("#{article.key}", "#{index}")')

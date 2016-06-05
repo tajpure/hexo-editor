@@ -58,9 +58,9 @@ gulp.task('lib-scripts', () => {
   return gulp.src([
     'node_modules/ace-builds/src/ace.js',
     'node_modules/material-design-lite/material.min.js',
-    'node_modules/socket.io-client/socket.io.js',
     'node_modules/jquery/dist/jquery.min.js',
-    'node_modules/marked/marked.min.js'
+    'node_modules/marked/marked.min.js',
+    'node_modules/socket.io-client/socket.io.js'
   ]).pipe(concat('libs.js'))
     .pipe(uglify())
     .pipe(rev())

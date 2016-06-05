@@ -30,6 +30,9 @@ block content
           i.material-icons(id='visibility') visibility
       li.right-title
         input(id='title', value='#{article.title}')
+        input(id='date', type='hidden', value='#{article.date}')
+        input(id='tags', type='hidden', value='#{article.tags}')
+        input(id='categories', type='hidden', value='#{article.categories}')
       li.right-title
         #done
           i.material-icons done

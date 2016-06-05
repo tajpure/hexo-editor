@@ -21,7 +21,11 @@ const io = require('socket.io')(server);
 const busboy = require('connect-busboy');
 const sync = require('./models/sync');
 
-server.listen(2048);
+if (!config.port) {
+  config.port = 2048;
+}
+
+server.listen(config.port);
 
 io.on('connection', sync);
 
@@ -40,7 +44,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(config.base_dir + '/source'));
-app.use(session({ username: null, saveUninitialized: true, secret: 'keyboard cat', resave: true, cookie: { maxAge: 60000 }}));
+app.use(session({ username: null, saveUninitialized: true, secret: 'hexo editor', resave: true, cookie: { maxAge: 3600000 }}));
 
 app.use('/', loginRoute);
 

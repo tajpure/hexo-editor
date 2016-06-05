@@ -1,22 +1,18 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
-const multiparty = require("multiparty");
 const yaml = require('js-yaml');
 const fs = require('fs');
 const config = yaml.safeLoad(fs.readFileSync('./_config.yml', 'utf8'));
 const auth = require('../models/auth');
 const Manager = require('../models/manager');
-const Editor = require('../models/editor');
 const Article = require('../models/article');
 const util = require('../models/util');
 const cache = require('../models/cache');
 const emoji = require('../models/emoji');
-const busboy = require('connect-busboy');
 
 auth.init(config.username, config.password);
 const manager = new Manager(config.base_dir);
-const editor = new Editor(config.base_dir);
 
 router.get('/', (req, res, next) => {
   if (req.session.username || config.local == true) {

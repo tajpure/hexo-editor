@@ -68,9 +68,12 @@ function sync(key) {
     $('#done').css('display', 'none');
     $('#loading').css('display', 'block');
     var title = $('#title').val();
+    var date = $('#date').val();
+    var tags = $('#tags').val();
+    var categories = $('#categories').val();
     var syncData = TextSync.sync(editor.getValue());
-    var article = {'title': title, 'date': '', 'tags': '',
-                  'categories': '', 'data': syncData, 'key': key};
+    var article = {'title': title, 'date': date, 'tags': tags,
+                  'categories': categories, 'data': syncData, 'key': key};
     socket.emit('syncText', article);
     socket.on('syncEnd', function (data) {
       $('#done').css('display', 'block');
@@ -182,9 +185,15 @@ function preview() {
 function publish() {
   var title = $('#title').val();
   var content = editor.getValue();
-  var date = new Date();
-  var article = {'title': title, 'date': date.format('yyyy-mm-dd HH:MM:ss'),
-                 'tags': '', 'categories': '', 'content': content};
+  var date = $('#date').val();
+  var tags = $('#tags').val();
+  var categories = $('#categories').val();
+  var syncData = TextSync.sync(editor.getValue());
+  if (!date) {
+    date = (new Date()).format('yyyy-mm-dd HH:MM:ss');
+  }
+  var article = {'title': title, 'date': date, 'tags': tags,
+                 'categories': categories, 'content': content};
   socket.emit('publish', article);
   socket.on('publishEnd', function(e) {
     toast('Success', 5000);
