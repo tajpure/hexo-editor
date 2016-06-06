@@ -42,9 +42,6 @@ script.
       $('.collapsible-body').each(function() {
         $(this).hide();
       });
-      $('.collapsible .active').each(function() {
-        $(this).removeClass('active');
-      });
       if (isOpened) {
         isOpened = false;
       } else {
@@ -53,7 +50,6 @@ script.
           var className = '#article-' + id + ' .collapsible-body .markdown-body';
           $(className).html('');
           $(className).append(marked(data));
-          $('#article-' + id).addClass('active');
         });
         isOpened = true;
       }
