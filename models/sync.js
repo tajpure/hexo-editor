@@ -15,7 +15,7 @@ module.exports = (socket) => {
   cache.get(cache_name, (article) => {
     if (!article) {
       article = {'title': 'Untitled', 'date': '', 'tags': '',
-                 'categories': '', 'content': ''};
+                 'categories': '', 'content': '', 'key': ''};
     }
     socket.emit('init', article);
   });
@@ -46,9 +46,20 @@ module.exports = (socket) => {
 
   socket.on('publish', (article) => {
     dist = '';
-    manager.saveToPost(article);
+    if (article.key) {
+      cache.get(cache_name + article.key, (cachedArticle) => {
+        cache.get(article.key, (article) => {
+          if (article) {
+            cachedArticle.filename = article.title;
+          }
+          manager.saveToPost(cachedArticle);
+        });
+      });
+    } else {
+      manager.saveToPost(article);
+    }
     article = {'title': 'Untitled', 'date': '', 'tags': '',
-                  'categories': '', 'content': ''};
+                  'categories': '', 'content': '', 'key': ''};
     cache.put(cache_name, article);
     socket.emit('publishEnd', 'ok');
   });

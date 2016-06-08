@@ -40,6 +40,14 @@ class Manager {
   saveToPost(article) {
     Article.parseJson(article).saveTo(this.post_dir);
   }
+
+  deletePost(article) {
+
+  }
+
+  movePost(article) {
+
+  }
 }
 
 module.exports = Manager;

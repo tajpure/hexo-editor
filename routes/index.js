@@ -14,6 +14,8 @@ const busboy = require('connect-busboy');
 const manager = new Manager(config.base_dir);
 const editor = new Editor(config.base_dir);
 
+const cache_name = 'cache';
+
 router.get('/logout', (req, res, next) => {
   const username = req.session.username;
   console.log(username + ' logout');
@@ -26,7 +28,7 @@ router.get('/editor', (req, res, next) => {
   cache.get(articleId, (article) => {
     if (!article) {
       article = {'title': 'Untitled', 'date': '', 'tags': '',
-                 'categories': '', 'content': ''};
+                 'categories': '', 'content': '', 'key': ''};
     }
     res.render('editor', {'article': article});
   });
@@ -56,6 +58,19 @@ router.get('/post', (req, res, next) => {
   const articleId = req.query.id;
   cache.get(articleId, (article) => {
     res.send(article.content);
+  });
+});
+
+router.get('/cache', (req, res, next) => {
+  const cachedArticleId = cache_name + req.query.id;
+  cache.get(cachedArticleId, (cachedArticle) => {
+    if (!cachedArticle) {
+      cache.get(req.query.id, (article) => {
+        res.send(article.content);
+      })
+    } else {
+      res.send(cachedArticle.content);
+    }
   });
 });
 

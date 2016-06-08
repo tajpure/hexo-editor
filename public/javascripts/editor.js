@@ -10,6 +10,16 @@ function back() {
   location.href = '/';
 }
 
+function loading() {
+    $('#done').css('display', 'none');
+    $('#loading').css('display', 'block');
+}
+
+function done() {
+    $('#done').css('display', 'block');
+    $('#loading').css('display', 'none');
+}
+
 function closeDialog() {
   $('#shadow-mask').css('display', 'none');
   $('#image-upload-dialog').css('display', 'none');
@@ -55,7 +65,7 @@ function initEditor(key) {
 
 function sync(key) {
   if (key) {
-    $.get('post?id=' + key, function(data) {
+    $.get('cache?id=' + key, function(data) {
       editor.setValue(data, 1);
     });
   } else {
@@ -64,9 +74,8 @@ function sync(key) {
       editor.setValue(data.content, 1);
     });
   }
-  editor.on('change', function(e) {
-    $('#done').css('display', 'none');
-    $('#loading').css('display', 'block');
+  $("#title").on("change paste keyup", function() {
+    loading();
     var title = $('#title').val();
     var date = $('#date').val();
     var tags = $('#tags').val();
@@ -76,8 +85,21 @@ function sync(key) {
                   'categories': categories, 'data': syncData, 'key': key};
     socket.emit('syncText', article);
     socket.on('syncEnd', function (data) {
-      $('#done').css('display', 'block');
-      $('#loading').css('display', 'none');
+      done();
+    });
+  });
+  editor.on('change', function(e) {
+    loading();
+    var title = $('#title').val();
+    var date = $('#date').val();
+    var tags = $('#tags').val();
+    var categories = $('#categories').val();
+    var syncData = TextSync.sync(editor.getValue());
+    var article = {'title': title, 'date': date, 'tags': tags,
+                  'categories': categories, 'data': syncData, 'key': key};
+    socket.emit('syncText', article);
+    socket.on('syncEnd', function (data) {
+      done();
     });
   });
 };
@@ -187,16 +209,17 @@ function publish() {
   var content = editor.getValue();
   var date = $('#date').val();
   var tags = $('#tags').val();
+  var key = $('#key').val();
   var categories = $('#categories').val();
   var syncData = TextSync.sync(editor.getValue());
   if (!date) {
     date = (new Date()).format('yyyy-mm-dd HH:MM:ss');
   }
   var article = {'title': title, 'date': date, 'tags': tags,
-                 'categories': categories, 'content': content};
+                 'categories': categories, 'content': content, 'key': key};
   socket.emit('publish', article);
   socket.on('publishEnd', function(e) {
-    toast('Success', 5000);
+    loading();
     location.href = '/';
   });
 }
