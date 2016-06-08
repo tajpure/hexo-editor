@@ -8,12 +8,14 @@ body
   font "Lucida Grande", Helvetica, Arial, sans-serif
   background-color #eceff1
 
-@media only screen and (max-device-width: 480px)
-  #content
-    display none
-  body
-    &::before
-      content 'Not supported yet.'
+@media only screen and (max-device-width: 480px) {
+  #content {
+    display: none;
+  }
+  body::before {
+    content: 'Not supported yet.'
+  }
+}
 
 @font-face
   font-family 'Material Icons'
