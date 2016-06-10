@@ -46,16 +46,16 @@ module.exports = (socket) => {
 
   socket.on('publish', (article) => {
     dist = '';
-    if (article.key) {
+    if (article.key) {  // When the article already exists
       cache.get(cache_name + article.key, (cachedArticle) => {
-        cache.get(article.key, (article) => {
-          if (article) {
-            cachedArticle.filename = article.title;
+        cache.get(cachedArticle.key, (originArticle) => {
+          if (originArticle) {
+            cachedArticle.filename = originArticle.filename;
           }
           manager.saveToPost(cachedArticle);
         });
       });
-    } else {
+    } else {  // New article
       manager.saveToPost(article);
     }
     article = {'title': 'Untitled', 'date': '', 'tags': '',

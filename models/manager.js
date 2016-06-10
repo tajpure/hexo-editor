@@ -45,9 +45,6 @@ class Manager {
 
   }
 
-  movePost(article) {
-
-  }
 }
 
 module.exports = Manager;

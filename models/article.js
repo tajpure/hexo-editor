@@ -1,13 +1,15 @@
 'use strict';
 const fs = require('hexo-fs');
+const path = require('path');
 const md5 = require('./md5');
 const suffix = '.md';
 
 class Article {
 
-  constructor(path) {
+  constructor(_path) {
     try {
-      this.rawContent = fs.readFileSync(path, ['utf8', 'r', true]);
+      this.rawContent = fs.readFileSync(_path, ['utf8', 'r', true]);
+      this.filename = path.basename(_path, suffix);
     } catch (e) {
     this.rawContent = this.constructor.getRawContent({'title':'Untitled',
                                           'date': '',
@@ -101,17 +103,6 @@ class Article {
     return this.rawContent.substr(start, this.rawContent.length);
   }
 
-  getPreview() {
-    return {
-      "title": this.getTitle(),
-      "date": this.getDate(),
-      "tags": this.getTags(),
-      "categories": this.getCategories(),
-      "content": this.getContent(),
-      "key": this.hashCode()
-    };
-  }
-
   toJson() {
     return {
       "title": this.getTitle(),
@@ -119,7 +110,8 @@ class Article {
       "tags": this.getTags(),
       "categories": this.getCategories(),
       "content": this.getContent(),
-      "key": this.hashCode()
+      "key": this.hashCode(),
+      "filename": this.filename
     };
   }
 

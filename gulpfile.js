@@ -39,13 +39,13 @@ gulp.task('scripts', () => {
   return gulp.src([
     'public/javascripts/*.js'
   ])
-    // .pipe(rollup({
-    //   sourceMap: true
-    // }))
-    // .pipe(babel({
-    //    presets: ['es2015']
-    //  }))
-    // .pipe(sourcemaps.write("."))
+  // .pipe(rollup({
+  //     sourceMap: true
+  //   }))
+  //   .pipe(babel({
+  //      presets: ['es2015']
+  //    }))
+  //   .pipe(sourcemaps.write("."))
     .pipe(uglify().on('error', gutil.log))
     .pipe(concat('app.js'))
     .pipe(rev())

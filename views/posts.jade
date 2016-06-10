@@ -46,10 +46,11 @@ script.
         isOpened = false;
       } else {
         $.get('post?id=' + key, function(data) {
-          $('#article-' + id + ' .collapsible-body').show();
-          var className = '#article-' + id + ' .collapsible-body .markdown-body';
-          $(className).html('');
-          $(className).append(marked(data));
+          $('#article-' + id + ' .collapsible-body').slideDown(60, "linear", function() {
+            var className = '#article-' + id + ' .collapsible-body .markdown-body';
+            $(className).html('');
+            $(className).append(marked(data));
+          });
         });
         isOpened = true;
       }

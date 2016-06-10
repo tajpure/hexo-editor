@@ -21,7 +21,7 @@ router.get('/', (req, res, next) => {
       let items = new Array();
       for (let i = 0; i < files.length; i++) {
         const article = new Article(manager.post_dir + files[i]);
-        items.push(article.getPreview());
+        items.push(article.toJson());
         cache.put(article.hashCode(), article.toJson());
       }
       util.sortPosts(items);
