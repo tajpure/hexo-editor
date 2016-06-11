@@ -56,7 +56,7 @@ function uploadImage() {
   }
 };
 
-function initEditor(key) {
+function afterEditorPage(key) {
   editor = ace.edit("editor");
   editor.getSession().setUseWrapMode(true);
   editor.$blockScrolling = Infinity;
@@ -66,7 +66,8 @@ function initEditor(key) {
 function sync(key) {
   if (key) {
     $.get('cache?id=' + key, function(data) {
-      editor.setValue(data, 1);
+      $('#title').val(data.title);
+      editor.setValue(data.content, 1);
     });
   } else {
     socket.on('init', function (data) {

@@ -5,7 +5,7 @@ block content
     button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn(id='menu-btn', title='menu')
       i.material-icons menu
     .left-title
-      a.mdl-button.mdl-js-button.mdl-js-ripple-effect Posts
+      a.mdl-button.mdl-js-button.mdl-js-ripple-effect(id='workspace') Posts
     ul
       li.right-title
         a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();', title='exit')
@@ -14,13 +14,13 @@ block content
     #progress.mdl-progress.mdl-js-progress.mdl-progress__indeterminate
   #left
     ul.left-menu
-      li.left-menu-row.active
+      li.left-menu-row.active(onclick='posts()')
         i.material-icons(style='color:#00BCD4;') description
         a.left-title Posts
-      li.left-menu-row
+      li.left-menu-row(onclick='drafts()')
         i.material-icons(style='color:#FF9800;') folder
         a.left-title Drafts
-      li.left-menu-row
+      li.left-menu-row(onclick='trash()')
         i.material-icons(style='color:#795548;') delete
         a.left-title Trash
       li.left-menu-row
@@ -32,14 +32,4 @@ block content
   #main
     include posts.jade
   script.
-    $('#left').animate({left: "0"}, 0);
-    $('#menu-btn').click(function() {
-      if ($('#left').css('display') === 'none') {
-        $('#left').show();
-        $('#left').animate({left: "0"}, 200);
-      } else {
-        $('#left').animate({left: "-14%"}, 200, function() {
-          $('#left').hide();
-        });
-      }
-    });
+    afterIndexPage()

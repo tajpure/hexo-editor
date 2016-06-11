@@ -29,30 +29,4 @@
     i.material-icons add
   
 script.
-  $(document).ready(function(){
-    $(".collapsible-header-right button").click(function(e) {
-       e.stopPropagation();
-    })
-  });
-  $('.collapsible-header').each(function(index){
-    var isOpened = false;
-    var id = $(this).attr('id');
-    var key = $(this).attr('key');
-    $(this).click(function() {
-      $('.collapsible-body').each(function() {
-        $(this).hide();
-      });
-      if (isOpened) {
-        isOpened = false;
-      } else {
-        $.get('post?id=' + key, function(data) {
-          $('#article-' + id + ' .collapsible-body').slideDown(60, "linear", function() {
-            var className = '#article-' + id + ' .collapsible-body .markdown-body';
-            $(className).html('');
-            $(className).append(marked(data));
-          });
-        });
-        isOpened = true;
-      }
-    });
-  });
+  afterPostPage()

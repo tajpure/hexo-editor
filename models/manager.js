@@ -28,6 +28,14 @@ class Manager {
     return fs.listDir(this.post_dir, []);
   }
 
+  getDraftItems() {
+    return fs.listDir(this.draft_dir, []);
+  }
+
+  getTrashItems() {
+    return fs.listDir(this.trash_dir, []);
+  }
+
   saveToDraft(article) {
     Article.parseJson(article).saveTo(this.draft_dir);
   }

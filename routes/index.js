@@ -66,10 +66,10 @@ router.get('/cache', (req, res, next) => {
   cache.get(cachedArticleId, (cachedArticle) => {
     if (!cachedArticle) {
       cache.get(req.query.id, (article) => {
-        res.send(article.content);
+        res.send(article);
       })
     } else {
-      res.send(cachedArticle.content);
+      res.send(cachedArticle);
     }
   });
 });

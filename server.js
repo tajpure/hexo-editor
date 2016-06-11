@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const routes = require('./routes/index');
 const loginRoute = require('./routes/login');
+const pageRoute = require('./routes/page');
 
 const yaml = require('js-yaml');
 const fs = require('fs');
@@ -57,6 +58,7 @@ app.use((req, res, next) => {
     }
 });
 
+app.use('/page', pageRoute);
 app.use('/', routes);
 
 // catch 404 and forward to error handler
