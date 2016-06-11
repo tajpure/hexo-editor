@@ -23,29 +23,6 @@ router.get('/logout', (req, res, next) => {
   res.redirect('/');
 });
 
-router.get('/editor', (req, res, next) => {
-  const articleId = req.query.id;
-  cache.get(articleId, (article) => {
-    if (!article) {
-      article = {'title': 'Untitled', 'date': '', 'tags': '',
-                 'categories': '', 'content': '', 'key': ''};
-    }
-    res.render('editor', {'article': article});
-  });
-});
-
-router.post('/editor/image', (req, res, next) => {
-  let fstream;
-  req.pipe(req.busboy);
-  req.busboy.on('file', (fieldname, file, filename) => {
-    fstream = fs.createWriteStream(config.base_dir + '/source/' + filename);
-    file.pipe(fstream);
-    fstream.on('close', () => {
-        res.send(filename);
-    });
-  });
-});
-
 router.delete('/post', (req, res, next) => {
 
 });

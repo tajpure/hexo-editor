@@ -14,6 +14,19 @@ class Manager {
     this.cache = '';
   }
 
+  getPathByWorkspace(workspace) {
+    switch (workspace) {
+      case 'posts':
+        return this.post_dir;
+      case 'drafts':
+        return this.draft_dir;
+      case 'trash':
+        return this.trash_dir;
+      default:
+        return '';
+    }
+  }
+
   generate() {
     this.hexo.call('generate', {}).then(function(){
     });
@@ -49,8 +62,51 @@ class Manager {
     Article.parseJson(article).saveTo(this.post_dir);
   }
 
-  deletePost(article) {
+  moveToPost(article, workspace) {
+    const filename = article.filename + suffix;
+    const oldPath = this.getPathByWorkspace(workspace) + filename;
+    const newPath = this.post_dir + filename;
+    fs.rename(oldPath, newPath)
+      .then((err) => {
+        if (err) {
+          console.err(err);
+        }
+      });
+  }
 
+  moveToDraft(article, workspace) {
+    const filename = article.filename + suffix;
+    const oldPath = this.getPathByWorkspace(workspace) + filename;
+    const newPath = this.draft_dir + filename;
+    fs.rename(oldPath, newPath)
+      .then((err) => {
+        if (err) {
+          console.err(err);
+        }
+      });
+  }
+
+  moveToTrash(article, workspace) {
+    const filename = article.filename + suffix;
+    const oldPath = this.getPathByWorkspace(workspace) + filename;
+    const newPath = this.trash_dir + filename;
+    fs.rename(oldPath, newPath)
+      .then((err) => {
+        if (err) {
+          console.err(err);
+        }
+      });
+  }
+
+  deletePost(article) {
+    const path = this.trash_dir + article.filename + suffix;
+    console.log(path);
+    fs.unlink(path)
+      .then((err) => {
+        if (err) {
+          console.err(err);
+        }
+      });
   }
 
 }

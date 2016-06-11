@@ -78,37 +78,53 @@ function edit(event, key) {
   location.href = '/editor?id=' + key;
 };
 
+function publish0(key, id) {
+  var workspace = $('#workspace').text();
+  $('#article-' + id).remove();
+  $.ajax('editor/publish?workspace=' + workspace + '&id=' + key);
+};
+
+function stash(key, id) {
+  var workspace = $('#workspace').text();
+  $('#article-' + id).remove();
+  $.get('editor/stash?workspace=' + workspace + '&id=' + key);
+};
+
+/* Delete post permanently */
+function _delete0(key, id) {
+  if (confirm('This article will be deleted permanently!')) {
+    $('#article-' + id).remove();
+    $.get('editor/delete0?id=' + key);
+  }
+};
+
+/* Move post the trash */
+function _delete(key, id) {
+  var workspace = $('#workspace').text();
+  $('#article-' + id).remove();
+  $.get('editor/delete?workspace=' + workspace + '&id=' + key);
+};
+
 function posts() {
   $.get('page/posts', function(data) {
-    $('#workspace').text('POSTS');
-    var compiledDOM = $.parseHTML(data, true);
-    $('#main').html(compiledDOM);
+    $('#workspace').text('posts');
+    $('#main').html(data);
     componentHandler.upgradeDom();
   });
 }
 
 function drafts() {
   $.get('page/drafts', function(data) {
-    $('#workspace').text('DRAFTS');
-    var compiledDOM = $.parseHTML(data, true);
-    $('#main').html(compiledDOM);
+    $('#workspace').text('drafts');
+    $('#main').html(data);
     componentHandler.upgradeDom();
   });
 }
 
 function trash() {
   $.get('page/trash', function(data) {
-    $('#workspace').text('TRASH');
-    var compiledDOM = $.parseHTML(data, true);
-    $('#main').html(compiledDOM);
+    $('#workspace').text('trash');
+    $('#main').html(data);
     componentHandler.upgradeDom();
   });
 }
-
-function stash(key, id) {
-  $('#article-' + id).remove();
-};
-
-function _delete(key, id) {
-  $('#article-' + id).remove();
-};
