@@ -81,13 +81,17 @@ function edit(event, key) {
 function publish0(key, id) {
   var workspace = $('#workspace').text();
   $('#article-' + id).remove();
-  $.ajax('editor/publish?workspace=' + workspace + '&id=' + key);
+  $.get('editor/publish?workspace=' + workspace + '&id=' + key, function(data) {
+    toast(data, 1000);
+  });
 };
 
 function stash(key, id) {
   var workspace = $('#workspace').text();
   $('#article-' + id).remove();
-  $.get('editor/stash?workspace=' + workspace + '&id=' + key);
+  $.get('editor/stash?workspace=' + workspace + '&id=' + key, function(data) {
+    toast(data, 1000);
+  });
 };
 
 /* Delete post permanently */
@@ -127,4 +131,8 @@ function trash() {
     $('#main').html(data);
     componentHandler.upgradeDom();
   });
+}
+
+function help() {
+  window.open('https://github.com/tajpure/hexo-editor/wiki', '_blank');
 }

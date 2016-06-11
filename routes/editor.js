@@ -43,7 +43,7 @@ router.get('/publish', (req, res, next) => {
   cache.get(articleId, (article) => {
     manager.moveToPost(article, workspace);
   });
-  res.send('ok');
+  res.send('publish success');
 });
 
 router.get('/stash', (req, res, next) => {
@@ -52,7 +52,7 @@ router.get('/stash', (req, res, next) => {
   cache.get(articleId, (article) => {
     manager.moveToDraft(article, workspace);
   });
-  res.send('ok');
+  res.send('stash success');
 });
 
 router.get('/delete', (req, res, next) => {
@@ -61,7 +61,7 @@ router.get('/delete', (req, res, next) => {
   cache.get(articleId, (article) => {
     manager.moveToTrash(article, workspace);
   });
-  res.send('ok');
+  res.send('success');
 });
 
 router.get('/delete0', (req, res, next) => {
@@ -69,7 +69,7 @@ router.get('/delete0', (req, res, next) => {
   cache.get(articleId, (article) => {
     manager.deletePost(article);
   });
-  res.send('ok');
+  res.send('success');
 });
 
 module.exports = router;
