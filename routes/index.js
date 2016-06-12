@@ -23,14 +23,6 @@ router.get('/logout', (req, res, next) => {
   res.redirect('/');
 });
 
-router.delete('/post', (req, res, next) => {
-
-});
-
-router.put('/post', (req, res, next) => {
-
-});
-
 router.get('/post', (req, res, next) => {
   const articleId = req.query.id;
   cache.get(articleId, (article) => {
@@ -49,10 +41,6 @@ router.get('/cache', (req, res, next) => {
       res.send(cachedArticle);
     }
   });
-});
-
-router.put('/draft', (req, res, next) => {
-
 });
 
 router.get('/generate', (req, res, next) => {

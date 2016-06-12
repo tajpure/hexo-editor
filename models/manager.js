@@ -11,7 +11,15 @@ class Manager {
     this.post_dir = base_dir + '/source/_posts/';
     this.draft_dir = base_dir + '/source/_drafts/';
     this.trash_dir = base_dir + '/source/_trash/';
-    this.cache = '';
+    this.mkdir(this.draft_dir);
+    this.mkdir(this.trash_dir);
+  }
+
+
+  mkdir(dir) {
+    if (!fs.existsSync(dir)){
+      fs.mkdirSync(dir);
+    }
   }
 
   getPathByWorkspace(workspace) {
@@ -75,9 +83,10 @@ class Manager {
   }
 
   moveToDraft(article, workspace) {
+    const draft_dir = this.draft_dir;
     const filename = article.filename + suffix;
     const oldPath = this.getPathByWorkspace(workspace) + filename;
-    const newPath = this.draft_dir + filename;
+    const newPath = draft_dir + filename;
     fs.rename(oldPath, newPath)
       .then((err) => {
         if (err) {
@@ -87,9 +96,10 @@ class Manager {
   }
 
   moveToTrash(article, workspace) {
+    const trash_dir = this.trash_dir;
     const filename = article.filename + suffix;
     const oldPath = this.getPathByWorkspace(workspace) + filename;
-    const newPath = this.trash_dir + filename;
+    const newPath = trash_dir + filename;
     fs.rename(oldPath, newPath)
       .then((err) => {
         if (err) {

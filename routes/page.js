@@ -38,7 +38,7 @@ router.get('/drafts', (req, res, next) => {
     util.sortPosts(items);
     res.render('drafts', {'items': items});
   }, (err) => {
-      console.error(err);
+    console.log(err);
   });
 });
 
@@ -54,7 +54,7 @@ router.get('/trash', (req, res, next) => {
     util.sortPosts(items);
     res.render('trash', {'items': items});
   }, (err) => {
-      console.error(err);
+    console.log(err);
   });
 });
 
