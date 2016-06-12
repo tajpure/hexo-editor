@@ -13,6 +13,7 @@ class Manager {
     this.trash_dir = base_dir + '/source/_trash/';
     this.mkdir(this.draft_dir);
     this.mkdir(this.trash_dir);
+    this.mkdir(base_dir + '/source/images/');
   }
 
 

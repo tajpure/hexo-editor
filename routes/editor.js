@@ -29,10 +29,10 @@ router.post('/image', (req, res, next) => {
   let fstream;
   req.pipe(req.busboy);
   req.busboy.on('file', (fieldname, file, filename) => {
-    fstream = fs.createWriteStream(config.base_dir + '/source/' + filename);
+    fstream = fs.createWriteStream(config.base_dir + '/source/images/' + filename);
     file.pipe(fstream);
     fstream.on('close', () => {
-        res.send(filename);
+        res.send('/images/' + filename);
     });
   });
 });
