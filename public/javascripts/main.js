@@ -66,17 +66,21 @@ function toast(msg, timeout, handler, actionText) {
 };
 
 function edit(event, key) {
-  if (!event) {
-    alert("Your current browser isn't supported.");
-    return;
-  }
-  if (event.stopPropagation) {
-    event.stopPropagation();
-  } else {
-    event.cancelBubble = true;
-  }
+  stopEvent(event)
   location.href = '/editor?id=' + key;
 };
+
+function stopEvent(event) {
+    if (!event) {
+      alert("Your current browser isn't supported.");
+      return;
+    }
+    if (event.stopPropagation) {
+      event.stopPropagation();
+    } else {
+      event.cancelBubble = true;
+    }
+}
 
 function publish0(key, id) {
   var workspace = $('#workspace').text();
@@ -95,7 +99,8 @@ function stash(key, id) {
 };
 
 /* Delete post permanently */
-function _delete0(key, id) {
+function _delete0(event, key, id) {
+  stopEvent(event);
   if (confirm('This article will be deleted permanently!')) {
     $('#article-' + id).remove();
     $.get('editor/delete0?id=' + key);
@@ -106,7 +111,9 @@ function _delete0(key, id) {
 function _delete(key, id) {
   var workspace = $('#workspace').text();
   $('#article-' + id).remove();
-  $.get('editor/delete?workspace=' + workspace + '&id=' + key);
+  $.get('editor/delete?workspace=' + workspace + '&id=' + key, function(data) {
+    toast(data, 1000);
+  });
 };
 
 function posts() {

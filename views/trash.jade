@@ -13,7 +13,7 @@
                 li.mdl-menu__item(onclick='stash("#{article.key}", "#{index}")')
                   i.material-icons.green replay
                   | Revert
-                li.mdl-menu__item(onclick='_delete0("#{article.key}", "#{index}")')
+                li.mdl-menu__item(onclick='_delete0(event, "#{article.key}", "#{index}")')
                   i.material-icons.red delete_forever
                   | Delete
             .collapsible-header-right
