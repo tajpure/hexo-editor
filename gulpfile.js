@@ -59,6 +59,7 @@ gulp.task('lib-scripts', () => {
     'node_modules/ace-builds/src/ace.js',
     'node_modules/material-design-lite/material.min.js',
     'node_modules/jquery/dist/jquery.min.js',
+    'node_modules/materialize-tags/dist/js/materialize-tags.min.js',
     'node_modules/marked/marked.min.js',
     'node_modules/socket.io-client/socket.io.js'
   ]).pipe(concat('libs.js'))
@@ -84,6 +85,7 @@ gulp.task('sheets', () => {
 gulp.task('lib-sheets', () => {
   return gulp.src([
     'node_modules/material-design-lite/material.min.css',
+    'node_modules/materialize-tags/dist/css/materialize-tags.min.css',
     'node_modules/github-markdown-css/github-markdown.css'
   ]).pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(concat('libs.css'))
