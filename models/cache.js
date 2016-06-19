@@ -4,7 +4,7 @@ const yaml = require('js-yaml');
 const fs = require('fs');
 const config = yaml.safeLoad(fs.readFileSync('./_config.yml', 'utf8'));
 
-console.log('connected to redis:' + config.redis_host + ':' + config.redis_port);
+console.log('Connected to redis:' + config.redis_host + ':' + config.redis_port);
 
 const client = redis.createClient(config.redis_port, config.redis_host);
 
