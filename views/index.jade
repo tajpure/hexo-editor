@@ -10,6 +10,12 @@ block content
       li.right-title
         a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();', title='exit')
           i.material-icons exit_to_app
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='deploy();', title='deploy')
+          i.material-icons backup
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(onclick='generate();', title='generate')
+          i.material-icons build
   #progress-wapper
     #progress.mdl-progress.mdl-js-progress.mdl-progress__indeterminate
   #left
@@ -18,14 +24,14 @@ block content
         i.material-icons(style='color:#00BCD4;') description
         a.left-title Posts
       li.left-menu-row(onclick='drafts()')
-        i.material-icons(style='color:#FF9800;') folder
+        i.material-icons(style='color:#FF9800;') drafts
         a.left-title Drafts
       li.left-menu-row(onclick='trash()')
         i.material-icons(style='color:#795548;') delete
         a.left-title Trash
-      //- li.left-menu-row
-      //-   i.material-icons(style='color:#673AB7;') settings
-      //-   a.left-title Settings
+      li.left-menu-row
+        i.material-icons(style='color:#673AB7;') settings
+        a.left-title Settings
       li.left-menu-row(onclick='help()')
         i.material-icons(style='color:#CDDC39;') help
         a.left-title Help

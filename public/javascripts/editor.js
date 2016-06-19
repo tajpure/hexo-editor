@@ -4,7 +4,7 @@
  */
 
 var editor = null;
-var socket = io();
+var socket = null;
 
 function back() {
   location.href = '/';
@@ -64,15 +64,32 @@ function afterEditorPage(key) {
 };
 
 function sync(key) {
+  if (!socket) {
+    socket = io();
+  }
   if (key) {
-    $.get('cache?id=' + key, function(data) {
-      $('#title').val(data.title);
-      editor.setValue(data.content, 1);
+    $.get('cache?id=' + key, function(article) {
+      if (!article.date) {
+        $('#date').val(new Date().format('yyyy-mm-dd HH:MM:ss'));
+      } else {
+        $('#date').val(article.date);
+      }
+      $('#title').val(article.title);
+      $('#tags').val(article.tags);
+      $('#categories').val(article.categories);
+      editor.setValue(article.content, 1);
     });
   } else {
-    socket.on('init', function (data) {
-      $('#title').val(data.title);
-      editor.setValue(data.content, 1);
+    socket.on('init', function (article) {
+      if (!article.date) {
+        $('#date').val(new Date().format('yyyy-mm-dd HH:MM:ss'));
+      } else {
+        $('#date').val(article.date);
+      }
+      $('#title').val(article.title);
+      $('#tags').val(article.tags);
+      $('#categories').val(article.categories);
+      editor.setValue(article.content, 1);
     });
   }
   $("#title").on("change paste keyup", function() {

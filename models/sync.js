@@ -14,7 +14,7 @@ module.exports = (socket) => {
 
   cache.get(cache_name, (article) => {
     if (!article) {
-      article = {'title': 'Untitled', 'date': '', 'tags': '',
+      article = {'title': 'Untitled', 'date': new Date(), 'tags': '',
                  'categories': '', 'content': '', 'key': ''};
     }
     socket.emit('init', article);
@@ -46,8 +46,12 @@ module.exports = (socket) => {
 
   socket.on('publish', (article) => {
     dist = '';
-    if (article.key) {  // When the article already exists
-      cache.get(cache_name + article.key, (cachedArticle) => {
+    const _article = article;
+    if (_article.key) {  // When the article already exists
+      cache.get(cache_name + _article.key, (cachedArticle) => {
+        cachedArticle.date = !_article.date ? cachedArticle.date : _article.date;
+        cachedArticle.tags = !_article.tags ? cachedArticle.tags : _article.tags;
+        cachedArticle.categories = !_article.categories ? cachedArticle.categories : _article.categories;
         cache.get(cachedArticle.key, (originArticle) => {
           if (originArticle) {
             cachedArticle.filename = originArticle.filename;

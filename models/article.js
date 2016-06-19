@@ -22,8 +22,8 @@ class Article {
   static getRawContent(article) {
     return 'title: ' + article.title + '\n' +
            'date: ' + article.date + '\n' +
-           'tags: ' + article.tags + '\n' +
-           'categories: ' + article.categories + '\n' +
+           'tags: [' + article.tags + ']\n' +
+           'categories: [' + article.categories + ']\n' +
            '---\n' + article.content;
   }
 
@@ -49,6 +49,9 @@ class Article {
   static parseJson(article) {
     this.filename = article.filename
     this.title = article.title;
+    this.date = article.date;
+    this.tags = article.tags;
+    this.categories = article.categories;
     this.rawContent = this.getRawContent(article);
     return this;
   }
@@ -77,7 +80,7 @@ class Article {
     const regExp = /tags: (.*)/i;
     const tags = regExp.exec(this.rawContent);
     if (tags && tags.length > 0) {
-      return tags[1];
+      return tags[1].replace(/\[([^"]*)\]/g, "$1");
     } else {
       return tags;
     }
@@ -87,7 +90,7 @@ class Article {
     const regExp = /categories: (.*)/i;
     const categories = regExp.exec(this.rawContent);
     if (categories && categories.length > 0) {
-      return categories[1];
+      return categories[1].replace(/\[([^"]*)\]/g, "$1");
     } else {
       return categories;
     }

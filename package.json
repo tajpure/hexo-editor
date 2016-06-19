@@ -44,8 +44,6 @@
     "hexo-fs": "^0.1.5",
     "jade": "^1.11.0",
     "js-yaml": "^3.5.5",
-    "materialize-tags": "^1.0.0",
-    "moment": "^2.13.0",
     "morgan": "^1.7.0",
     "nib": "^1.1.0",
     "pug": "^2.0.0-alpha6",

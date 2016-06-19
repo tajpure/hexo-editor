@@ -31,19 +31,23 @@ block content
       li
         input(id='title', value='#{article.title}')
         input(id='key', type='hidden', value='#{article.key}')
-        input(id='date', type='hidden', value='#{article.date}')
-        input(id='tags', type='hidden', value='#{article.tags}')
-        input(id='categories', type='hidden', value='#{article.categories}')
       li
         #done
-          i.material-icons done
+          i.material-icons cached
         #loading
           .mdl-spinner.mdl-js-spinner.is-active
   
-  #left
-    .mdl-textfield.mdl-js-textfield
-      input.file_input_text.mdl-textfield__input(type='text', value='Amsterdam,Washington', data-role='materialtags')
-  
+  #editor-meta-data
+    .meta-data.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+      input.mdl-textfield__input(id='date', type='text', value='#{article.date}', name='date')
+      label.mdl-textfield__label(for='date') Date
+    .meta-data.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+      input.mdl-textfield__input(id='tags', type='text', value='#{article.tags}', name='tags')
+      label.mdl-textfield__label(for='tags') Tags
+    .meta-data.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+      input.mdl-textfield__input(id='categories', type='text', value='#{article.categories}', name='categories')
+      label.mdl-textfield__label(for='categories') Categories
+          
   #editor-wapper
     #editor.mdl-shadow--2dp
     #preview.markdown-body.mdl-shadow--2dp
