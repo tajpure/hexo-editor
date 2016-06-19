@@ -1,10 +1,17 @@
-#port
+# port
 port: 2048
+
+# redis port
+redis_port: 6379
+
 # access the hexo editor directly
-local: true
+local: false
+
 # the username to login hexo editor
 username: hexo
+
 # the password for logining hexo editor
 password: imyouradmin
+
 # the blog directory
 base_dir: /home/tajpure/workspace/blog1

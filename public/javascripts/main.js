@@ -141,7 +141,7 @@ function trash() {
 }
 
 function generate() {
-  load();
+  startLoading();
   $.get('generate', function(data) {
     stopLoad();
     toast(data, 2000);
@@ -149,14 +149,14 @@ function generate() {
 }
 
 function deploy() {
-  load();
+  startLoading();
   $.get('deploy', function(data) {
     stopLoad();
     toast(data, 2000);
   });
 }
 
-function load() {
+function startLoading() {
   $('#progress').css('visibility', 'visible');
 }
 

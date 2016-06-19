@@ -16,7 +16,7 @@ class Caller {
       callback('generate finished.');
       return hexo.exit();
     }).catch((err) => {
-      callback(err);
+      callback('generate failed.');
       return hexo.exit(err);
     });
   }
@@ -27,7 +27,7 @@ class Caller {
       callback('deploy finished.');
       return hexo.exit();
     }).catch((err) => {
-      callback(err);
+      callback('deploy failed.');
       return hexo.exit(err);
     });
   }

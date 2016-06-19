@@ -5,7 +5,7 @@ block content
     button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn(id='menu-btn', title='menu')
       i.material-icons menu
     .left-title
-      a.mdl-button.mdl-js-button.mdl-js-ripple-effect(id='workspace') posts
+      a.mdl-button.mdl-js-button.mdl-js-ripple-effect(id='workspace', title='workspace') posts
     ul
       li.right-title
         a.mdl-button.mdl-js-button.mdl-button--icon(onclick='exit();', title='exit')
@@ -28,9 +28,9 @@ block content
       li.left-menu-row(onclick='trash()')
         i.material-icons(style='color:#795548;') delete
         a.left-title Trash
-      li.left-menu-row
-        i.material-icons(style='color:#673AB7;') settings
-        a.left-title Settings
+      //- li.left-menu-row
+      //-   i.material-icons(style='color:#673AB7;') settings
+      //-   a.left-title Settings
       li.left-menu-row(onclick='help()')
         i.material-icons(style='color:#CDDC39;') help
         a.left-title Help
