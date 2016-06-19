@@ -8,7 +8,7 @@ redis_host: 127.0.0.1
 redis_port: 6379
 
 # access the hexo editor directly
-local: true
+local: false
 
 # the username to login hexo editor
 username: hexo
