@@ -17,4 +17,4 @@ username: hexo
 password: imyouradmin
 
 # the blog directory
-base_dir: /home/tajpure/workspace/tajpure
+base_dir: ./blog

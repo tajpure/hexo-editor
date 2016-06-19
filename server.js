@@ -94,4 +94,6 @@ app.use((err, req, res, next) => {
     });
 });
 
+console.log('Hexo Editor is listening at port:' + config.port + '.');
+
 module.exports = app;
