@@ -13,7 +13,7 @@ class Caller {
   generate(callback) {
     const hexo = this.hexo;
     hexo.call('generate', {}).then(() => {
-      callback('generate finished.');
+      callback('generate success.');
       return hexo.exit();
     }).catch((err) => {
       callback('generate failed.');
@@ -24,7 +24,7 @@ class Caller {
   deploy(callback) {
     const hexo = this.hexo;
     hexo.call('deploy').then(() => {
-      callback('deploy finished.');
+      callback('deploy success.');
       return hexo.exit();
     }).catch((err) => {
       callback('deploy failed.');

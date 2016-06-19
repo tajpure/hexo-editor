@@ -74,6 +74,7 @@ function sync(key) {
       } else {
         $('#date').val(article.date);
       }
+      $('#date').parent().addClass('is-dirty');
       $('#title').val(article.title);
       $('#tags').val(article.tags);
       $('#categories').val(article.categories);
@@ -86,6 +87,7 @@ function sync(key) {
       } else {
         $('#date').val(article.date);
       }
+      $('#date').parent().addClass('is-dirty');
       $('#title').val(article.title);
       $('#tags').val(article.tags);
       $('#categories').val(article.categories);
