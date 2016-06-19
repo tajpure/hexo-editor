@@ -3,8 +3,8 @@ port: 2048
 # access the hexo editor directly
 local: true
 # the username to login hexo editor
-username: admin
+username: hexo
 # the password for logining hexo editor
-password: admin
+password: imyouradmin
 # the blog directory
 base_dir: /home/tajpure/workspace/blog1

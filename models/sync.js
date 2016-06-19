@@ -3,7 +3,7 @@ const yaml = require('js-yaml');
 const fs = require('fs');
 const config = yaml.safeLoad(fs.readFileSync('_config.yml', 'utf8'));
 const cache = require('./cache');
-const Manager = require('./manager');
+const Manager = require('./file-manager');
 
 const chunk_size = 64;
 const cache_name = 'cache';

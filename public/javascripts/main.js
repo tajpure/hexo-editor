@@ -141,15 +141,27 @@ function trash() {
 }
 
 function generate() {
+  load();
   $.get('generate', function(data) {
-    toast(data, 1000);
+    stopLoad();
+    toast(data, 2000);
   });
 }
 
 function deploy() {
+  load();
   $.get('deploy', function(data) {
-    toast(data, 1000);
+    stopLoad();
+    toast(data, 2000);
   });
+}
+
+function load() {
+  $('#progress').css('visibility', 'visible');
+}
+
+function stopLoad() {
+  $('#progress').css('visibility', 'hidden');
 }
 
 function help() {

@@ -154,6 +154,19 @@ header
   .item
     cursor pointer
 
+#progress
+  visibility hidden
+  position relative
+  margin-top 0em
+  z-index 98
+  width 100%
+  .progressbar
+    background-color #E040FB
+  .bufferbar
+    background-image linear-gradient(to right, rgba(255,255,255, 0.7), rgba(255,255,255, 0.7)), linear-gradient(to right, rgb(234,128,252), rgb(234,128,252))
+  .auxbar
+    background-image: linear-gradient(to right, rgba(255,255,255, 0.9), rgba(255,255,255, 0.9)), linear-gradient(to right, rgb(234,128,252), rgb(234,128,252))
+
 #main
   position relative
   margin-top 3.7em
@@ -165,7 +178,7 @@ header
   height 90%
   left -14%
   overflow-y auto
-  z-index 9999
+  z-index 100
   .left-menu
     width 100%
     margin 0

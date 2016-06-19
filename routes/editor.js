@@ -4,7 +4,7 @@ const router = express.Router();
 const yaml = require('js-yaml');
 const fs = require('fs');
 const config = yaml.safeLoad(fs.readFileSync('./_config.yml', 'utf8'));
-const Manager = require('../models/manager');
+const Manager = require('../models/file-manager');
 const cache = require('../models/cache');
 const busboy = require('connect-busboy');
 
