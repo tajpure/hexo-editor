@@ -140,6 +140,18 @@ function trash() {
   });
 }
 
+function generate() {
+  $.get('generate', function(data) {
+    toast(data, 1000);
+  });
+}
+
+function deploy() {
+  $.get('deploy', function(data) {
+    toast(data, 1000);
+  });
+}
+
 function help() {
   window.open('https://github.com/tajpure/hexo-editor/wiki', '_blank');
 }

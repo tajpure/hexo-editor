@@ -5,14 +5,12 @@ const yaml = require('js-yaml');
 const fs = require('fs');
 const config = yaml.safeLoad(fs.readFileSync('./_config.yml', 'utf8'));
 const Manager = require('../models/manager');
-const Editor = require('../models/editor');
 const Article = require('../models/article');
 const util = require('../models/util');
 const cache = require('../models/cache');
 const busboy = require('connect-busboy');
 
 const manager = new Manager(config.base_dir);
-const editor = new Editor(config.base_dir);
 
 const cache_name = 'cache';
 
