@@ -23,7 +23,7 @@ class Caller {
 
   deploy(callback) {
     const hexo = this.hexo;
-    hexo.call('deploy').then(() => {
+    hexo.call('deploy', {}).then(() => {
       callback('deploy success.');
       return hexo.exit();
     }).catch((err) => {
