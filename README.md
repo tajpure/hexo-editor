@@ -18,11 +18,8 @@ You can modify these variables in '_config.yml'.
   * false: When you deploy it in the server side, it will need to authenticate.
   * true: When you just want to use it in desktop environment.
 
-### username
-  * The username for the server side authentication.
-
-### password
-  * The password for the server side authentication.
+### username & password
+  * The username and password for the server side authentication.
 
 ### base_dir
   * The root directory of your blog.
