@@ -8,7 +8,7 @@ username: hexo
 password: imyouradmin
 
 # the blog directory
-base_dir: ./doc
+base_dir: ./docs
 
 # port
 port: 2048
