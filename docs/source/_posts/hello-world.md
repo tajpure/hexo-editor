@@ -33,7 +33,7 @@ Please use your own username and password, Do not use the defaults.
 
 #### *base_dir*
 Set your hexo blog directory to the "base_dir".
-> If you need to deploy offered by the hexo, you should add the SSH key to the authorized_keys of the target machine.
+> If you need to deploy a hexo blog, you should add the SSH key to the authorized_keys of the target machine.
 
 #### *port*
 The default port of Hexo Editor is 2048
