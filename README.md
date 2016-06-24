@@ -1,28 +1,18 @@
 # Hexo Editor
-  Hexo Editor is a web editor for hexo blog platform. You can use it to edit, generate and deploy posts over the web. This editor will auto save your post to the server side by [TextSync](https://github.com/tajpure/TextSync). If you have any questions, the [Wiki](https://github.com/tajpure/hexo-editor/wiki) may be helpful.
+  Hexo Editor is a web editor for hexo blog platform. You can use it to edit, generate and deploy posts over the web. This editor will auto save your post to the server by [TextSync](https://github.com/tajpure/TextSync). If you have any questions, the [Wiki](https://github.com/tajpure/hexo-editor/wiki) may be helpful.
 
 ## Requirements
-* Node.js  v4.0+
-* Redis > v2.0+
+* [Node.js](https://nodejs.org) v4.0+
+* [Redis](http://redis.io)
+* [Git](https://git-scm.com/)
 
 ## Installation
 ```
-git clone -b v1.x https://github.com/tajpure/hexo-editor.git
+git clone https://github.com/tajpure/hexo-editor.git
 ```
 
-## Config
+## ScreenShots
 
-You can modify these variables in '_config.yml'.
-
-### local
-  * false: When you deploy it in the server side, it will need to authenticate.
-  * true: When you just want to use it in desktop environment.
-
-### username & password
-  * The username and password for the server side authentication.
-
-### base_dir
-  * The root directory of your blog.
 
 License
 ----
