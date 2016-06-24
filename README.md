@@ -17,12 +17,17 @@ npm start
 ## ScreenShots
 ### PC
 ![Login](./docs/source/images/Screenshot from 2016-06-24 16:10:42.png)
+
 ![Home](./docs/source/images/Screenshot from 2016-06-24 15:47:15.png)
+
 ![Editor](./docs/source/images/Screenshot from 2016-06-24 15:47:35.png)
+
 ### Mobile
 ![Login](./docs/source/images/Screenshot from 2016-06-24 16:12:23.png)
+
 ![Home](./docs/source/images/Screenshot from 2016-06-24 15:48:27.png)
-![Editor](./docs/source/images/Screenshot from 2016-06-24 15:48:03.png)
+
+![Editor](./docs/source/images/Screenshot from 2016-06-24 16:17:55.png)
 
 License
 ----
