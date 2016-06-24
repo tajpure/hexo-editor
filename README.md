@@ -9,6 +9,9 @@
 ## Installation
 ```
 git clone https://github.com/tajpure/hexo-editor.git
+cd hexo-editor
+npm install
+npm start
 ```
 
 ## ScreenShots
