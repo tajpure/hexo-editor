@@ -133,7 +133,18 @@ function insertImage() {
       type: "POST",
       url: '/editor/image',
       data: formData,
+      xhr: function() {
+        var xhr = new window.XMLHttpRequest();
+        xhr.upload.addEventListener("progress", function(evt) {
+            if (evt.lengthComputable) {
+                var percentComplete = evt.loaded / evt.total;
+                $('#upload-image-btn').text(percentComplete + '%');
+            }
+       }, false);
+       return xhr;
+     },
       success: function(data) {
+        $('#upload-image-btn').text('Insert Image');
         editor.insert('\n![](' + data + ')');
         closeDialog();
       },
