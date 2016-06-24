@@ -5,7 +5,7 @@
         li.mdl-shadow--2dp(id='article-#{index}')
           .collapsible-header(id='#{index}', key="#{article.key}")
             i.material-icons library_books
-            | #{article.title}
+            .article-title #{article.title}
             .collapsible-header-right
               button.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--colored(id='#article-menu-#{index}')
                 i.material-icons more_vert
@@ -16,7 +16,7 @@
                 li.mdl-menu__item(onclick='_delete0(event, "#{article.key}", "#{index}")')
                   i.material-icons.red delete_forever
                   | Delete
-            .collapsible-header-right
+            .collapsible-header-right.article-date
               | #{article.date}
           .collapsible-body
             .markdown-body(width='60%')

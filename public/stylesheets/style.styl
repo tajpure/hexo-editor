@@ -8,12 +8,55 @@ body
   font "Lucida Grande", Helvetica, Arial, sans-serif
   background-color #eceff1
 
-@media only screen and (max-device-width: 480px) {
-  #content {
-    display: none;
+@media only screen and (max-device-width: 768px) {
+  #left {
+    margin-top 3.2em !important
+    width 48% !important
+    height 96% !important
+    background-color white !important
   }
-  body::before {
-    content: 'Not supported yet.'
+  .left-menu {
+    .active {
+      background-color #F5F5F5 !important
+    }
+  }
+  .left-menu {
+    margin-top 0.6em !important
+  }
+  #articles-wapper {
+    width 100% !important
+    margin 0 !important
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+  body {
+    -webkit-overflow-scrolling touch
+  }
+  #login-form {
+    width 91% !important
+  }
+  #article-add {
+    right 20px !important
+  }
+  #articles-wapper {
+    width 100% !important
+    margin 0 !important
+  }
+  .article-date {
+    display none
+  }
+  .article-title {
+    width 320px !important
+    white-space nowrap
+    overflow hidden
+    text-overflow ellipsis
+  }
+}
+
+@media only screen and (max-device-width: 320px) {
+  .article-title {
+    width 180px !important
   }
 }
 
@@ -176,9 +219,9 @@ header
   margin-top 3.7em
   width 14%
   height 90%
-  left -14%
+  left 0
   overflow-y auto
-  z-index 100
+  z-index 97
   .left-menu
     width 100%
     margin 0

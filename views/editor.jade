@@ -4,12 +4,14 @@ block content
   header.mdl-shadow--6dp
     button.mdl-button.mdl-js-button.mdl-button--icon.menu-btn(id='menu-btn', title='back', onclick='back()')
       i.material-icons arrow_back
-    .left-title
+    .editor-left-title
       a.mdl-button.mdl-js-button.mdl-js-ripple-effect(title='workspace') Editor
     ul
+      li.right-title
+        a.mdl-button.mdl-js-button.mdl-button--icon(title='publish', onclick='publish()')
+          i.material-icons publish
       -
         var items = [
-          {title:'publish', onclick:'publish()', icon: 'publish'},
           {title:'redo', onclick:'redo()', icon: 'redo'},
           {title:'undo', onclick:'undo()', icon: 'undo'},
           {title:'insert image', onclick:'uploadImage()', icon: 'insert_photo'},
@@ -22,7 +24,7 @@ block content
           {title:'format bold', onclick:'formatBlod()', icon: 'format_bold'}
         ]
       each item in items
-        li.right-title
+        li.right-title.editor-format
           a.mdl-button.mdl-js-button.mdl-button--icon(title=item.title, onclick=item.onclick)
             i.material-icons=item.icon
       li.right-title
@@ -31,7 +33,7 @@ block content
       li
         input(id='title', value='#{article.title}')
         input(id='key', type='hidden', value='#{article.key}')
-      li
+      li.editor-format
         #done
           i.material-icons cached
         #loading

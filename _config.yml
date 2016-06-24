@@ -8,7 +8,7 @@ username: hexo
 password: imyouradmin
 
 # the blog directory
-base_dir: ./docs
+base_dir: /home/tajpure/workspace/tajpure
 
 # port
 port: 2048

@@ -3,15 +3,25 @@
 */
 
 function afterIndexPage() {
-    $('#left').animate({left: "0"}, 0);
+    if (window.screen.width <= 768) {
+      $('#left').css('left', '-48%');
+      $('#main').click(function() {
+        $('#left').animate({left: "-48%"}, 200);
+      });
+      $('#left').click(function() {
+        $('#left').animate({left: "-48%"}, 200);
+      });
+    }
     $('#menu-btn').click(function() {
-      if ($('#left').css('display') === 'none') {
-        $('#left').show();
-        $('#left').animate({left: "0"}, 200);
+      console.log($('#left').css('left'));
+      if ($('#left').css('left') === '0px') {
+        if (window.screen.width <= 768) {
+          $('#left').animate({left: "-48%"}, 200);
+        } else {
+          $('#left').animate({left: "-14%"}, 200);
+        }
       } else {
-        $('#left').animate({left: "-14%"}, 200, function() {
-          $('#left').hide();
-        });
+        $('#left').animate({left: "0"}, 200);
       }
     });
     $('.left-menu-row').click(function() {
@@ -38,10 +48,11 @@ function afterPostPage() {
         isOpened = false;
       } else {
         $.get('post?id=' + key, function(data) {
+          data = marked(data)
           $('#article-' + id + ' .collapsible-body').slideDown(60, "linear", function() {
             var className = '#article-' + id + ' .collapsible-body .markdown-body';
             $(className).html('');
-            $(className).append(marked(data));
+            $(className).append(data);
           });
         });
         isOpened = true;

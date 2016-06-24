@@ -1,3 +1,69 @@
+@media only screen and (max-device-width: 768px) {
+  #editor-meta-data {
+    display none
+  }
+  #editor-wapper {
+    width 100% !important
+    #preview {
+      margin-left 0 !important
+      width 98% !important
+      height 99% !important
+    }
+    #editor {
+      margin-left 0 !important
+      width 100% !important
+    }
+  }
+  .editor-left-title {
+    display none !important
+  }
+  .editor-format {
+    display none !important
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+  #editor-meta-data {
+    display none
+  }
+  #editor-wapper {
+    width 100% !important
+    #preview {
+      margin-left 0 !important
+      width 98% !important
+      height 99% !important
+    }
+    #editor {
+      margin-left 0 !important
+      width 100% !important
+    }
+  }
+  .editor-left-title {
+    display none !important
+  }
+  .editor-format {
+    display none !important
+  }
+  #title {
+    margin-right 8px !important
+  }
+}
+
+@media only screen and (max-device-width: 320px) {
+  #title {
+    width 120px !important
+  }
+}
+
+.editor-left-title
+  position absolute
+  margin-left 4em
+  height 100%
+  .mdl-button
+    padding 8px
+    color white
+    font-size 1.3em
+
 #editor-meta-data
   position relative
   top 4em
@@ -93,7 +159,7 @@
   position relative
   float right
   margin-left 10px
-  margin-top 1px
+  margin-top -23px
   button
     position inherit
     float right
@@ -115,15 +181,6 @@
     list-style disc
     ul
       list-style circle
-
-.moveout-transition
-
-.moveout-leave
-
-.moveout-enter
-  height 0
-  padding 0 10px
-  opacity 0
 
 .title-wrapper
   margin-left 1em
