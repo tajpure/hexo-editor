@@ -129,6 +129,7 @@ function insertImage() {
   if (fileInput) {
     var formData = new FormData();
     formData.append('file', fileInput);
+    $('#upload-image-btn').prop("disabled", true);
     $.ajax({
       type: "POST",
       url: '/editor/image',
@@ -138,12 +139,14 @@ function insertImage() {
         xhr.upload.addEventListener("progress", function(evt) {
             if (evt.lengthComputable) {
                 var percentComplete = evt.loaded / evt.total;
+                percentComplete = parseInt((percentComplete * 100) + '');
                 $('#upload-image-btn').text(percentComplete + '%');
             }
        }, false);
        return xhr;
      },
       success: function(data) {
+      $('#upload-image-btn').prop("disabled", false);
         $('#upload-image-btn').text('Insert Image');
         editor.insert('\n![](' + data + ')');
         closeDialog();
