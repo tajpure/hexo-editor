@@ -48,11 +48,14 @@ function afterPostPage() {
         isOpened = false;
       } else {
         $.get('post?id=' + key, function(data) {
-          data = marked(data)
-          $('#article-' + id + ' .collapsible-body').slideDown(60, "linear", function() {
-            var className = '#article-' + id + ' .collapsible-body .markdown-body';
-            $(className).html('');
-            $(className).append(data);
+          var className = '#article-' + id + ' .collapsible-body .markdown-body';
+          data = marked(data);
+          $(className).html('');
+          $(className).append(data);
+          $('#article-' + id + ' .collapsible-body').slideDown(60, "linear", function(){
+            $(className).find('pre').each(function(i, e) {
+              hljs.highlightBlock(e);
+            });
           });
         });
         isOpened = true;

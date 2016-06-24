@@ -213,7 +213,11 @@ function undo() {
 
 function preview() {
   if ($('#editor').css('display') === 'block') {
-    $('#preview').html(marked(editor.getValue()));
+    var data = marked(editor.getValue());
+    $('#preview').html(data);
+    $('#preview').find('pre').each(function(i, e) {
+      hljs.highlightBlock(e);
+    });
     $('#editor').hide();
     $('#preview').show();
     $('#visibility').text('visibility_off');
