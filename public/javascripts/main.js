@@ -13,7 +13,6 @@ function afterIndexPage() {
       });
     }
     $('#menu-btn').click(function() {
-      console.log($('#left').css('left'));
       if ($('#left').css('left') === '0px') {
         if (window.screen.width <= 768) {
           $('#left').animate({left: "-48%"}, 60);
@@ -28,6 +27,7 @@ function afterIndexPage() {
       $('.left-menu-row').removeClass('active');
       $(this).addClass('active');
     });
+    checkSystem();
 }
 
 function afterPostPage() {
@@ -180,4 +180,13 @@ function stopLoad() {
 
 function help() {
   window.open('https://github.com/tajpure/hexo-editor/wiki', '_blank');
+}
+
+
+function checkSystem() {
+  if(!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+    $('header').css('min-width', '1200px');
+    $('#content').css('min-width', '1200px');
+    $('#left').css('min-width', '160px');
+  }
 }
