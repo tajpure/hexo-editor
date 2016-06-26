@@ -6,22 +6,22 @@ function afterIndexPage() {
     if (window.screen.width <= 768) {
       $('#left').css('left', '-48%');
       $('#main').click(function() {
-        $('#left').animate({left: "-48%"}, 200);
+        $('#left').animate({left: "-48%"}, 60);
       });
       $('#left').click(function() {
-        $('#left').animate({left: "-48%"}, 200);
+        $('#left').animate({left: "-48%"}, 60);
       });
     }
     $('#menu-btn').click(function() {
       console.log($('#left').css('left'));
       if ($('#left').css('left') === '0px') {
         if (window.screen.width <= 768) {
-          $('#left').animate({left: "-48%"}, 200);
+          $('#left').animate({left: "-48%"}, 60);
         } else {
-          $('#left').animate({left: "-14%"}, 200);
+          $('#left').animate({left: "-14%"}, 60);
         }
       } else {
-        $('#left').animate({left: "0"}, 200);
+        $('#left').animate({left: "0"}, 60);
       }
     });
     $('.left-menu-row').click(function() {

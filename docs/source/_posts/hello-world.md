@@ -31,7 +31,7 @@ You can change these variables in _config.yml for configuration.
 
 Please use your own username and password, Do not use the defaults.
 
-#### *base_dir*
+#### *base_dir*(absolute path)
 Set your hexo blog directory to the "base_dir".
 > If you need to deploy a hexo blog, you should add the SSH key to the authorized_keys of the target machine.
 
