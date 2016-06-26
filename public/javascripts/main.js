@@ -37,28 +37,30 @@ function afterPostPage() {
     })
   });
   $('.collapsible-header').each(function(index){
-    var isOpened = false;
     var id = $(this).attr('id');
     var key = $(this).attr('key');
+    var className = '#article-' + id + ' .collapsible-body';
+    window.hexoEditorLastId = null;
     $(this).click(function() {
-      $('.collapsible-body').each(function() {
-        $(this).hide();
-      });
-      if (isOpened) {
-        isOpened = false;
+      if (window.hexoEditorLastId !== id) {
+        $('.collapsible-body').each(function() {
+          $(this).hide();
+        });
+        window.hexoEditorLastId = id;
+      }
+      if ($(className).is(":visible")) {
+        $(className).hide();
       } else {
         $.get('post?id=' + key, function(data) {
-          var className = '#article-' + id + ' .collapsible-body .markdown-body';
           data = marked(data);
-          $(className).html('');
-          $(className).append(data);
+          $(className + ' .markdown-body').html('');
+          $(className + ' .markdown-body').append(data);
           $('#article-' + id + ' .collapsible-body').slideDown(60, "linear", function(){
             $(className).find('pre').each(function(i, e) {
               hljs.highlightBlock(e);
             });
           });
         });
-        isOpened = true;
       }
     });
   });
