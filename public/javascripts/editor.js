@@ -74,10 +74,12 @@ function sync(key) {
       } else {
         $('#date').val(article.date);
       }
-      $('#date').parent().addClass('is-dirty');
       $('#title').val(article.title);
       $('#tags').val(article.tags);
       $('#categories').val(article.categories);
+      $('#date').parent().addClass('is-dirty');
+      $('#tags').parent().addClass('is-dirty');
+      $('#categories').parent().addClass('is-dirty');
       editor.setValue(article.content, 1);
     });
   } else {
@@ -87,10 +89,12 @@ function sync(key) {
       } else {
         $('#date').val(article.date);
       }
-      $('#date').parent().addClass('is-dirty');
       $('#title').val(article.title);
       $('#tags').val(article.tags);
       $('#categories').val(article.categories);
+      $('#date').parent().addClass('is-dirty');
+      $('#tags').parent().addClass('is-dirty');
+      $('#categories').parent().addClass('is-dirty');
       editor.setValue(article.content, 1);
     });
   }
