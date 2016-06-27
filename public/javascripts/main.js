@@ -2,7 +2,18 @@
 * author:tajpure
 */
 
-function afterIndexPage() {
+function afterLoginLoad() {
+  setTimeout(function(){
+        $("#password").focus();
+        componentHandler.upgradeDom();
+        if($("#username").val().length === 0) {
+            $("#password").blur();
+            componentHandler.upgradeDom();
+        }
+  },100);
+}
+
+function afterIndexLoad() {
     if (window.screen.width <= 768) {
       $('#left').css('left', '-48%');
       $('#main').click(function() {
@@ -182,8 +193,7 @@ function stopLoad() {
 
 function help() {
   window.open('https://github.com/tajpure/hexo-editor/wiki', '_blank');
-}
-
+};
 
 function checkSystem() {
   if(!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {

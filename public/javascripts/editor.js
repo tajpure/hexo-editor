@@ -56,11 +56,12 @@ function uploadImage() {
   }
 };
 
-function afterEditorPage(key) {
+function afterEditorLoad(key) {
   editor = ace.edit("editor");
   editor.getSession().setUseWrapMode(true);
   editor.$blockScrolling = Infinity;
   sync(key);
+  checkSystem();
 };
 
 function sync(key) {
