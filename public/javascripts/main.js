@@ -58,6 +58,7 @@ function afterPostPage() {
           $(this).hide();
         });
         window.hexoEditorLastId = id;
+        startLoading();
       }
       if ($(className).is(":visible")) {
         $(className).hide();
@@ -70,6 +71,7 @@ function afterPostPage() {
             $(className).find('pre').each(function(i, e) {
               hljs.highlightBlock(e);
             });
+            stopLoading();
           });
         });
       }
@@ -170,7 +172,7 @@ function trash() {
 function generate() {
   startLoading();
   $.get('generate', function(data) {
-    stopLoad();
+    stopLoading();
     toast(data, 2000);
   });
 }
@@ -178,7 +180,7 @@ function generate() {
 function deploy() {
   startLoading();
   $.get('deploy', function(data) {
-    stopLoad();
+    stopLoading();
     toast(data, 2000);
   });
 }
@@ -187,7 +189,7 @@ function startLoading() {
   $('#progress').css('visibility', 'visible');
 }
 
-function stopLoad() {
+function stopLoading() {
   $('#progress').css('visibility', 'hidden');
 }
 
