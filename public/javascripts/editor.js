@@ -248,21 +248,33 @@ function preview() {
 }
 
 function publish() {
+  socket.emit('publish', getArticle());
+  socket.on('publishEnd', function(e) {
+    loading();
+    location.href = '/';
+  });
+}
+
+function saveToDrafts() {
+  socket.emit('stash', getArticle());
+  socket.on('stashEnd', function(e) {
+    console.log(e);
+    loading();
+    location.href = '/';
+  });
+}
+
+function getArticle() {
   var title = $('#title').val();
   var content = editor.getValue();
   var date = $('#date').val();
   var tags = $('#tags').val();
   var key = $('#key').val();
   var categories = $('#categories').val();
-  var syncData = TextSync.sync(editor.getValue());
   if (!date) {
     date = (new Date()).format('yyyy-mm-dd HH:MM:ss');
   }
   var article = {'title': title, 'date': date, 'tags': tags,
                  'categories': categories, 'content': content, 'key': key};
-  socket.emit('publish', article);
-  socket.on('publishEnd', function(e) {
-    loading();
-    location.href = '/';
-  });
+  return article;
 }

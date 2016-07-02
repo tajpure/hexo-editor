@@ -69,7 +69,8 @@ module.exports = (socket) => {
   socket.on('stash', (article) => {
     dist = '';
     handleArticle(article, function(article) {
-      manager.saveToDraft(article)
+      manager.saveToPost(article);
+      manager.moveToDraft(article, 'posts');
     });
     socket.emit('stashEnd', 'ok');
   });
@@ -77,7 +78,7 @@ module.exports = (socket) => {
   socket.on('publish', (article) => {
     dist = '';
     handleArticle(article, function(article) {
-      manager.saveToPost(article)
+      manager.saveToPost(article);
     });
     socket.emit('publishEnd', 'ok');
   });
