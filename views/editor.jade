@@ -10,11 +10,9 @@ block content
       li.right-title
         a.mdl-button.mdl-js-button.mdl-button--icon(title='publish', onclick='publish()')
           i.material-icons publish
-      li.right-title
-        a.mdl-button.mdl-js-button.mdl-button--icon(title='save to drafts', onclick='saveToDrafts()')
-          i.material-icons book
       -
         var items = [
+          {title:'save to drafts', onclick:'saveToDrafts()', icon: 'book'},
           {title:'redo', onclick:'redo()', icon: 'redo'},
           {title:'undo', onclick:'undo()', icon: 'undo'},
           {title:'insert image', onclick:'uploadImage()', icon: 'insert_photo'},
