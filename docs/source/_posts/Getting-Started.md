@@ -5,7 +5,6 @@ categories: [docs]
 ---
 ## Dependencies
 * [Node.js](https://nodejs.org) v4.0+
-* [Redis](http://redis.io/download)
 * [Git](https://git-scm.com/)
 
 ## How to Get Hexo Editor?
@@ -37,10 +36,6 @@ Set your hexo blog directory to the "base_dir".
 
 #### *port*
 The default port of Hexo Editor is 2048
-
-#### *redis host and port*
-The redis host is your local host.
-The redis port is it's default port: 6379.
 
 ### start
 ```

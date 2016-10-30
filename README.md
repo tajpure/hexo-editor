@@ -3,7 +3,6 @@
 
 ## Requirements
 * [Node.js](https://nodejs.org) v4.0+
-* [Redis](http://redis.io)
 * [Git](https://git-scm.com/)
 
 ## Installation
