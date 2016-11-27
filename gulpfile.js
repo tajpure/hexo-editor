@@ -60,7 +60,7 @@ gulp.task('lib-scripts', () => {
     'node_modules/material-design-lite/material.min.js',
     'node_modules/jquery/dist/jquery.min.js',
     'node_modules/marked/marked.min.js',
-    'node_modules/socket.io-client/socket.io.js'
+    'node_modules/socket.io-client/dist/socket.io.js'
   ]).pipe(concat('libs.js'))
     .pipe(uglify())
     .pipe(rev())
