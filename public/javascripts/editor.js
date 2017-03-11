@@ -81,7 +81,9 @@ function sync(key) {
       $('#date').parent().addClass('is-dirty');
       $('#tags').parent().addClass('is-dirty');
       $('#categories').parent().addClass('is-dirty');
-      editor.setValue(article.content, 1);
+      if (article.content) {
+        editor.setValue(article.content, 1);
+      }
     });
   } else {
     socket.on('init', function (article) {

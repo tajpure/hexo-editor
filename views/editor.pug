@@ -32,29 +32,28 @@ block content
         a.mdl-button.mdl-js-button.mdl-button--icon(title='preview', onclick='preview()')
           i.material-icons(id='visibility') visibility
       li
-        input(id='title', value='#{article.title}')
-        input(id='key', type='hidden', value='#{article.key}')
+        input(id='title', value=article.title)
+        input(id='key', type='hidden', value=article.key)
       li.editor-format
         #done
-          i.material-icons cached
         #loading
           .mdl-spinner.mdl-js-spinner.is-active
-  
+
   #editor-meta-data
     .meta-data.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      input.mdl-textfield__input(id='date', type='text', value='#{article.date}', name='date')
+      input.mdl-textfield__input(id='date', type='text', value=article.date, name='date')
       label.mdl-textfield__label(for='date') Date
     .meta-data.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      input.mdl-textfield__input(id='tags', type='text', value='#{article.tags}', name='tags')
+      input.mdl-textfield__input(id='tags', type='text', value=article.tags, name='tags')
       label.mdl-textfield__label(for='tags') Tags
     .meta-data.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      input.mdl-textfield__input(id='categories', type='text', value='#{article.categories}', name='categories')
+      input.mdl-textfield__input(id='categories', type='text', value=article.categories, name='categories')
       label.mdl-textfield__label(for='categories') Categories
-          
+
   #editor-wapper
     #editor.mdl-shadow--2dp
     #preview.markdown-body.mdl-shadow--2dp
-      
+
   #image-upload-dialog.mdl-shadow--2dp
     a.close(onclick='closeDialog("#image-upload-dialog")')
       i.material-icons(id='clear') clear
@@ -62,13 +61,13 @@ block content
     .file_input_div
       .file_input
         label.image_input_button.mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-js-ripple-effect
-          i.material-icons file_upload  
+          i.material-icons file_upload
           input#file_input.none(type='file')
       #file_input_text_div.mdl-textfield.mdl-js-textfield
         input#file_input_text.file_input_text.mdl-textfield__input(type='text', disabled='', readonly='')
         label.mdl-textfield__label(for='file_input_text')
       button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect(id='upload-image-btn', onclick='insertImage()')
         | Insert Image
-    
+
   script(type="text/javascript").
     afterEditorLoad("#{article.key}");
