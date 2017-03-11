@@ -21,7 +21,7 @@ const paths = {
 }
 
 gulp.task('clean', () => {
-  return gulp.src('views/layout.jade', {read: false})
+  return gulp.src('views/layout.pug', {read: false})
     .pipe(clean())
 })
 
@@ -38,15 +38,7 @@ gulp.task('clean-css', () => {
 gulp.task('scripts', () => {
   return gulp.src([
     'public/javascripts/*.js'
-  ])
-  // .pipe(rollup({
-  //     sourceMap: true
-  //   }))
-  //   .pipe(babel({
-  //      presets: ['es2015']
-  //    }))
-  //   .pipe(sourcemaps.write("."))
-    .pipe(uglify().on('error', gutil.log))
+  ]).pipe(uglify().on('error', gutil.log))
     .pipe(concat('app.js'))
     .pipe(rev())
     .pipe(gulp.dest('public/dist'))
@@ -102,8 +94,8 @@ gulp.task('replace', () => {
   const libsCSS = JSON.parse(fs.readFileSync('./public/dist/libs-css.json',
     'utf8'))
 
-  return gulp.src('views/origin-layout.jade')
-    .pipe(concat('layout.jade'))
+  return gulp.src('views/origin-layout.pug')
+    .pipe(concat('layout.pug'))
     .pipe(replace({
       patterns: [
         {

@@ -2,31 +2,31 @@
   #articles-view
     ul.collapsible
       each article, index in items
-        li.mdl-shadow--2dp(id='article-#{index}')
-          .collapsible-header(id='#{index}', key="#{article.key}")
+        li.mdl-shadow--2dp(id='article-' + index)
+          .collapsible-header(id=index, key=article.key)
             i.material-icons library_books
             .article-title #{article.title}
             .collapsible-header-right
-              button.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--colored(id='#article-menu-#{index}')
+              button.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--colored(id='#article-menu-' + index)
                 i.material-icons more_vert
-              ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='#article-menu-#{index}')
-                li.mdl-menu__item(onclick='edit(event, "#{article.key}")')
+              ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='#article-menu-' + index)
+                li.mdl-menu__item(onclick='edit(event, "' + article.key + '")')
                   i.material-icons.green edit
                   | Edit
-                li.mdl-menu__item(onclick='stash("#{article.key}", "#{index}")')
+                li.mdl-menu__item(onclick='stash("' + article.key + '", "' + index + '")')
                   i.material-icons.yellow book
                   | Stash
-                li.mdl-menu__item(onclick='_delete("#{article.key}", "#{index}")')
+                li.mdl-menu__item(onclick='_delete("' + article.key + '", "' + index + '")')
                   i.material-icons.red delete
                   | Discard
             .collapsible-header-right.article-date
               | #{article.date}
           .collapsible-body
             .markdown-body(width='60%')
-              
+
 #article-add
   a.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored(href='/editor', style='color:white;')
     i.material-icons add
-  
+
 script.
   afterPostPage()
