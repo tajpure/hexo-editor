@@ -15,18 +15,18 @@ npm start
 
 ## ScreenShots
 ### PC
-![Login](./docs/source/images/Screenshot from 2016-06-24 16:10:42.png)
+![Login](./docs/source/images/pc-login.png)
 
-![Home](./docs/source/images/Screenshot from 2016-06-24 15:47:15.png)
+![Home](./docs/source/images/pc-home.png)
 
-![Editor](./docs/source/images/Screenshot from 2016-06-24 15:47:35.png)
+![Editor](./docs/source/images/pc-editor.png)
 
 ### Mobile
-![Login](./docs/source/images/Screenshot from 2016-06-24 16:17:55.png)
+![Login](./docs/source/images/mobile-login.png)
 
-![Home](./docs/source/images/Screenshot from 2016-06-24 15:48:27.png)
+![Home](./docs/source/images/mobile-home.png)
 
-![Editor](./docs/source/images/Screenshot from 2016-06-24 15:48:03.png)
+![Editor](./docs/source/images/mobile-editor.png)
 
 License
 ----
