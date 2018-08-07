@@ -73,7 +73,7 @@ class Manager {
 
   moveToDraft(article, workspace) {
     const draft_dir = this.draft_dir;
-    const filename = article.filename + suffix;
+    const filename = (article.filename ? article.filename : article.title) + suffix;
     const oldPath = this.getPathByWorkspace(workspace) + filename;
     const newPath = draft_dir + filename;
     fs.rename(oldPath, newPath)
